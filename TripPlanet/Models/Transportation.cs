@@ -17,5 +17,8 @@ namespace TripPlanet.Models
         public DateTime DepartureDate { get; set; }
         public decimal Cost { get; set; }
         public bool Booked { get; set; }
+        public int DepartureCityId { get; set; }
+        public int ArrivalCityId { get; set; }
+        public virtual ICollection<CityTransportation> CityTransportations { get; set; }
     }
 }

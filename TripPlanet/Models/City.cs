@@ -21,6 +21,7 @@ namespace TripPlanet.Models
         public DateTime ArrivalDate { get; set; }
         public DateTime DepartureDate { get; set; }
         public virtual ICollection<TripCity> TripCities { get; set; }
+        public virtual ICollection<CityTransportation> CityTransportations { get; set; }
         public virtual ICollection<Lodging> Lodgings { get; set; }
         public virtual ICollection<Activity> Activities { get; set; }
     }

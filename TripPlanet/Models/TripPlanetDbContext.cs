@@ -18,6 +18,7 @@ namespace TripPlanet.Models
         public DbSet<Activity> Activities { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<TripCity> TripCities { get; set; }
+        public DbSet<CityTransportation> CityTransportations { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TripPlanet;integrated security=True");
@@ -30,15 +31,24 @@ namespace TripPlanet.Models
         {
             builder.Entity<TripCity>()
                 .HasKey(x => new { x.TripId, x.CityId });
-
             builder.Entity<TripCity>()
                 .HasOne(x => x.Trip)
                 .WithMany(y => y.TripCities)
                 .HasForeignKey(y => y.TripId);
-
             builder.Entity<TripCity>()
                 .HasOne(x => x.City)
                 .WithMany(y => y.TripCities)
+                .HasForeignKey(y => y.CityId);
+
+            builder.Entity<CityTransportation>()
+                .HasKey(x => new { x.TransportationId, x.CityId });
+            builder.Entity<CityTransportation>()
+                .HasOne(x => x.Transportation)
+                .WithMany(y => y.CityTransportations)
+                .HasForeignKey(y => y.TransportationId);
+            builder.Entity<CityTransportation>()
+                .HasOne(x => x.City)
+                .WithMany(y => y.CityTransportations)
                 .HasForeignKey(y => y.CityId);
             base.OnModelCreating(builder);
         }

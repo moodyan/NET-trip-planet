@@ -8,9 +8,10 @@ using TripPlanet.Models;
 namespace TripPlanet.Migrations
 {
     [DbContext(typeof(TripPlanetDbContext))]
-    partial class TripPlanetDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170816223256_AddManyToManyCityTransportations")]
+    partial class AddManyToManyCityTransportations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
