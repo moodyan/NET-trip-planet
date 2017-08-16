@@ -19,5 +19,7 @@ namespace TripPlanet.Models
         public decimal Cost { get; set; }
         public bool Booked { get; set; }
         public string Confirmation { get; set; }
+        public int CityId { get; set; }
+        public virtual City Cities { get; set; }
     }
 }

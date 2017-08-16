@@ -8,9 +8,10 @@ using TripPlanet.Models;
 namespace TripPlanet.Migrations
 {
     [DbContext(typeof(TripPlanetDbContext))]
-    partial class TripPlanetDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170816220409_OnePlannerToManyTrips")]
+    partial class OnePlannerToManyTrips
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
@@ -130,8 +131,6 @@ namespace TripPlanet.Migrations
 
                     b.Property<string>("Address");
 
-                    b.Property<int>("CityId");
-
                     b.Property<decimal>("Cost");
 
                     b.Property<DateTime>("Date");
@@ -143,8 +142,6 @@ namespace TripPlanet.Migrations
                     b.Property<string>("Type");
 
                     b.HasKey("ActivityId");
-
-                    b.HasIndex("CityId");
 
                     b.ToTable("Activities");
                 });
@@ -240,8 +237,6 @@ namespace TripPlanet.Migrations
 
                     b.Property<bool>("Booked");
 
-                    b.Property<int>("CityId");
-
                     b.Property<string>("Confirmation");
 
                     b.Property<decimal>("Cost");
@@ -251,8 +246,6 @@ namespace TripPlanet.Migrations
                     b.Property<string>("Name");
 
                     b.HasKey("LodgingId");
-
-                    b.HasIndex("CityId");
 
                     b.ToTable("Lodgings");
                 });
@@ -378,22 +371,6 @@ namespace TripPlanet.Migrations
                     b.HasOne("TripPlanet.Models.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("TripPlanet.Models.Activity", b =>
-                {
-                    b.HasOne("TripPlanet.Models.City", "Cities")
-                        .WithMany("Activities")
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("TripPlanet.Models.Lodging", b =>
-                {
-                    b.HasOne("TripPlanet.Models.City", "Cities")
-                        .WithMany("Lodgings")
-                        .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -10,6 +10,7 @@ namespace TripPlanet.Models
     [Table("Trips")]
     public class Trip
     {
+
         [Key]
         public int TripId { get; set; }
         public string Name { get; set; }
@@ -21,5 +22,7 @@ namespace TripPlanet.Models
         public string Members { get; set; }
         public bool Public { get; set; }
         public virtual ICollection<TripCity> TripCities { get; set; }
+        public int PlannerId { get; set; }
+        public virtual Planner Planner { get; set; }
     }
 }
