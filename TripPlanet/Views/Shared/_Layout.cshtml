@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=@TripPlanet.Models.EnvironmentVariables.GoogleMaps"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/StyleSheet.css" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container" id="navbar">
+            <div class="navbar-nav">
+                <div id="navlink">@Html.ActionLink("TRIPS", "Index", "Trips")</div>
+                <div id="navlink">@Html.ActionLink("ABOUT", "About", "Home")</div>
+                <div id="brand">@Html.ActionLink("TRIP PLANET", "Index", "Home")</div>
+                <div id="navlink">@Html.ActionLink("BLOG", "Index", "Blog")</div>
+                <div id="navlink">@Html.ActionLink("PRODUCTS", "Index", "Products")</div>
+            </div>
+        </div>
+    </nav>
+    <div class="render-body">
+        @RenderBody()
+    </div>
+    <div class="footer">
+        <div class="bigfoot">BIG</div>
+        <div class="littlefoot">@Html.ActionLink("PRESS SITE", "Press", "Home")</div>
+    </div>
+</body>
+</html>

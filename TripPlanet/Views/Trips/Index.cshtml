@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Trips";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<TripPlanet.Models.Trip>
+
+<main class="cards">
+    @foreach (var trip in Model)
+    {
+        <article class="card">
+            @*<img src=@Html.DisplayFor(image => trip.Image) alt="Sample photo">*@
+            <div class="text">
+                <h3>@Html.DisplayFor(name => trip.Name)</h3>
+                <p>@Html.DisplayFor(beginDate => trip.BeginDate)</p>
+                <p>@Html.DisplayFor(endDate => trip.EndDate)</p>
+                <p>@Html.ActionLink("Delete", "Delete", new { id = trip.TripId })</p>
+                <p>@Html.ActionLink("Edit", "Edit", new { id = trip.TripId })</p>
+                <button>@Html.ActionLink("Trip Details", "Details", new { id = trip.TripId })</button>
+                @Html.ActionLink("Trip Map", "MapView", new { id = trip.TripId })
+            </div>
+        </article>
+    }
+</main>

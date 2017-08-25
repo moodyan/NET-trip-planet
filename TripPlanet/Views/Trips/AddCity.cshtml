@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Add A City";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.TextBox("UserId")
+    <input type="submit" value="AddCity" />
+}

@@ -18,6 +18,8 @@ namespace TripPlanet.Models
         [Key]
         public int CityId { get; set; }
         public string Name { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
         public DateTime ArrivalDate { get; set; }
         public DateTime DepartureDate { get; set; }
         public virtual ICollection<TripCity> TripCities { get; set; }

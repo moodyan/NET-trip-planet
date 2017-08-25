@@ -1,0 +1,130 @@
+﻿html {
+  height: 100%;
+  box-sizing: border-box; }
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit; }
+
+.render-body {
+  margin: 0 auto; }
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 10rem;
+  min-height: 100%;
+  text-align: center;
+  background-color: white;
+  color: black; }
+
+#map {
+  height: 400px;
+  width: 100%; }
+
+.navbar-default {
+  background-color: white;
+  border: none;
+  height: 15vh;
+  display: flex;
+  margin-bottom: 0px;
+  align-items: center;
+  justify-content: center; }
+  .navbar-default #navbar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    justify-content: center; }
+    .navbar-default #navbar .navbar-nav {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      height: 15vh; }
+      .navbar-default #navbar .navbar-nav a {
+        display: flex;
+        justify-content: center;
+        color: #ffbf47;
+        font-weight: bold;
+        padding-top: 25px;
+        height: 15vh;
+        margin-left: 20px;
+        margin-right: 20px;
+        min-width: 100px; }
+      .navbar-default #navbar .navbar-nav #brand, .navbar-default #navbar .navbar-nav #navlink {
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        min-width: 100px; }
+      .navbar-default #navbar .navbar-nav #brand a {
+        font-size: 30px;
+        font-weight: bold;
+        text-shadow: 1.5px .5px .5px black; }
+      .navbar-default #navbar .navbar-nav #brand a:hover {
+        color: black;
+        text-decoration: none; }
+      .navbar-default #navbar .navbar-nav #navlink:hover {
+        background-image: url("../img/notUsing/space_paint.png");
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat; }
+      .navbar-default #navbar .navbar-nav #navlink a {
+        font-size: 20px; }
+      .navbar-default #navbar .navbar-nav #navlink a:hover {
+        color: white;
+        text-decoration: none; }
+
+.footer {
+  display: flex;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
+  height: 30px;
+  width: 100%;
+  border: 1px solid lightgrey; }
+
+.jumbotron {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background-image: url("http://kociastrona.info/interpretation/galaxy/galaxy-09.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 85vh; }
+  .jumbotron h1 {
+    display: flex;
+    justify-content: center;
+    color: white; }
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch; }
+  .cards .card {
+    flex: 0 0 500px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+    background-color: white; }
+    .cards .card img {
+      max-width: 100%; }
+    .cards .card .text {
+      padding: 0 20px 20px; }
+    .cards .card button {
+      background-color: tomato;
+      border: 0;
+      padding: 10px;
+      width: 100%; }
+      .cards .card button a {
+        color: white; }
+    .cards .card button:hover, .cards .card button:hover a {
+      background-color: #ffbf47;
+      color: white; }
+

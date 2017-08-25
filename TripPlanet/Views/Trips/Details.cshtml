@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Trip Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model TripPlanet.Models.Trip
+
+<h2>Trip Details</h2>
+
+<p>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</p>
+<p>@Html.DisplayNameFor(model => model.BeginDate) : @Html.DisplayFor(model => model.BeginDate)</p>
+<p>@Html.DisplayNameFor(model => model.EndDate) : @Html.DisplayFor(model => model.EndDate)</p>
+<p>@Html.DisplayNameFor(model => model.Budget) : @Html.DisplayFor(model => model.Budget)</p>
+<p>@Html.DisplayNameFor(model => model.Members) : @Html.DisplayFor(model => model.Members)</p>
+
+@Html.ActionLink("Add A City", "AddCity", new { id = Model.TripId })
+
+<h3>Trip Cities:</h3>
+@foreach (var tripCity in ViewBag.Cities)
+{
+    <p>@tripCity.City.Name</p>
+}
+
+<p>@Html.ActionLink("Back to Trips", "Index")</p>

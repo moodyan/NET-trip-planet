@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.register').click(function () {
+            $.ajax({
+                type: 'GET',
+                dataType: 'html',
+                url: '@Url.Action("Register", "Account")',
+                success: function (result) {
+                    $('#register-form').html(result);
+                }
+            });
+        });
+        $('.login').click(function () {
+            $.ajax({
+                type: 'GET',
+                dataType: 'html',
+                url: '@Url.Action("Login", "Account")',
+                success: function (result) {
+                    $('#login-form').html(result);
+                }
+            });
+        });
+    });
+</script>
+@using System.Security.Claims
+
+<h2>LOG IN OR REGISTER</h2>
+<hr />
+@if (User.Identity.IsAuthenticated)
+{
+    <p>Hello @User.Identity.Name!</p>
+    <p>@Html.ActionLink("Manage User Roles", "ManageUserRoles", "Role")</p>
+    @using (Html.BeginForm("LogOff", "Account"))
+    {
+
+        <input type="submit" class="btn btn-default" value="Log out" />
+    }
+}
+else
+{
+    <button class="register btn">REGISTER</button>
+    <div id="register-form"></div>
+    <br />
+    <button class="login btn">LOG IN</button>
+    <div id="login-form"></div>
+}
