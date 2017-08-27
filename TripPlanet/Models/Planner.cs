@@ -21,16 +21,17 @@ namespace TripPlanet.Models
         public DateTime Birthdate { get; set; }
         public byte Image { get; set; }
         public string Hometown { get; set; }
+        //UserId connects to Identity
+        public string UserName { get; set; }
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
         public virtual ICollection<Trip> Trips { get; set; }
 
-        public Planner(string firstName, string lastName, DateTime birthdate, byte image, string hometown)
+        public Planner(string firstName, string lastName, DateTime birthdate, string hometown)
         {
             FirstName = firstName;
             LastName = lastName;
             Birthdate = birthdate;
-            Image = image;
             Hometown = hometown;
         }
         public override bool Equals(System.Object otherPlanner)
@@ -45,10 +46,9 @@ namespace TripPlanet.Models
                 bool firstNameEquality = (this.FirstName == newPlanner.FirstName);
                 bool lastNameEquality = (this.LastName == newPlanner.LastName);
                 bool birthdateEquality = (this.Birthdate == newPlanner.Birthdate);
-                bool imageEquality = (this.Image == newPlanner.Image);
                 bool hometownEquality = (this.Hometown == newPlanner.Hometown);
 
-                return (firstNameEquality && lastNameEquality && birthdateEquality && imageEquality && hometownEquality);
+                return (firstNameEquality && lastNameEquality && birthdateEquality && hometownEquality);
             }
         }
         public override int GetHashCode()

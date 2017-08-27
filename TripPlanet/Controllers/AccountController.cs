@@ -22,28 +22,36 @@ namespace TripPlanet.Controllers
             _db = db;
         }
 
-        //public AccountController() { }
-
-        public UserManager<ApplicationUser> GetUser()
-        {
-            return _userManager;
-        }
-
         public IActionResult Index()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                var thisPlanner = _db.Planners.FirstOrDefault(planner => planner.UserName == User.Identity.Name);
+                return View(thisPlanner);
+            }
+            else
+            {
+                return View();
+            }
         }
 
-        public IActionResult Register()
+
+        public IActionResult RegisterLogin()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model, string firstName, string lastName, DateTime birthdate, string hometown)
         {
             var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+            Planner planner = new Planner(firstName, lastName, birthdate, hometown);
+            planner.UserId = user.Id;
+            planner.UserName = user.UserName;
+            _db.Planners.Add(planner);
+            _db.SaveChanges();
+
             if (result.Succeeded)
             {
                 return await RegisterLogin(user, model.Password);
@@ -60,9 +68,7 @@ namespace TripPlanet.Controllers
             Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(user.Email, password, isPersistent: true, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, "user");
-                PlannersController plannersController = new PlannersController();
-                return plannersController.Create(firstName, lastName, birthdate, image, hometown, user.Id);
+                return RedirectToAction("Index", "Account");
             }
             else
             {
@@ -81,7 +87,7 @@ namespace TripPlanet.Controllers
             Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Account");
             }
             else
             {
@@ -89,17 +95,11 @@ namespace TripPlanet.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> LogOff()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Account");
         }
-
-        public IActionResult HelloAjax()
-        {
-            return Content("Hello from the controller!", "text/plain");
-        }
-
     }
 }
