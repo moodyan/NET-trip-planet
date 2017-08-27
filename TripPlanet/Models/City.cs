@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -20,7 +21,13 @@ namespace TripPlanet.Models
         public string Name { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
+        [DisplayName("Arrival Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime ArrivalDate { get; set; }
+        [DisplayName("Departure Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DepartureDate { get; set; }
         public virtual ICollection<TripCity> TripCities { get; set; }
         public virtual ICollection<CityTransportation> CityTransportations { get; set; }

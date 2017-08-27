@@ -4,7 +4,8 @@
 }
 
 @model IEnumerable<TripPlanet.Models.Trip>
-
+<h2>Trips</h2>
+<p>@Html.ActionLink("Create A New Trip", "Create")</p>
 <main class="cards">
     @foreach (var trip in Model)
     {

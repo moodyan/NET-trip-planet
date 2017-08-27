@@ -59,21 +59,19 @@ namespace TripPlanet.Controllers
             _db.SaveChanges();
             return RedirectToAction("Details");
         }
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
+            var thisTrip = _db.Trips.FirstOrDefault(trips => trips.TripId == id);
             return View();
         }
-        //[HttpPost]
-        //public async Task<IActionResult> Create(Trip trip)
-        //{
-        //    var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        //    var currentUser = await _userManager.FindByIdAsync(userId);
-        //    DateTime timestamp = DateTime.Now;
+        [HttpPost]
+        public IActionResult Create(Trip trip)
+        {
+            trip.Planner = _db.Planners.FirstOrDefault(planner => planner.UserName == User.Identity.Name);
             
-        //    trip.user = currentUser;
-        //    _db.Trips.Add(trip);
-        //    _db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+            _db.Trips.Add(trip);
+            _db.SaveChanges();
+            return RedirectToAction("Index"); ;
+        }
     }
 }
