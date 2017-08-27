@@ -22,6 +22,9 @@
             @Html.LabelFor(model => model.EndDate, new { @class = "labels" })
             @Html.EditorFor(model => model.EndDate, new { @required = "true" })
             <br /><br />
+            @Html.LabelFor(model => model.Members, new { @class = "labels" })
+            @Html.TextBoxFor(model => model.Members, new { @required = "true" })
+            <br /><br />
             @Html.LabelFor(model => model.Budget, new { @class = "labels" })
             @Html.TextBoxFor(model => model.Budget, new { @required = "true" })
             <br /><br />

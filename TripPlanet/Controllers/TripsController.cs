@@ -47,18 +47,7 @@ namespace TripPlanet.Controllers
             ViewBag.Cities = tripCities;
             return View(thisTrip);
         }
-        [HttpPost, ActionName("Details")]
-        public IActionResult AddCity(int cityId, int id)
-        {
-            var thisTrip = _db.Trips.Include(trips => trips.TripCities).FirstOrDefault(trips => trips.TripId == id);
-            var newCity = _db.Cities.FirstOrDefault(citys => citys.CityId == cityId);
-            var newTripCity = new TripCity();
-            newTripCity.TripId = id;
-            newTripCity.CityId = cityId;
-            _db.TripCities.Add(newTripCity);
-            _db.SaveChanges();
-            return RedirectToAction("Details");
-        }
+        
         public IActionResult Create(int id)
         {
             var thisTrip = _db.Trips.FirstOrDefault(trips => trips.TripId == id);
@@ -72,6 +61,49 @@ namespace TripPlanet.Controllers
             _db.Trips.Add(trip);
             _db.SaveChanges();
             return RedirectToAction("Index"); ;
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var thisTrip = _db.Trips.FirstOrDefault(trip => trip.TripId == id);
+            return View(thisTrip);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Trip trip)
+        {
+            trip.Planner = _db.Planners.FirstOrDefault(planner => planner.UserName == User.Identity.Name);
+            _db.Entry(trip).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        //Delete a Trip
+        public IActionResult Delete(int id)
+        {
+            var thisTrip = _db.Trips.FirstOrDefault(trip => trip.TripId == id);
+            return View(thisTrip);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var thisTrip = _db.Trips.FirstOrDefault(trip => trip.TripId == id);
+            _db.Trips.Remove(thisTrip);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult AddCity(int cityId, int id)
+        {
+            var thisTrip = _db.Trips.Include(trips => trips.TripCities).FirstOrDefault(trips => trips.TripId == id);
+            var newCity = _db.Cities.FirstOrDefault(citys => citys.CityId == cityId);
+            var newTripCity = new TripCity();
+            newTripCity.TripId = id;
+            newTripCity.CityId = cityId;
+            _db.TripCities.Add(newTripCity);
+            _db.SaveChanges();
+            return RedirectToAction("Details");
         }
     }
 }

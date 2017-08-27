@@ -13,8 +13,8 @@
             @*<img src=@Html.DisplayFor(image => trip.Image) alt="Sample photo">*@
             <div class="text">
                 <h3>@Html.DisplayFor(name => trip.Name)</h3>
-                <p>@Html.DisplayFor(beginDate => trip.BeginDate)</p>
-                <p>@Html.DisplayFor(endDate => trip.EndDate)</p>
+                <p>@Html.DisplayFor(beginDate => trip.BeginDate.Date)</p>
+                <p>@Html.DisplayFor(endDate => trip.EndDate.Date)</p>
                 <p>@Html.ActionLink("Delete", "Delete", new { id = trip.TripId })</p>
                 <p>@Html.ActionLink("Edit", "Edit", new { id = trip.TripId })</p>
                 <button>@Html.ActionLink("Trip Details", "Details", new { id = trip.TripId })</button>
