@@ -13,12 +13,14 @@ namespace TripPlanet.Models
         {
             this.Lodgings = new HashSet<Lodging>();
             this.Activities = new HashSet<Activity>();
+            this.GetDuration();
         }
         [Key]
         public int CityId { get; set; }
         public string Name { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public int Duration { get; set; }
         [DisplayName("Arrival Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
@@ -31,5 +33,14 @@ namespace TripPlanet.Models
         public virtual ICollection<CityTransportation> CityTransportations { get; set; }
         public virtual ICollection<Lodging> Lodgings { get; set; }
         public virtual ICollection<Activity> Activities { get; set; }
+
+        public int GetDuration()
+        {
+            double doubleDays = (DepartureDate - ArrivalDate).TotalDays;
+            int days = Convert.ToInt32(doubleDays);
+            Duration = days;
+            return days;
+        }
+
     }
 }
