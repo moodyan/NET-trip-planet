@@ -25,9 +25,11 @@ namespace TripPlanet.Controllers
             return View();
         }
 
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
-
+            var thisCity = _db.Cities.FirstOrDefault(city => city.CityId == id);
+            ViewBag.Longitude = thisCity.Longitude;
+            ViewBag.Latitude = thisCity.Latitude;
             return View();
         }
         [HttpPost]
@@ -35,8 +37,6 @@ namespace TripPlanet.Controllers
         {
             activity.Cities = _db.Cities.FirstOrDefault(city => city.CityId == id);
             
-            ViewBag.Longitude = activity.Cities.Longitude;
-            ViewBag.Latitude = activity.Cities.Latitude;
             _db.Activities.Add(activity);
             _db.SaveChanges();
             return RedirectToAction("Details", "Cities", new { id = id }); ;

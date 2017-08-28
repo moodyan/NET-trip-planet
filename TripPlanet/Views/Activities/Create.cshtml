@@ -26,7 +26,8 @@
 
     google.maps.event.addDomListener(window, 'load', function () {
         var cityLatitude = '@ViewBag.Latitude';
-        var cityLongitude = '@ViewBag.Latitude';
+        var cityLongitude = '@ViewBag.Longitude';
+        console.log('lat, long: '+ cityLatitude + ", " + cityLongitude);
         var defaultBounds = new google.maps.LatLngBounds(
             new google.maps.LatLng(cityLatitude, cityLongitude));
 
