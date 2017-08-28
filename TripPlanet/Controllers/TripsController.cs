@@ -48,9 +48,9 @@ namespace TripPlanet.Controllers
             return View(thisTrip);
         }
         
-        public IActionResult Create(int id)
+        public IActionResult Create()
         {
-            var thisTrip = _db.Trips.FirstOrDefault(trips => trips.TripId == id);
+            
             return View();
         }
         [HttpPost]
