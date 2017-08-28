@@ -6,10 +6,39 @@
 <h2>@Model.Name</h2>
 <p>Arrive: @Model.ArrivalDate</p>
 <p>Depart: @Model.DepartureDate</p>
+<hr />
+<h3>Activities:</h3>
+@if(ViewBag.Activities !=null)
+{
+    @foreach (var activity in ViewBag.Activities)
+    {
+        <p>@activity.Name</p>
 
-
+    }
+}
 @Html.ActionLink("Add An Activity", "Create", "Activities", new { id = Model.CityId })
-<br />
+<br /><br />
+<h3>Lodging:</h3>
+@if (ViewBag.Lodging != null)
+{
+    @foreach (var lodging in ViewBag.Lodging)
+    {
+        <p>@lodging.Name</p>
+
+    }
+}
 @Html.ActionLink("Add Lodging", "Create", "Lodgings", new { id = Model.CityId })
-<br />
+<br /><br />
+<h3>Transportation:</h3>
+@if (ViewBag.Transportation != null)
+{
+    @foreach (var transportation in ViewBag.Transportation)
+    {
+        <p>@transportation.Name</p>
+
+    }
+}
 @Html.ActionLink("Add Transportation", "Create", "Transportations", new { id = Model.CityId })
+<hr />
+@*Make this link work*@
+@*@Html.ActionLink("Back to Trip", "Details", "Trips", new { id = Model.TripCities.TripId})*@

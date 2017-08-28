@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Geocoding;
 using Geocoding.Google;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TripPlanet.Controllers
 {
+    [Authorize]
     public class CitiesController : Controller
     {
         private readonly TripPlanetDbContext _db;
@@ -48,9 +50,17 @@ namespace TripPlanet.Controllers
 
         public IActionResult Details(int Id)
         {
-            var thisCity = _db.Cities.Include(cities => cities.TripCities).FirstOrDefault(city => city.CityId == Id);
+            var thisCity = _db.Cities
+                .Include(cities => cities.TripCities)
+                .Include(transportations => transportations.CityTransportations)
+                .FirstOrDefault(city => city.CityId == Id);
+            
             var activities = _db.Activities.Where(activity => activity.CityId == Id).ToList();
             ViewBag.Activities = activities;
+            var lodging = _db.Lodgings.Where(lodgings => lodgings.CityId == Id).ToList();
+            ViewBag.Lodging = lodging;
+            var cityTransportations = _db.CityTransportations.Include(city => city.Transportation).Where(cityTransportation => cityTransportation.CityId == Id).ToList();
+            ViewBag.Transportation = cityTransportations;
             return View(thisCity);
         }
     }

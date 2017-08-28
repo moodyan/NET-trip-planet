@@ -9,10 +9,11 @@ using Microsoft.AspNetCore.Http;
 using TripPlanet.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TripPlanet.Controllers
 {
-
+    [Authorize]
     public class RoleController : Controller
     {
         private readonly TripPlanetDbContext _db;

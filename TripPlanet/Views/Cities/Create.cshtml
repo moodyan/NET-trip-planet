@@ -6,7 +6,7 @@
 @using (Html.BeginForm())
 {
     @Html.LabelFor(model => model.Name)
-    @Html.EditorFor(model => model.Name, new { @class = "city-input" })
+    @Html.EditorFor(model => model.Name)
     
     @Html.LabelFor(model => model.ArrivalDate)
     @Html.EditorFor(model => model.ArrivalDate)

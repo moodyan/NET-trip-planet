@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TripPlanet.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TripPlanet.Controllers
 {
+    [Authorize]
     public class ActivitiesController : Controller
     {
         private readonly TripPlanetDbContext _db;
@@ -18,7 +20,7 @@ namespace TripPlanet.Controllers
             _userManager = userManager;
             _db = db;
         }
-        public IActionResult Details(int Id)
+        public IActionResult Details(int id)
         {
             return View();
         }
@@ -33,10 +35,11 @@ namespace TripPlanet.Controllers
         {
             activity.Cities = _db.Cities.FirstOrDefault(city => city.CityId == id);
             
-            //ViewBag.Latitude = activity.Cities.Longiude;
+            ViewBag.Longitude = activity.Cities.Longitude;
+            ViewBag.Latitude = activity.Cities.Latitude;
             _db.Activities.Add(activity);
             _db.SaveChanges();
-            return RedirectToAction("Index"); ;
+            return RedirectToAction("Details", "Cities", new { id = id }); ;
         }
     }
 }

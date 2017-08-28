@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using TripPlanet.Models;
 using TripPlanet.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TripPlanet.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly TripPlanetDbContext _db;

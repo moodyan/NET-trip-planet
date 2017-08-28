@@ -22,13 +22,13 @@
     <input type="submit" value="Add Activity" />
 }
 
-@*<script type="text/javascript">
+<script type="text/javascript">
 
     google.maps.event.addDomListener(window, 'load', function () {
         var cityLatitude = '@ViewBag.Latitude';
         var cityLongitude = '@ViewBag.Latitude';
         var defaultBounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(cityLatitude, cityLongitude);
+            new google.maps.LatLng(cityLatitude, cityLongitude));
 
         var input = document.getElementById('Name');
 
@@ -36,4 +36,4 @@
             bounds: defaultBounds
         });
     });
-</script>*@
+</script>
