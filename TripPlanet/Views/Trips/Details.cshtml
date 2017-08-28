@@ -4,9 +4,10 @@
 }
 @model TripPlanet.Models.Trip
 
-<h2>Trip Details</h2>
+<h2>Trip Details for @Model.Name</h2>
+@Html.ActionLink("Trip Map", "MapView", new { id = @Model.TripId })
+<br /><br />
 
-<p>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</p>
 <p>@Html.DisplayNameFor(model => model.BeginDate) : @Html.DisplayFor(model => model.BeginDate)</p>
 <p>@Html.DisplayNameFor(model => model.EndDate) : @Html.DisplayFor(model => model.EndDate)</p>
 <p>@Html.DisplayNameFor(model => model.Budget) : @Html.DisplayFor(model => model.Budget)</p>
@@ -17,7 +18,8 @@
 <h3>Trip Cities:</h3>
 @foreach (var tripCity in ViewBag.Cities)
 {
-    <p>@tripCity.City.Name</p>
+    <a href="/Cities/Details/@tripCity.CityId" id="@tripCity.CityId">@tripCity.City.Name</a><br />
+    
 }
-
+<hr />
 <p>@Html.ActionLink("Back to Trips", "Index")</p>

@@ -33,7 +33,7 @@ _A web application that allows users to manage their multi-city trips._
 
 **TODO:**
 1. Add markers to map based on trip cities database data.
-2. On City Create, have city name autofill name and lat/lon.
+2. On City Create, have city name autofill name.
 
 
 ## Setup/Installation Requirements
@@ -74,7 +74,10 @@ _If you run into any issues or have questions, ideas or concerns, please contact
 
 **Database Management:** MySQL (SSMS)
 
-**APIs:** MAYBE: Google Maps API, Flight API (QPX Express API)
+**APIs:**
+- [Geocoding API](https://github.com/chadly/Geocoding.net)
+- [Google Maps API](https://developers.google.com/maps/documentation/javascript/get-api-key)
+- MAYBE: Flight API (QPX Express API)
 
 
 ### License

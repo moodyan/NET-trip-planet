@@ -23,7 +23,6 @@ namespace TripPlanet.Controllers
         }
         public IActionResult Create()
         {
-            //var thisTrip = _db.Trips.FirstOrDefault(trip => trip.TripId == id);
             return View();
         }
 
@@ -47,6 +46,12 @@ namespace TripPlanet.Controllers
             return RedirectToAction("Details");
         }
 
-        
+        public IActionResult Details(int Id)
+        {
+            var thisCity = _db.Cities.Include(cities => cities.TripCities).FirstOrDefault(city => city.CityId == Id);
+            var activities = _db.Activities.Where(activity => activity.CityId == Id).ToList();
+            ViewBag.Activities = activities;
+            return View(thisCity);
+        }
     }
 }
