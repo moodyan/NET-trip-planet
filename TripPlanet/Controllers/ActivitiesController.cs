@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using TripPlanet.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Geocoding;
+using Geocoding.Google;
 
 namespace TripPlanet.Controllers
 {
@@ -33,10 +35,13 @@ namespace TripPlanet.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Activity activity, int id)
+        public async Task<IActionResult> Create(Activity activity, int id)
         {
             activity.Cities = _db.Cities.FirstOrDefault(city => city.CityId == id);
-            
+            IGeocoder geocoder = new GoogleGeocoder() { ApiKey = EnvironmentVariables.GeocodingAPI };
+            IEnumerable<Address> addresses = await geocoder.GeocodeAsync(activity.Address);
+            activity.Latitude = addresses.First().Coordinates.Latitude;
+            activity.Longitude = addresses.First().Coordinates.Longitude;
             _db.Activities.Add(activity);
             _db.SaveChanges();
             return RedirectToAction("Details", "Cities", new { id = id }); ;
