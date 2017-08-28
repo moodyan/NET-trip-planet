@@ -28,11 +28,12 @@ namespace TripPlanet.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(int id, City city)
+        public async Task<IActionResult> Create(int id, City city)
         {
             IGeocoder geocoder = new GoogleGeocoder() { ApiKey = EnvironmentVariables.GeocodingAPI };
             IEnumerable<Address> addresses = await geocoder.GeocodeAsync(city.Name);
-            Console.WriteLine("Coordinates: " + addresses.First().Coordinates.Latitude + ", " + addresses.First().Coordinates.Longitude);
+            city.Latitude = addresses.First().Coordinates.Latitude;
+            city.Longitude = addresses.First().Coordinates.Longitude;
 
             _db.Cities.Add(city);
             _db.SaveChanges();

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.1",
-    "signature": "0ae3a1ccd62bd8d284626079c7f0ab3b193d6bf4"
+    "signature": "7ed097eceaee1bba869d2e89d1560046024f1dac"
   },
   "compilationOptions": {
     "defines": [
@@ -24,6 +24,7 @@
       "tripplanet/1.0.0": {
         "dependencies": {
           "Geocoding.Core": "4.0.0",
+          "Geocoding.Google": "4.0.0",
           "Microsoft.ApplicationInsights.AspNetCore": "2.0.0",
           "Microsoft.AspNetCore": "1.1.2",
           "Microsoft.AspNetCore.Diagnostics": "1.1.2",
@@ -60,6 +61,20 @@
         },
         "compile": {
           "lib/netstandard1.3/Geocoding.Core.dll": {}
+        }
+      },
+      "geocoding.google/4.0.0": {
+        "dependencies": {
+          "Geocoding.Core": "4.0.0",
+          "NETStandard.Library": "1.6.1",
+          "System.Net.Http": "4.3.2",
+          "System.Xml.XPath": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Geocoding.Google.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Geocoding.Google.dll": {}
         }
       },
       "microsoft.applicationinsights/2.2.0": {
@@ -1784,6 +1799,25 @@
           "ref/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "system.xml.xpath/4.3.0": {
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Xml.ReaderWriter": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Xml.XPath.dll": {}
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Xml.XPath.dll": {}
+        }
+      },
       "libuv/1.9.1": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
@@ -3394,20 +3428,6 @@
         },
         "compileOnly": true
       },
-      "system.xml.xpath/4.0.1": {
-        "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Diagnostics.Debug": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0",
-          "System.Threading": "4.3.0",
-          "System.Xml.ReaderWriter": "4.3.0"
-        },
-        "compileOnly": true
-      },
       "system.xml.xpath.xdocument/4.0.1": {
         "dependencies": {
           "System.Diagnostics.Debug": "4.3.0",
@@ -3418,7 +3438,7 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XDocument": "4.3.0",
-          "System.Xml.XPath": "4.0.1"
+          "System.Xml.XPath": "4.3.0"
         },
         "compileOnly": true
       }
@@ -3436,6 +3456,13 @@
       "sha512": "sha512-B1LtWdzpeZMZOI808K0wb9d8l0qMEBczADp2P9K1zIdAsykUm5skoZ1/6KV7LJsiPXyRwulohzxs3msmtbxB9A==",
       "path": "geocoding.core/4.0.0",
       "hashPath": "geocoding.core.4.0.0.nupkg.sha512"
+    },
+    "geocoding.google/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wc5pd5pHr8yDtQzJRnnyvW7v2DKA+BhbhfZIbIkqFrQfJj2RlDbipm+YEPkdL1DJWTTCWUPjP9NbBYP/45+HDQ==",
+      "path": "geocoding.google/4.0.0",
+      "hashPath": "geocoding.google.4.0.0.nupkg.sha512"
     },
     "microsoft.applicationinsights/2.2.0": {
       "type": "package",
@@ -4206,6 +4233,13 @@
       "sha512": "sha512-FrazwwqfIXTfq23mfv4zH+BjqkSFNaNFBtjzu3I9NRmG8EELYyrv/fJnttCIwRMFRR/YKXF1hmsMmMEnl55HGw==",
       "path": "system.xml.xmlserializer/4.0.11",
       "hashPath": "system.xml.xmlserializer.4.0.11.nupkg.sha512"
+    },
+    "system.xml.xpath/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-v1JQ5SETnQusqmS3RwStF7vwQ3L02imIzl++sewmt23VGygix04pEH+FCj1yWb+z4GDzKiljr1W7Wfvrx0YwgA==",
+      "path": "system.xml.xpath/4.3.0",
+      "hashPath": "system.xml.xpath.4.3.0.nupkg.sha512"
     },
     "libuv/1.9.1": {
       "type": "package",
@@ -5032,13 +5066,6 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
-    },
-    "system.xml.xpath/4.0.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-UWd1H+1IJ9Wlq5nognZ/XJdyj8qPE4XufBUkAW59ijsCPjZkZe0MUzKKJFBr+ZWBe5Wq1u1d5f2CYgE93uH7DA==",
-      "path": "system.xml.xpath/4.0.1",
-      "hashPath": "system.xml.xpath.4.0.1.nupkg.sha512"
     },
     "system.xml.xpath.xdocument/4.0.1": {
       "type": "package",
