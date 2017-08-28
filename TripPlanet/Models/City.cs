@@ -13,7 +13,6 @@ namespace TripPlanet.Models
         {
             this.Lodgings = new HashSet<Lodging>();
             this.Activities = new HashSet<Activity>();
-            this.GetDuration();
         }
         [Key]
         public int CityId { get; set; }

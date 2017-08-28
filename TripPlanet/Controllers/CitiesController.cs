@@ -33,7 +33,7 @@ namespace TripPlanet.Controllers
             IEnumerable<Address> addresses = await geocoder.GeocodeAsync(city.Name);
             city.Latitude = addresses.First().Coordinates.Latitude;
             city.Longitude = addresses.First().Coordinates.Longitude;
-
+            city.Duration = city.GetDuration();
             _db.Cities.Add(city);
             _db.SaveChanges();
             var thisTrip = _db.Trips.Include(trips => trips.TripCities).FirstOrDefault(trips => trips.TripId == id);
@@ -43,7 +43,7 @@ namespace TripPlanet.Controllers
             newTripCity.CityId = city.CityId;
             _db.TripCities.Add(newTripCity);
             _db.SaveChanges();
-            return RedirectToAction("Details");
+            return RedirectToAction("Details", "Trips", new { id = id});
         }
 
         public IActionResult Details(int Id)
