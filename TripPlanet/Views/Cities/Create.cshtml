@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Add A City";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model TripPlanet.Models.City
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name, new { @class = "city-input" })
+    @*@Html.LabelFor(model => model.Latitude)
+    @Html.TextBoxFor(model => model.Latitude)
+    @Html.LabelFor(model => model.Longitude)
+    @Html.TextBoxFor(model => model.Longitude)*@
+    @Html.LabelFor(model => model.ArrivalDate)
+    @Html.EditorFor(model => model.ArrivalDate)
+    @Html.LabelFor(model => model.DepartureDate)
+    @Html.EditorFor(model => model.DepartureDate)
+    <input type="submit" value="Add City" />
+}
+
+
+<script>
+    //$(document).ready(function () {
+    //    $(".city-input").geocomplete();
+
+        //$("form").submit(function(){
+        //  $(".city-input").trigger("geocode");
+        //});
+    //});
+</script>

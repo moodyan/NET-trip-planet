@@ -5,21 +5,27 @@
 
 @model IEnumerable<TripPlanet.Models.Trip>
 <h2>Trips</h2>
-<p>@Html.ActionLink("Create A New Trip", "Create")</p>
-<main class="cards">
-    @foreach (var trip in Model)
-    {
-        <article class="card">
-            @*<img src=@Html.DisplayFor(image => trip.Image) alt="Sample photo">*@
-            <div class="text">
-                <h3>@Html.DisplayFor(name => trip.Name)</h3>
-                <p>@Html.DisplayFor(beginDate => trip.BeginDate.Date)</p>
-                <p>@Html.DisplayFor(endDate => trip.EndDate.Date)</p>
-                <p>@Html.ActionLink("Delete", "Delete", new { id = trip.TripId })</p>
-                <p>@Html.ActionLink("Edit", "Edit", new { id = trip.TripId })</p>
-                <button>@Html.ActionLink("Trip Details", "Details", new { id = trip.TripId })</button>
-                @Html.ActionLink("Trip Map", "MapView", new { id = trip.TripId })
-            </div>
-        </article>
-    }
-</main>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>@Html.ActionLink("Create A New Trip", "Create")</p>
+    <main class="cards">
+        @foreach (var trip in Model)
+        {
+            <article class="card">
+                @*<img src=@Html.DisplayFor(image => trip.Image) alt="Sample photo">*@
+                <div class="text">
+                    <h3>@Html.DisplayFor(name => trip.Name)</h3>
+                    <p>@Html.DisplayFor(beginDate => trip.BeginDate.Date)</p>
+                    <p>@Html.DisplayFor(endDate => trip.EndDate.Date)</p>
+                    <p>@Html.ActionLink("Delete", "Delete", new { id = trip.TripId })</p>
+                    <p>@Html.ActionLink("Edit", "Edit", new { id = trip.TripId })</p>
+                    <button>@Html.ActionLink("Trip Details", "Details", new { id = trip.TripId })</button>
+                    @Html.ActionLink("Trip Map", "MapView", new { id = trip.TripId })
+                </div>
+            </article>
+        }
+    </main>
+} else
+{
+    <p>You must @Html.ActionLink("Register", "Index", "Account") before creating a trip.</p>
+}

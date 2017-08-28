@@ -85,7 +85,7 @@ body {
             }
 
             #navlink:hover {
-                background-image: url("../img/notUsing/space_paint.png");
+                /*background-image: url("../img/notUsing/space_paint.png");*/
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
@@ -96,7 +96,7 @@ body {
             }
 
             #navlink a:hover {
-                color: white;
+                color: tomato;
                 text-decoration: none;
             }
         }

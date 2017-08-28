@@ -68,14 +68,14 @@ body {
         color: black;
         text-decoration: none; }
       .navbar-default #navbar .navbar-nav #navlink:hover {
-        background-image: url("../img/notUsing/space_paint.png");
+        /*background-image: url("../img/notUsing/space_paint.png");*/
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat; }
       .navbar-default #navbar .navbar-nav #navlink a {
         font-size: 20px; }
       .navbar-default #navbar .navbar-nav #navlink a:hover {
-        color: white;
+        color: tomato;
         text-decoration: none; }
 
 .footer {

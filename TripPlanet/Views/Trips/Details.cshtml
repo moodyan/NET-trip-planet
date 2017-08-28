@@ -12,7 +12,7 @@
 <p>@Html.DisplayNameFor(model => model.Budget) : @Html.DisplayFor(model => model.Budget)</p>
 <p>@Html.DisplayNameFor(model => model.Members) : @Html.DisplayFor(model => model.Members)</p>
 
-@Html.ActionLink("Add A City", "AddCity", new { id = Model.TripId })
+@Html.ActionLink("Add A City", "Create", "Cities", new { id = Model.TripId })
 
 <h3>Trip Cities:</h3>
 @foreach (var tripCity in ViewBag.Cities)

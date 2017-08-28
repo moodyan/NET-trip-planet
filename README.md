@@ -31,6 +31,10 @@ _A web application that allows users to manage their multi-city trips._
 5. Group Trip features (add friend’s email to trip) - this would also add to the budgeting feature to split costs.
 6. Upload documents and profile photo feature
 
+**TODO:**
+1. Add markers to map based on trip cities database data.
+2. On City Create, have city name autofill name and lat/lon.
+
 
 ## Setup/Installation Requirements
 

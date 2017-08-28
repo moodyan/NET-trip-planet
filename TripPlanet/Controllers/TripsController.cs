@@ -92,18 +92,5 @@ namespace TripPlanet.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        [HttpPost]
-        public IActionResult AddCity(int cityId, int id)
-        {
-            var thisTrip = _db.Trips.Include(trips => trips.TripCities).FirstOrDefault(trips => trips.TripId == id);
-            var newCity = _db.Cities.FirstOrDefault(citys => citys.CityId == cityId);
-            var newTripCity = new TripCity();
-            newTripCity.TripId = id;
-            newTripCity.CityId = cityId;
-            _db.TripCities.Add(newTripCity);
-            _db.SaveChanges();
-            return RedirectToAction("Details");
-        }
     }
 }
