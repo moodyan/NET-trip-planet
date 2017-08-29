@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Add Transportation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model TripPlanet.Models.Transportation
+<p>Departing City: </p>
+
+@using (Html.BeginForm())
+{
+    
+    @Html.DropDownList(model => model.ArrivalCityId, new SelectList(ViewBag.Cities, "CityId", "Name"), "Select Arrival City")
+
+    @Html.LabelFor(model => model.Mode)
+    @Html.EditorFor(model => model.Mode)
+
+    @Html.LabelFor(model => model.DepartureDate)
+    @Html.EditorFor(model => model.DepartureDate)
+    @Html.LabelFor(model => model.Cost)
+    @Html.EditorFor(model => model.Cost)
+    @Html.LabelFor(model => model.Booked)
+    @Html.EditorFor(model => model.Booked)
+    @Html.LabelFor(model => model.Confirmation)
+    @Html.EditorFor(model => model.Confirmation)
+    <input type="submit" value="Add City" />
+}
+
+

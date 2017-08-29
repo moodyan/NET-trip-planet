@@ -33,7 +33,10 @@ _A web application that allows users to manage their multi-city trips._
 
 **TODO:**
 1. Add markers to map based on trip cities database data.
-2. On City Create, have city name autofill name.
+2. Fix activity/lodging dates to dropdown list dates in city
+3. For activity, create dropdown list for types
+4. For transportation, different forms based on mode.
+5. Shorten names of activities/lodging etc
 
 
 ## Setup/Installation Requirements

@@ -36,6 +36,7 @@ namespace TripPlanet.Controllers
             city.Latitude = addresses.First().Coordinates.Latitude;
             city.Longitude = addresses.First().Coordinates.Longitude;
             city.Duration = city.GetDuration();
+            city.TripId = id;
             _db.Cities.Add(city);
             _db.SaveChanges();
             var thisTrip = _db.Trips.Include(trips => trips.TripCities).FirstOrDefault(trips => trips.TripId == id);

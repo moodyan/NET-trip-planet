@@ -12,12 +12,12 @@ using Geocoding.Google;
 namespace TripPlanet.Controllers
 {
     [Authorize]
-    public class ActivitiesController : Controller
+    public class LodgingsController : Controller
     {
         private readonly TripPlanetDbContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public ActivitiesController(UserManager<ApplicationUser> userManager, TripPlanetDbContext db)
+        public LodgingsController(UserManager<ApplicationUser> userManager, TripPlanetDbContext db)
         {
             _userManager = userManager;
             _db = db;
@@ -36,14 +36,14 @@ namespace TripPlanet.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(Activity activity, int id)
+        public IActionResult Create(Lodging lodging, int id)
         {
-            activity.Cities = _db.Cities.FirstOrDefault(city => city.CityId == id);
-            IGeocoder geocoder = new GoogleGeocoder() { ApiKey = EnvironmentVariables.GeocodingAPI };
-            IEnumerable<Address> addresses = await geocoder.GeocodeAsync(activity.Address);
-            activity.Latitude = addresses.First().Coordinates.Latitude;
-            activity.Longitude = addresses.First().Coordinates.Longitude;
-            _db.Activities.Add(activity);
+            lodging.Cities = _db.Cities.FirstOrDefault(city => city.CityId == id);
+            //IGeocoder geocoder = new GoogleGeocoder() { ApiKey = EnvironmentVariables.GeocodingAPI };
+            //IEnumerable<Address> addresses = await geocoder.GeocodeAsync(lodging.Address);
+            //lodging.Latitude = addresses.First().Coordinates.Latitude;
+            //lodging.Longitude = addresses.First().Coordinates.Longitude;
+            _db.Lodgings.Add(lodging);
             _db.SaveChanges();
             return RedirectToAction("Details", "Cities", new { id = id }); ;
         }

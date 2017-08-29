@@ -28,6 +28,7 @@ namespace TripPlanet.Models
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DepartureDate { get; set; }
+        public int TripId { get; set; }
         public virtual ICollection<TripCity> TripCities { get; set; }
         public virtual ICollection<CityTransportation> CityTransportations { get; set; }
         public virtual ICollection<Lodging> Lodgings { get; set; }
