@@ -33,7 +33,7 @@ namespace TripPlanet.Controllers
            
             //get current trip id
             //get list of cities that match thisCity.TripId
-            ViewBag.Cities = tripCities;
+            ViewBag.Cities = new SelectList(tripCities, "CityId", "Name");
             return View();
         }
 
