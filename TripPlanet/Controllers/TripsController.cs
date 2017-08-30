@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using TripPlanet.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace TripPlanet.Controllers
 {
@@ -17,9 +19,26 @@ namespace TripPlanet.Controllers
             _userManager = userManager;
             _db = db;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(_db.Trips.ToList());
+            if(User.Identity.IsAuthenticated)
+            {
+                var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var currentUser = await _userManager.FindByIdAsync(userId);
+                var userTrips = _db.Trips.Where(trips => trips.Planner.UserId == currentUser.Id).ToList();
+                ViewBag.UserTrips = userTrips;
+                return View(userTrips);
+            } else
+            {
+                return View();
+            }
+        }
+
+        public IActionResult PublicTrips()
+        {
+            var allPublicTrips = _db.Trips.Where(trips => trips.Public).ToList();
+            ViewBag.PublicTrips = allPublicTrips;
+            return View(allPublicTrips);
         }
 
         public IActionResult MapView(int Id)

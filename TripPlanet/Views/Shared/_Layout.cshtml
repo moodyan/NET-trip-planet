@@ -13,11 +13,18 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="container" id="navbar">
             <div class="navbar-nav">
-                <div id="navlink">@Html.ActionLink("TRIPS", "Index", "Trips")</div>
+                <div id="navlink">@Html.ActionLink("YOUR TRIPS", "Index", "Trips")</div>
                 <div id="navlink">@Html.ActionLink("ABOUT", "About", "Home")</div>
                 <div id="brand">@Html.ActionLink("TRIP PLANET", "Index", "Home")</div>
-                <div id="navlink">@Html.ActionLink("ACCOUNT", "Index", "Account")</div>
-                <div id="navlink">@Html.ActionLink("PRODUCTS", "Index", "Products")</div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                <div id="navlink">@Html.ActionLink("YOUR ACCOUNT", "Index", "Account")</div>
+                }
+                else
+                {
+                    <div id="navlink">@Html.ActionLink("LOGIN", "Index", "Account")</div>
+                }
+                <div id="navlink">@Html.ActionLink("ALL TRIPS", "PublicTrips", "Trips")</div>
             </div>
         </div>
     </nav>

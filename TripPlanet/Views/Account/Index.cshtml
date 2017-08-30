@@ -4,23 +4,31 @@
 }
 <script type="text/javascript">
     $(document).ready(function () {
+        $('#register-form').hide();
         $('.register').click(function () {
             $.ajax({
                 type: 'GET',
                 dataType: 'html',
                 url: '@Url.Action("RegisterLogin", "Account")',
                 success: function (result) {
+                    $('.login').show();
+                    $('#login-form').hide();
                     $('#register-form').html(result).toggle();
+                    $('.register').hide();
                 }
             });
         });
+        $('#login-form').hide();
         $('.login').click(function () {
             $.ajax({
                 type: 'GET',
                 dataType: 'html',
                 url: '@Url.Action("Login", "Account")',
                 success: function (result) {
-                    $('#login-form').html(result);
+                    $('.register').show();
+                    $('#register-form').hide();
+                    $('#login-form').html(result).toggle();
+                    $('.login').hide();
                 }
             });
         });
@@ -39,8 +47,9 @@
 else
 {
     <button class="register btn">REGISTER</button>
-    <div id="register-form"></div>
-    <br />
     <button class="login btn">LOG IN</button>
+    <div id="register-form"></div>
+    
+    
     <div id="login-form"></div>
 }

@@ -8,23 +8,30 @@
 @if (User.Identity.IsAuthenticated)
 {
     <p>@Html.ActionLink("Create A New Trip", "Create")</p>
-    <main class="cards">
-        @foreach (var trip in Model)
+        @if(ViewBag.UserTrips.Count != 0)
         {
-            <article class="card">
-                @*<img src=@Html.DisplayFor(image => trip.Image) alt="Sample photo">*@
-                <div class="text">
-                    <h3>@Html.DisplayFor(name => trip.Name)</h3>
-                    <p>@Html.DisplayFor(beginDate => trip.BeginDate.Date)</p>
-                    <p>@Html.DisplayFor(endDate => trip.EndDate.Date)</p>
-                    <p>@Html.ActionLink("Delete", "Delete", new { id = trip.TripId })</p>
-                    <p>@Html.ActionLink("Edit", "Edit", new { id = trip.TripId })</p>
-                    <button>@Html.ActionLink("Trip Details", "Details", new { id = trip.TripId })</button>
+            @foreach (var trip in ViewBag.UserTrips)
+            {
+            <main class="cards">
+                <article class="card">
+                    @*<img src=@Html.DisplayFor(image => trip.Image) alt="Sample photo">*@
+                    <div class="text">
+                        <h3>@trip.Name</h3>
+                        <p>@trip.BeginDate.Date</p>
+                        <p>@trip.EndDate.Date</p>
+                        <br />
+                        <p>@Html.ActionLink("Delete", "Delete", new { id = trip.TripId })</p>
+                        <p>@Html.ActionLink("Edit", "Edit", new { id = trip.TripId })</p>
+                        <button>@Html.ActionLink("Trip Details", "Details", new { id = trip.TripId })</button>
                     
-                </div>
-            </article>
+                    </div>
+                </article>
+            </main>
+            }
+        } else
+        {
+            <p>You have not created any trips.</p>
         }
-    </main>
 } else
 {
     <p>You must @Html.ActionLink("Register", "Index", "Account") before creating a trip.</p>

@@ -38,6 +38,11 @@
 
     }
 }
+else
+{
+    <p>You have not entered any arrival information for this city.</p>
+
+}
 
 <br /><br />
 <h3>Departure Transportation:</h3>
@@ -49,7 +54,10 @@
 
     }
 }
-@Html.ActionLink("Add Transportation", "Create", "Transportations", new { id = Model.CityId })
+else
+{
+    <p>You have not entered any departure information for this city.</p>
+    @Html.ActionLink("Add Transportation", "Create", "Transportations", new { id = Model.CityId })
+}
 <hr />
-@*Make this link work*@
-@*@Html.ActionLink("Back to Trip", "Details", "Trips", new { id = Model.TripCities.TripId})*@
+@Html.ActionLink("Back to Trip", "Details", "Trips", new { id = Model.TripId})

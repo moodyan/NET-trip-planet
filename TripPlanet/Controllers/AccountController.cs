@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace TripPlanet.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         private readonly TripPlanetDbContext _db;
@@ -101,6 +100,38 @@ namespace TripPlanet.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Account");
+        }
+
+        public static async Task<IdentityResult> DeleteUserAccount(UserManager<ApplicationUser> userManager, string userEmail, TripPlanetDbContext context)
+        {
+            IdentityResult rc = new IdentityResult();
+
+            if ((userManager != null) && (userEmail != null) && (context != null))
+            {
+                var user = await userManager.FindByEmailAsync(userEmail);
+                var logins = user.Logins;
+                var rolesForUser = await userManager.GetRolesAsync(user);
+
+                using (var transaction = context.Database.BeginTransaction())
+                {
+                    foreach (var login in logins.ToList())
+                    {
+                        await userManager.RemoveLoginAsync(user, login.LoginProvider, login.ProviderKey);
+                    }
+
+                    if (rolesForUser.Count() > 0)
+                    {
+                        foreach (var item in rolesForUser.ToList())
+                        {
+                            // item should be the name of the role
+                            var result = await userManager.RemoveFromRoleAsync(user, item);
+                        }
+                    }
+                    rc = await userManager.DeleteAsync(user);
+                    transaction.Commit();
+                }
+            }
+            return rc;
         }
     }
 }
