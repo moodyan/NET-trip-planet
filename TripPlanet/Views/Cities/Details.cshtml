@@ -34,7 +34,7 @@
 {
     @foreach (var transportation in ViewBag.ArrivalTransport)
     {
-        <p>@transportation.Cities.Name to @Model.Name</p>
+        <p>@transportation.Name to @Model.Name</p>
 
     }
 }
@@ -45,7 +45,7 @@
 {
     @foreach (var transportation in ViewBag.DepartureTransport)
     {
-        <p>@Model.Name  to @transportation.Cities.Name</p>
+        <p>@Model.Name to @transportation.Name</p>
 
     }
 }
