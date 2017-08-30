@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.1",
-    "signature": "7ed097eceaee1bba869d2e89d1560046024f1dac"
+    "signature": "89afdb47a2c75a316557d164900c9a8db65a723d"
   },
   "compilationOptions": {
     "defines": [
@@ -25,6 +25,7 @@
         "dependencies": {
           "Geocoding.Core": "4.0.0",
           "Geocoding.Google": "4.0.0",
+          "Google.Apis.QPXExpress.v1": "1.28.0.554",
           "Microsoft.ApplicationInsights.AspNetCore": "2.0.0",
           "Microsoft.AspNetCore": "1.1.2",
           "Microsoft.AspNetCore.Diagnostics": "1.1.2",
@@ -75,6 +76,47 @@
         },
         "compile": {
           "lib/netstandard1.3/Geocoding.Google.dll": {}
+        }
+      },
+      "google.apis/1.28.0": {
+        "dependencies": {
+          "Google.Apis.Core": "1.28.0",
+          "NETStandard.Library": "1.6.1",
+          "Newtonsoft.Json": "10.0.3",
+          "System.Net.Http": "4.3.2",
+          "System.Reflection.TypeExtensions": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Google.Apis.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Google.Apis.dll": {}
+        }
+      },
+      "google.apis.core/1.28.0": {
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "Newtonsoft.Json": "10.0.3",
+          "System.Net.Http": "4.3.2",
+          "System.Reflection.TypeExtensions": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Google.Apis.Core.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Google.Apis.Core.dll": {}
+        }
+      },
+      "google.apis.qpxexpress.v1/1.28.0.554": {
+        "dependencies": {
+          "Google.Apis": "1.28.0",
+          "NETStandard.Library": "1.6.1"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Google.Apis.QPXExpress.v1.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Google.Apis.QPXExpress.v1.dll": {}
         }
       },
       "microsoft.applicationinsights/2.2.0": {
@@ -3463,6 +3505,27 @@
       "sha512": "sha512-wc5pd5pHr8yDtQzJRnnyvW7v2DKA+BhbhfZIbIkqFrQfJj2RlDbipm+YEPkdL1DJWTTCWUPjP9NbBYP/45+HDQ==",
       "path": "geocoding.google/4.0.0",
       "hashPath": "geocoding.google.4.0.0.nupkg.sha512"
+    },
+    "google.apis/1.28.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2Hy0evlOnejdbY3o3H7QE0GVnF/dmLQ+Xoy/dfp0smGXDKSNEJhhBPB7LPBF9Ur+QTMvqriY1eifmpC0lr79WQ==",
+      "path": "google.apis/1.28.0",
+      "hashPath": "google.apis.1.28.0.nupkg.sha512"
+    },
+    "google.apis.core/1.28.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-klkKHqZLAcGMBiXE9FIlQG8MeXYSQo7m6PqRC15tHpok0V3A6W48mumvr9B2Klgau6gq0XZKOnJ5nJuVVj+h2Q==",
+      "path": "google.apis.core/1.28.0",
+      "hashPath": "google.apis.core.1.28.0.nupkg.sha512"
+    },
+    "google.apis.qpxexpress.v1/1.28.0.554": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+0vNtJdniFt2Fhx13vZvebK9D2ToBShDb6xVi7tzkddbBcFiozgkST9wKvqAM+oBCymr1RHENGeOF5gzZxMt+Q==",
+      "path": "google.apis.qpxexpress.v1/1.28.0.554",
+      "hashPath": "google.apis.qpxexpress.v1.1.28.0.554.nupkg.sha512"
     },
     "microsoft.applicationinsights/2.2.0": {
       "type": "package",

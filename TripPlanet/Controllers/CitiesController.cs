@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -53,15 +52,28 @@ namespace TripPlanet.Controllers
         {
             var thisCity = _db.Cities
                 .Include(cities => cities.TripCities)
-                .Include(transportations => transportations.CityTransportations)
+                .Include(transportations => transportations.Transportations)
                 .FirstOrDefault(city => city.CityId == Id);
+          
             
             var activities = _db.Activities.Where(activity => activity.CityId == Id).ToList();
             ViewBag.Activities = activities;
             var lodging = _db.Lodgings.Where(lodgings => lodgings.CityId == Id).ToList();
             ViewBag.Lodging = lodging;
-            var cityTransportations = _db.CityTransportations.Include(city => city.Transportation).Where(cityTransportation => cityTransportation.CityId == Id).ToList();
-            ViewBag.Transportation = cityTransportations;
+            //transportation.ArrivalCityId == thisCity.Id && transportation.TripId == thisCity.TripId
+
+            var arrivalTransport = _db.Transportations
+                .Where(cityTransportation => cityTransportation.ArrivalCityId == thisCity.CityId)
+                .Where(cityTransportation => cityTransportation.TripId == thisCity.TripId)
+                .ToList();
+            ViewBag.ArrivalTransport = arrivalTransport;
+
+            var departTransport = _db.Transportations
+                .Where(cityTransportation => cityTransportation.CityId == thisCity.CityId)
+                .Where(cityTransportation => cityTransportation.TripId == thisCity.TripId).ToList()
+                .ToList();
+            ViewBag.DepartureTransport = departTransport;
+
             return View(thisCity);
         }
     }

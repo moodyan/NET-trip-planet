@@ -13,6 +13,7 @@ namespace TripPlanet.Models
         {
             this.Lodgings = new HashSet<Lodging>();
             this.Activities = new HashSet<Activity>();
+            this.Transportations = new HashSet<Transportation>();
         }
         [Key]
         public int CityId { get; set; }
@@ -30,9 +31,9 @@ namespace TripPlanet.Models
         public DateTime DepartureDate { get; set; }
         public int TripId { get; set; }
         public virtual ICollection<TripCity> TripCities { get; set; }
-        public virtual ICollection<CityTransportation> CityTransportations { get; set; }
         public virtual ICollection<Lodging> Lodgings { get; set; }
         public virtual ICollection<Activity> Activities { get; set; }
+        public virtual ICollection<Transportation> Transportations { get; set; }
 
         public int GetDuration()
         {

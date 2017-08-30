@@ -37,6 +37,7 @@ _A web application that allows users to manage their multi-city trips._
 3. For activity, create dropdown list for types
 4. For transportation, different forms based on mode.
 5. Shorten names of activities/lodging etc
+6. Add starting city based on trip.startCity (add lat/long)
 
 
 ## Setup/Installation Requirements

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace TripPlanet.Models
 {
@@ -22,8 +20,10 @@ namespace TripPlanet.Models
         public DateTime DepartureDate { get; set; }
         public decimal Cost { get; set; }
         public bool Booked { get; set; }
-        public int DepartureCityId { get; set; }
+        public int TripId { get; set; }
         public int ArrivalCityId { get; set; }
-        public virtual ICollection<CityTransportation> CityTransportations { get; set; }
+        public int CityId { get; set; }
+        public virtual City Cities { get; set; }
+        
     }
 }

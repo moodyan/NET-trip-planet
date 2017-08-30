@@ -29,12 +29,23 @@
 }
 @Html.ActionLink("Add Lodging", "Create", "Lodgings", new { id = Model.CityId })
 <br /><br />
-<h3>Transportation:</h3>
-@if (ViewBag.Transportation != null)
+<h3>Arrival Transportation:</h3>
+@if (ViewBag.ArrivalTransport != null)
 {
-    @foreach (var transportation in ViewBag.Transportation)
+    @foreach (var transportation in ViewBag.ArrivalTransport)
     {
-        <p>@transportation.Name</p>
+        <p>@transportation.Cities.Name to @Model.Name</p>
+
+    }
+}
+
+<br /><br />
+<h3>Departure Transportation:</h3>
+@if (ViewBag.DepartureTransport != null)
+{
+    @foreach (var transportation in ViewBag.DepartureTransport)
+    {
+        <p>@Model.Name  to @transportation.Cities.Name</p>
 
     }
 }

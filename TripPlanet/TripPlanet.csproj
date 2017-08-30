@@ -13,6 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Geocoding.Core" Version="4.0.0" />
     <PackageReference Include="Geocoding.Google" Version="4.0.0" />
+    <PackageReference Include="Google.Apis.QpxExpress.v1" Version="1.28.0.554" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.1.2" />

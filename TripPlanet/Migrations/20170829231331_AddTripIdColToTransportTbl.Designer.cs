@@ -8,9 +8,10 @@ using TripPlanet.Models;
 namespace TripPlanet.Migrations
 {
     [DbContext(typeof(TripPlanetDbContext))]
-    partial class TripPlanetDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170829231331_AddTripIdColToTransportTbl")]
+    partial class AddTripIdColToTransportTbl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
@@ -227,6 +228,19 @@ namespace TripPlanet.Migrations
                     b.ToTable("Cities");
                 });
 
+            modelBuilder.Entity("TripPlanet.Models.CityTransportation", b =>
+                {
+                    b.Property<int>("TransportationId");
+
+                    b.Property<int>("CityId");
+
+                    b.HasKey("TransportationId", "CityId");
+
+                    b.HasIndex("CityId");
+
+                    b.ToTable("CityTransportations");
+                });
+
             modelBuilder.Entity("TripPlanet.Models.Document", b =>
                 {
                     b.Property<int>("DocumentId")
@@ -304,11 +318,11 @@ namespace TripPlanet.Migrations
 
                     b.Property<bool>("Booked");
 
-                    b.Property<int>("CityId");
-
                     b.Property<string>("Confirmation");
 
                     b.Property<decimal>("Cost");
+
+                    b.Property<int>("DepartureCityId");
 
                     b.Property<DateTime>("DepartureDate");
 
@@ -317,8 +331,6 @@ namespace TripPlanet.Migrations
                     b.Property<int>("TripId");
 
                     b.HasKey("TransportationId");
-
-                    b.HasIndex("CityId");
 
                     b.ToTable("Transportations");
                 });
@@ -411,6 +423,19 @@ namespace TripPlanet.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("TripPlanet.Models.CityTransportation", b =>
+                {
+                    b.HasOne("TripPlanet.Models.City", "City")
+                        .WithMany("CityTransportations")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("TripPlanet.Models.Transportation", "Transportation")
+                        .WithMany("CityTransportations")
+                        .HasForeignKey("TransportationId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("TripPlanet.Models.Lodging", b =>
                 {
                     b.HasOne("TripPlanet.Models.City", "Cities")
@@ -424,14 +449,6 @@ namespace TripPlanet.Migrations
                     b.HasOne("TripPlanet.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("TripPlanet.Models.Transportation", b =>
-                {
-                    b.HasOne("TripPlanet.Models.City", "Cities")
-                        .WithMany("Transportations")
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("TripPlanet.Models.Trip", b =>
