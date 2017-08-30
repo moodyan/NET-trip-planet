@@ -18,7 +18,7 @@
                 <div id="brand">@Html.ActionLink("TRIP PLANET", "Index", "Home")</div>
                 @if (User.Identity.IsAuthenticated)
                 {
-                <div id="navlink">@Html.ActionLink("YOUR ACCOUNT", "Index", "Account")</div>
+                <div id="navlink">@Html.ActionLink("YOUR ACCOUNT", "Details", "Account")</div>
                 }
                 else
                 {
@@ -32,8 +32,13 @@
         @RenderBody()
     </div>
     <div class="footer">
-        <div class="bigfoot">BIG</div>
-        <div class="littlefoot">@Html.ActionLink("PRESS SITE", "Press", "Home")</div>
+        <div class="bigfoot"></div>
+        <div class="littlefoot">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div id="navlink">@Html.ActionLink("LOG OUT", "LogOff", "Account")</div>
+            }
+        </div>
     </div>
 </body>
 </html>

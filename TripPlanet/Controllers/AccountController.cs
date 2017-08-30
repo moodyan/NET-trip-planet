@@ -34,7 +34,20 @@ namespace TripPlanet.Controllers
                 return View();
             }
         }
+        [Authorize]
+        public IActionResult Details()
+        {
+            var thisPlanner = _db.Planners.FirstOrDefault(planner => planner.UserName == User.Identity.Name);
+            ViewBag.ThisPlanner = thisPlanner;
 
+            var role = (from r in _db.Roles where r.Name.Contains("admin") select r).FirstOrDefault();
+            var users = _db.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains(role.Id)).ToList();
+            if (users.Find(x => x.Id == thisPlanner.UserId) != null)
+            {
+                ViewBag.Admin = users;
+            }
+            return View(thisPlanner);
+        }
 
         public IActionResult RegisterLogin()
         {
@@ -68,7 +81,7 @@ namespace TripPlanet.Controllers
             Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(user.Email, password, isPersistent: true, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Account");
+                return RedirectToAction("Details", "Account");
             }
             else
             {
@@ -102,36 +115,36 @@ namespace TripPlanet.Controllers
             return RedirectToAction("Index", "Account");
         }
 
-        public static async Task<IdentityResult> DeleteUserAccount(UserManager<ApplicationUser> userManager, string userEmail, TripPlanetDbContext context)
-        {
-            IdentityResult rc = new IdentityResult();
+        //public static async Task<IdentityResult> DeleteUserAccount(UserManager<ApplicationUser> userManager, string userEmail, TripPlanetDbContext context)
+        //{
+        //    IdentityResult rc = new IdentityResult();
 
-            if ((userManager != null) && (userEmail != null) && (context != null))
-            {
-                var user = await userManager.FindByEmailAsync(userEmail);
-                var logins = user.Logins;
-                var rolesForUser = await userManager.GetRolesAsync(user);
+        //    if ((userManager != null) && (userEmail != null) && (context != null))
+        //    {
+        //        var user = await userManager.FindByEmailAsync(userEmail);
+        //        var logins = user.Logins;
+        //        var rolesForUser = await userManager.GetRolesAsync(user);
 
-                using (var transaction = context.Database.BeginTransaction())
-                {
-                    foreach (var login in logins.ToList())
-                    {
-                        await userManager.RemoveLoginAsync(user, login.LoginProvider, login.ProviderKey);
-                    }
+        //        using (var transaction = context.Database.BeginTransaction())
+        //        {
+        //            foreach (var login in logins.ToList())
+        //            {
+        //                await userManager.RemoveLoginAsync(user, login.LoginProvider, login.ProviderKey);
+        //            }
 
-                    if (rolesForUser.Count() > 0)
-                    {
-                        foreach (var item in rolesForUser.ToList())
-                        {
-                            // item should be the name of the role
-                            var result = await userManager.RemoveFromRoleAsync(user, item);
-                        }
-                    }
-                    rc = await userManager.DeleteAsync(user);
-                    transaction.Commit();
-                }
-            }
-            return rc;
-        }
+        //            if (rolesForUser.Count() > 0)
+        //            {
+        //                foreach (var item in rolesForUser.ToList())
+        //                {
+        //                    // item should be the name of the role
+        //                    var result = await userManager.RemoveFromRoleAsync(user, item);
+        //                }
+        //            }
+        //            rc = await userManager.DeleteAsync(user);
+        //            transaction.Commit();
+        //        }
+        //    }
+        //    return rc;
+        //}
     }
 }

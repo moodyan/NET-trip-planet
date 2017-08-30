@@ -92,11 +92,11 @@ namespace TripPlanet.Controllers
 
         public IActionResult ManageUserRoles()
         {
-            // prepopulat roles for the view dropdown
+            // prepopulate roles for the view dropdown
             var users = _db.Users.OrderBy(u => u.UserName).ToList().Select(uu => new SelectListItem { Value = uu.UserName.ToString(), Text = uu.UserName }).ToList();
+            ViewBag.UserName = users;
             var list = _db.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             ViewBag.Roles = list;
-            ViewBag.UserName = users;
             return View();
         }
 
@@ -112,9 +112,9 @@ namespace TripPlanet.Controllers
 
             // prepopulat roles for the view dropdown
             var users = _db.Users.OrderBy(u => u.UserName).ToList().Select(uu => new SelectListItem { Value = uu.UserName.ToString(), Text = uu.UserName }).ToList();
+            ViewBag.UserName = users;
             var list = _db.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             ViewBag.Roles = list;
-            ViewBag.UserName = users;
 
             return View("ManageUserRoles");
         }
@@ -128,9 +128,9 @@ namespace TripPlanet.Controllers
                 ApplicationUser user = await _userManager.FindByNameAsync(UserName);
                 ViewBag.RolesForThisUser = await _userManager.GetRolesAsync(user);
                 var users = _db.Users.OrderBy(u => u.UserName).ToList().Select(uu => new SelectListItem { Value = uu.UserName.ToString(), Text = uu.UserName }).ToList();
+                ViewBag.UserName = users;
                 var list = _db.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
                 ViewBag.Roles = list;
-                ViewBag.UserName = users;
             }
             return View("ManageUserRoles");
         }
@@ -150,9 +150,9 @@ namespace TripPlanet.Controllers
                 ViewBag.ResultMessage = "This user doesn't have that role.";
             }
             var users = _db.Users.OrderBy(u => u.UserName).ToList().Select(uu => new SelectListItem { Value = uu.UserName.ToString(), Text = uu.UserName }).ToList();
+            ViewBag.UserName = users;
             var list = _db.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             ViewBag.Roles = list;
-            ViewBag.UserName = users;
 
             return View("ManageUserRoles");
         }

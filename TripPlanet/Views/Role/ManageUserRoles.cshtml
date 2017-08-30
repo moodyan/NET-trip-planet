@@ -28,7 +28,7 @@
 {
     @Html.AntiForgeryToken()
     <p>
-        Username : @Html.TextBox("UserName", "")
+        Username : @Html.DropDownList("UserName", "Select ...")
         <input type="submit" value="Get Roles for this User" />
     </p>
 }
@@ -55,7 +55,7 @@
     @Html.ValidationSummary(true)
 
     <p>
-        Username : @Html.TextBox("UserName", "")
+        Username : @Html.DropDownList("UserName", "Select ...")
         Role Name: @Html.DropDownList("Roles", "Select ...")
 
     </p>
