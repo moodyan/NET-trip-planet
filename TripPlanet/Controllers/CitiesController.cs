@@ -59,27 +59,23 @@ namespace TripPlanet.Controllers
             ViewBag.Activities = activities;
             var lodging = _db.Lodgings.Where(lodgings => lodgings.CityId == Id).ToList();
             ViewBag.Lodging = lodging;
-
-
-            //var arrivalTransport = _db.Transportations
-            //    .Where(cityTransportation => cityTransportation.ArrivalCityId == thisCity.CityId)
-            //    .Where(cityTransportation => cityTransportation.TripId == thisCity.TripId)
-            //    .ToList();
-
-            //var departTransport = _db.Transportations
-            //    .Where(cityTransportation => cityTransportation.CityId == thisCity.CityId)
-            //    .Where(cityTransportation => cityTransportation.TripId == thisCity.TripId)
-            //    .ToList();
+            
             var arrivalTransportation = _db.Transportations.FirstOrDefault(transportation => transportation.ArrivalCityId == Id);
             var departureTransportation = _db.Transportations.FirstOrDefault(city => city.CityId == Id);
 
-            var arrivalCity = _db.Cities
-                .Where(city => city.CityId == arrivalTransportation.CityId).ToList();
-            ViewBag.ArrivalTransport = arrivalCity;
+            if(arrivalTransportation !=null)
+            {
+                var arrivalCity = _db.Cities
+                    .Where(city => city.CityId == arrivalTransportation.CityId).ToList();
+                ViewBag.ArrivalTransport = arrivalCity;
+            }
 
-            var departCity = _db.Cities
-                .Where(city => city.CityId == departureTransportation.ArrivalCityId).ToList();
-            ViewBag.DepartureTransport = departCity;
+            if (departureTransportation != null)
+            {
+                var departCity = _db.Cities
+                    .Where(city => city.CityId == departureTransportation.ArrivalCityId).ToList();
+                ViewBag.DepartureTransport = departCity;
+            }
 
             return View(thisCity);
         }
