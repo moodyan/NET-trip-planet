@@ -89,6 +89,7 @@ namespace TripPlanet.Controllers
         [HttpPost]
         public IActionResult Edit(City city)
         {
+            
             _db.Entry(city).State = EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Index");
@@ -103,8 +104,13 @@ namespace TripPlanet.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
-            
-            var thisCity = _db.Cities.FirstOrDefault(city => city.CityId == id);
+            var thisCity = _db.Cities
+                .FirstOrDefault(city => city.CityId == id);
+
+            _db.Activities.RemoveRange(_db.Activities.Where(activity => activity.Cities.CityId == thisCity.CityId));
+            _db.Lodgings.RemoveRange(_db.Lodgings.Where(lodging => lodging.Cities.CityId == thisCity.CityId));
+            _db.Transportations.RemoveRange(_db.Transportations.Where(transportation => transportation.Cities.CityId == thisCity.CityId));
+           
             _db.Cities.Remove(thisCity);
             _db.SaveChanges();
             return RedirectToAction("Index");

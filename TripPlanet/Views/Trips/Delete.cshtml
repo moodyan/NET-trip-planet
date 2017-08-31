@@ -1,9 +1,14 @@
-﻿@model TripPlanet.Models.Trip
-<h2>Are you sure you want to delete this trip?</h2>
+﻿@{
+    ViewData["Title"] = "Delete Trip";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model TripPlanet.Models.Trip
+<h2>Are you sure you want to delete this trip: @Model.Name?</h2>
+<p>This will delete all details for your trip and you cannot undo this action.</p>
 <hr />
-@Html.DisplayFor(model => model.Name)
 @using (Html.BeginForm())
 {
     <input type="submit" value="Delete" />
 }
-@Html.ActionLink("Back to List", "Index")
+@Html.ActionLink("Back to All Trips", "Index")

@@ -60,4 +60,6 @@ else
     @Html.ActionLink("Add Transportation", "Create", "Transportations", new { id = Model.CityId })
 }
 <hr />
-@Html.ActionLink("Back to Trip", "Details", "Trips", new { id = Model.TripId})
+@Html.ActionLink("Delete City From Trip", "Delete", "Cities", new { id = Model.CityId })
+<br />
+@Html.ActionLink("Back to Trip", "Details", "Trips", new { id = Model.TripId })
