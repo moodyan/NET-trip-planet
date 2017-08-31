@@ -15,7 +15,6 @@
     @foreach (var activity in ViewBag.Activities)
     {
         <a href="/Activities/Details/@activity.ActivityId">@activity.Name</a><br />
-
     }
 }
 @Html.ActionLink("Add An Activity", "Create", "Activities", new { id = Model.CityId })
@@ -25,8 +24,7 @@
 {
     @foreach (var lodging in ViewBag.Lodging)
     {
-        <p>@lodging.Name</p>
-
+        <a href="/Lodgings/Details/@lodging.LodgingId">@lodging.Name</a><br />
     }
 }
 @Html.ActionLink("Add Lodging", "Create", "Lodgings", new { id = Model.CityId })
@@ -34,26 +32,24 @@
 <h3>Arrival Transportation:</h3>
 @if (ViewBag.ArrivalTransport != null)
 {
-    @foreach (var transportation in ViewBag.ArrivalTransport)
+    @foreach (var transportation in ViewBag.ArrivalCity)
     {
-        <p>@transportation.Name to @Model.Name</p>
-
+        <a href="/Transportations/Details/@ViewBag.ArrivalTransport.TransportationId">@transportation.Name to @Model.Name</a><br />
     }
 }
 else
 {
     <p>You have not entered any arrival information for this city.</p>
-
 }
 
 <br /><br />
 <h3>Departure Transportation:</h3>
 @if (ViewBag.DepartureTransport != null)
 {
-    @foreach (var transportation in ViewBag.DepartureTransport)
+    @foreach (var transportation in ViewBag.DepartureCity)
     {
-        <p>@Model.Name to @transportation.Name</p>
-
+        <a href="/Transportations/Details/@ViewBag.DepartureTransport.TransportationId">
+            @Model.Name to @transportation.Name</a>
     }
 }
 else

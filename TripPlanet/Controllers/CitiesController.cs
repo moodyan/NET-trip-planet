@@ -61,20 +61,22 @@ namespace TripPlanet.Controllers
             ViewBag.Lodging = lodging;
             
             var arrivalTransportation = _db.Transportations.FirstOrDefault(transportation => transportation.ArrivalCityId == Id);
+            ViewBag.ArrivalTransport = arrivalTransportation;
             var departureTransportation = _db.Transportations.FirstOrDefault(city => city.CityId == Id);
+            ViewBag.DepartureTransport = departureTransportation;
 
-            if(arrivalTransportation !=null)
+            if (arrivalTransportation !=null)
             {
                 var arrivalCity = _db.Cities
                     .Where(city => city.CityId == arrivalTransportation.CityId).ToList();
-                ViewBag.ArrivalTransport = arrivalCity;
+                ViewBag.ArrivalCity = arrivalCity;
             }
 
             if (departureTransportation != null)
             {
                 var departCity = _db.Cities
                     .Where(city => city.CityId == departureTransportation.ArrivalCityId).ToList();
-                ViewBag.DepartureTransport = departCity;
+                ViewBag.DepartureCity = departCity;
             }
 
             return View(thisCity);

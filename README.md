@@ -42,6 +42,7 @@ _A web application that allows users to manage their multi-city trips._
 5. Shorten names of activities/lodging etc
 6. Add starting city based on trip.startCity (add lat/long)
 7. Add seed data
+8. Add time for transportation
 
 
 ## Setup/Installation Requirements

@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Transportation Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model TripPlanet.Models.Transportation
+
+@Html.ActionLink("Edit Transportation", "Edit", "Transportations", new { id = Model.TransportationId })
+@foreach(var depart in ViewBag.DepartureCity)
+{
+    <h2>Departing from @depart.Name</h2>
+}
+@foreach (var arrival in ViewBag.ArrivalCity)
+{
+    <h2>Arriving to @arrival.Name</h2>
+}
+<p>Date: @Model.DepartureDate</p>
+<p>Mode of Transport: @Model.Mode</p>
+<p>Cost: @Model.Cost</p>
+<p>Booked?
+    @if (@Model.Booked)
+    {
+        <p>Yes</p>
+        <p>Confirmation: @Model.Confirmation</p>
+    }
+    else
+    {
+        <p>No</p>
+    }
+</p>
+
+<hr />
+
+@Html.ActionLink("Delete Transportation From City", "Delete", "Transportations", new { id = Model.TransportationId })
+<br />
+@Html.ActionLink("Back to Transportation", "Details", "Transportations", new { id = Model.TransportationId })

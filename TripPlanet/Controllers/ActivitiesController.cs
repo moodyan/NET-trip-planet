@@ -58,7 +58,6 @@ namespace TripPlanet.Controllers
         [HttpPost]
         public IActionResult Edit(Activity activity, int id)
         {
-
             _db.Entry(activity).State = EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Details", "Activities", new { id = id });

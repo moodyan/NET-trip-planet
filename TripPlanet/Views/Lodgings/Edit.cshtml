@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Edit Lodging";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model TripPlanet.Models.Lodging
+
+<h2>Edit lodging for: @Html.DisplayFor(model => model.Name)</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.LodgingId)
+    @Html.HiddenFor(model => model.Name)
+    @*@Html.HiddenFor(model => model.Latitude)
+    @Html.HiddenFor(model => model.Longitude)*@
+    @Html.HiddenFor(model => model.Address)
+    @Html.HiddenFor(model => model.CityId)
+
+
+    @Html.LabelFor(model => model.ArrivalDate)
+    @Html.TextBoxFor(model => model.ArrivalDate)
+    @Html.LabelFor(model => model.DepartureDate)
+    @Html.TextBoxFor(model => model.DepartureDate)
+    @Html.LabelFor(model => model.Cost)
+    @Html.EditorFor(model => model.Cost)
+    @Html.LabelFor(model => model.Booked)
+    @Html.EditorFor(model => model.Booked)
+    @Html.LabelFor(model => model.Confirmation)
+    @Html.EditorFor(model => model.Confirmation)
+
+    <input type="submit" value="Save" />
+}
+<p>@Html.ActionLink("Back to lodging", "Details", new { id = Model.LodgingId })</p>

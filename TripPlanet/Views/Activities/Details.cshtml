@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "City Details";
+    ViewData["Title"] = "Activity Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model TripPlanet.Models.Activity
@@ -17,4 +17,4 @@
 
 @Html.ActionLink("Delete Activity From City", "Delete", "Activities", new { id = Model.ActivityId })
 <br />
-@Html.ActionLink("Back to City", "Details", "Cities", new { id = Model.CityId })
+@Html.ActionLink("Back to Activity", "Details", "Activities", new { id = Model.ActivityId })

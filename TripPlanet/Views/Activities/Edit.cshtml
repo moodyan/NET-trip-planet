@@ -4,7 +4,7 @@
 }
 @model TripPlanet.Models.Activity
 
-<h2>Edit dates for: @Html.DisplayFor(model => model.Name)</h2>
+<h2>Edit details for: @Html.DisplayFor(model => model.Name)</h2>
 <hr />
 
 @using (Html.BeginForm())
@@ -18,7 +18,7 @@
 
 
     @Html.LabelFor(model => model.Date)
-    @Html.EditorFor(model => model.Date)
+    @Html.TextBoxFor(model => model.Date)
     @Html.LabelFor(model => model.Cost)
     @Html.EditorFor(model => model.Cost)
     @Html.LabelFor(model => model.Type)

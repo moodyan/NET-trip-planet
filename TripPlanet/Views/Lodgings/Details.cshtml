@@ -1,44 +1,22 @@
-﻿@model TripPlanet.Models.City
-@{
-    ViewData["Title"] = "City Details";
+﻿@{
+    ViewData["Title"] = "Lodging Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model TripPlanet.Models.Lodging
+
 <h2>@Model.Name</h2>
-<p>Arrive: @Model.ArrivalDate</p>
-<p>Depart: @Model.DepartureDate</p>
+@Html.ActionLink("Edit Lodging", "Edit", "Lodgings", new { id = Model.LodgingId })
+<p>Address: @Model.Address</p>
+<p>Arrival Date: @Model.ArrivalDate</p>
+<p>Departure Date: @Model.DepartureDate</p>
+<p>Cost: @Model.Cost</p>
+<p>Booked? 
+    @if (@Model.Booked)
+    { <p>Yes</p><p>Confirmation: @Model.Confirmation</p>}
+    else { <p>No</p>}</p>
+
 <hr />
-<h3>Activities:</h3>
-@if(ViewBag.Activities !=null)
-{
-    @foreach (var activity in ViewBag.Activities)
-    {
-        <p>@activity.Name</p>
 
-    }
-}
-@Html.ActionLink("Add An Activity", "Create", "Activities", new { id = Model.CityId })
-<br /><br />
-<h3>Lodging:</h3>
-@if (ViewBag.Lodging != null)
-{
-    @foreach (var lodging in ViewBag.Lodging)
-    {
-        <p>@lodging.Name</p>
-
-    }
-}
-@Html.ActionLink("Add Lodging", "Create", "Lodgings", new { id = Model.CityId })
-<br /><br />
-<h3>Transportation:</h3>
-@if (ViewBag.Transportation != null)
-{
-    @foreach (var transportation in ViewBag.Transportation)
-    {
-        <p>@transportation.Name</p>
-
-    }
-}
-@Html.ActionLink("Add Transportation", "Create", "Transportations", new { id = Model.CityId })
-<hr />
-@*Make this link work*@
-@*@Html.ActionLink("Back to Trip", "Details", "Trips", new { id = Model.TripCities.TripId})*@
+@Html.ActionLink("Delete Lodging From City", "Delete", "Activities", new { id = Model.LodgingId })
+<br />
+@Html.ActionLink("Back to Lodging", "Details", "Lodgings", new { id = Model.LodgingId })

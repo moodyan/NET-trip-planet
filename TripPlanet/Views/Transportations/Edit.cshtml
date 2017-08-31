@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Edit Transportation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model TripPlanet.Models.Transportation
+
+<h2>Edit details for this transportation:</h2>
+@foreach (var depart in ViewBag.DepartureCity)
+{
+    <h2>@depart.Name</h2>
+}
+<h2>to</h2>
+@foreach (var arrival in ViewBag.ArrivalCity)
+{
+    <h2>@arrival.Name</h2>
+}
+
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.TransportationId)
+    @Html.HiddenFor(model => model.ArrivalCityId)
+    @Html.HiddenFor(model => model.CityId)
+    @Html.HiddenFor(model => model.TripId)
+
+
+    @Html.LabelFor(model => model.Mode)
+    @Html.TextBoxFor(model => model.Mode)
+    @Html.LabelFor(model => model.Cost)
+    @Html.EditorFor(model => model.Cost)
+    @Html.LabelFor(model => model.DepartureDate)
+    @Html.EditorFor(model => model.DepartureDate)
+    @Html.LabelFor(model => model.Booked)
+    @Html.EditorFor(model => model.Booked)
+    @Html.LabelFor(model => model.Confirmation)
+    @Html.EditorFor(model => model.Confirmation)
+
+    <input type="submit" value="Save" />
+}
+<p>@Html.ActionLink("Back to transportation", "Details", new { id = Model.TransportationId })</p>
