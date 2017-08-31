@@ -10,10 +10,10 @@
     <p>@Html.ActionLink("Create A New Trip", "Create")</p>
         @if (ViewBag.UserTrips.Count != 0)
         {
-            <div class="uk-flex uk-flex-between trip-cards">
+            <div class="uk-flex uk-flex-wrap uk-flex-center">
                 @foreach (var trip in ViewBag.UserTrips)
                 {
-                    <div class="uk-card uk-card-default uk-width-1-2@m ">
+                    <div class="uk-card uk-card-default uk-width-1-2@m trip-cards">
                         <div class="uk-card-header">
                             <div class="uk-grid-small uk-flex-middle" uk-grid>
                                 <div class="uk-width-expand">
