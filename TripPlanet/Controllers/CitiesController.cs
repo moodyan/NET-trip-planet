@@ -22,8 +22,10 @@ namespace TripPlanet.Controllers
             _userManager = userManager;
             _db = db;
         }
-        public IActionResult Create()
+        public IActionResult Create(int Id)
         {
+            var thisTrip = _db.Trips.FirstOrDefault(t => t.TripId == Id);
+            ViewBag.Trip = thisTrip;
             return View();
         }
         

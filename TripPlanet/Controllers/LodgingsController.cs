@@ -20,12 +20,14 @@ namespace TripPlanet.Controllers
         //Need to build out details view and route
         public IActionResult Details(int id)
         {
-            return View();
+            var thisLodging = _db.Lodgings.FirstOrDefault(l => l.LodgingId == id);
+            return View(thisLodging);
         }
 
         public IActionResult Create(int id)
         {
             var thisCity = _db.Cities.FirstOrDefault(city => city.CityId == id);
+            ViewBag.City = thisCity;
             ViewBag.Longitude = thisCity.Longitude;
             ViewBag.Latitude = thisCity.Latitude;
             return View();

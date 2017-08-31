@@ -24,6 +24,6 @@
     @Html.EditorFor(model => model.Confirmation)
     <input type="submit" value="Add City" />
 }
-@Html.ActionLink("Back to city", "Details", "Cities", new { id = Model.CityId })
+@Html.ActionLink("Back to city", "Details", "Cities", new { id = ViewBag.City.CityId })
 
 

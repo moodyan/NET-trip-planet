@@ -32,6 +32,7 @@ namespace TripPlanet.Controllers
         public IActionResult Create(int id)
         {
             var thisCity = _db.Cities.FirstOrDefault(city => city.CityId == id);
+            ViewBag.City = thisCity;
             ViewBag.Longitude = thisCity.Longitude;
             ViewBag.Latitude = thisCity.Latitude;
             return View();

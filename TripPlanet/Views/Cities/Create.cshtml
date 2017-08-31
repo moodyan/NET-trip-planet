@@ -14,7 +14,7 @@
     @Html.EditorFor(model => model.DepartureDate)
     <input type="submit" value="Add City" />
 }
-@Html.ActionLink("Back to trip", "Details", "Trips", new { id = Model.TripId })
+@Html.ActionLink("Back to trip", "Details", "Trips", new { id = ViewBag.Trip.TripId })
 
 <script type="text/javascript">
 

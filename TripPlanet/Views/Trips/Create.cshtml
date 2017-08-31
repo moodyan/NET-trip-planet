@@ -8,8 +8,9 @@
     <h2>Create a New Trip</h2>
 <p>@Html.ActionLink("Back to trips", "Index")</p>
     <hr />
-
-    <form class="uk-form-horizontal uk-margin-large">
+@using (Html.BeginForm("Create", "Trips", FormMethod.Post, new { @class= "uk-form-horizontal uk-margin-large" }))
+{
+    
         <div class="uk-margin">
             @Html.LabelFor(model => model.Name, new { @class = "uk-form-label" })
             <div class="uk-form-controls">
@@ -37,23 +38,24 @@
         <div class="uk-margin">
             @Html.LabelFor(model => model.Budget, new { @class = "uk-form-label" })
             <div class="uk-form-controls">
-                @Html.TextBoxFor(model => model.Budget, new { @required = "true", @class = "uk-input"})
+                @Html.TextBoxFor(model => model.Budget, new { @class = "uk-input"})
             </div>
         </div>
         <div class="uk-margin">
             @Html.LabelFor(model => model.Members, new { @class = "uk-form-label" })
             <div class="uk-form-controls">
-                @Html.TextBoxFor(model => model.Members, new { @required = "true", @class = "uk-input" })
+                @Html.TextBoxFor(model => model.Members, new { @class = "uk-input" })
             </div>
         </div>
         <div class="uk-margin">
             @Html.LabelFor(model => model.Public, new { @class = "uk-form-label" })
             <div class="uk-form-controls">
-                @Html.EditorFor(model => model.Public, new { @required = "true", @class = "uk-input" })
+                @Html.TextBoxFor(model => model.Public, new { @class = "uk-checkbox uk-flex-left" })
             </div>
         </div>
-        <button type="submit" class="uk-button uk-button-default">Create Trip</button>
-    </form>
+        <br />
+        <button type="submit" class="uk-button uk-button-default uk-flex-center">Create Trip</button>
+    }
 
 
 <script type="text/javascript">

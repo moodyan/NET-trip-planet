@@ -68,7 +68,6 @@ body {
         color: black;
         text-decoration: none; }
       .navbar-default #navbar .navbar-nav #navlink:hover {
-        /*background-image: url("../img/notUsing/space_paint.png");*/
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat; }
@@ -112,4 +111,28 @@ body {
   margin-left: 20vw; }
   .uk-form-horizontal button {
     margin-left: 10vw; }
+
+#city-details {
+  border: 7px solid #009B77;
+  border-radius: 5px;
+  max-width: 70vw;
+  min-width: 70vw;
+  min-height: 60vh;
+  margin: 10px; }
+
+.details {
+  text-align: center;
+  margin-bottom: 40px; }
+
+.switcher {
+  height: 40vh; }
+
+button a {
+  color: black; }
+
+button a:hover {
+  color: #55B4B0; }
+
+a {
+  color: #55B4B0; }
 

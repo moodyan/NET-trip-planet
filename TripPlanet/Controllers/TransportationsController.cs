@@ -23,6 +23,7 @@ namespace TripPlanet.Controllers
         {
             var thisCity = _db.Cities.FirstOrDefault(city => city.CityId == Id);
             ViewBag.DepartureCity = thisCity.Name;
+            ViewBag.City = thisCity;
             var thisTrip = _db.Trips.Where(trip => trip.TripId == thisCity.TripId);
             var tripCities = _db.Cities.Where(cities => cities.TripId == thisCity.TripId).Where(city => city.CityId != Id).ToList();
             ViewBag.Cities = new SelectList(tripCities, "CityId", "Name");
