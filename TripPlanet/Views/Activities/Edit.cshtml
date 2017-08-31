@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Edit Activity";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model TripPlanet.Models.Activity
+
+<h2>Edit dates for: @Html.DisplayFor(model => model.Name)</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.ActivityId)
+    @Html.HiddenFor(model => model.Name)
+    @Html.HiddenFor(model => model.Latitude)
+    @Html.HiddenFor(model => model.Longitude)
+    @Html.HiddenFor(model => model.Address)
+    @Html.HiddenFor(model => model.CityId)
+
+
+    @Html.LabelFor(model => model.Date)
+    @Html.EditorFor(model => model.Date)
+    @Html.LabelFor(model => model.Cost)
+    @Html.EditorFor(model => model.Cost)
+    @Html.LabelFor(model => model.Type)
+    @Html.EditorFor(model => model.Type)
+    @Html.LabelFor(model => model.TimeSpent)
+    @Html.EditorFor(model => model.TimeSpent)
+
+    <input type="submit" value="Save" />
+}
+<p>@Html.ActionLink("Back to activity", "Details", new { id = Model.ActivityId })</p>

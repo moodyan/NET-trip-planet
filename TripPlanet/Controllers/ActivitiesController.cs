@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Geocoding;
 using Geocoding.Google;
+using Microsoft.EntityFrameworkCore;
 
 namespace TripPlanet.Controllers
 {
@@ -21,10 +22,11 @@ namespace TripPlanet.Controllers
             _userManager = userManager;
             _db = db;
         }
-        //Need to build out details view and route
+
         public IActionResult Details(int id)
         {
-            return View();
+            var thisActivity = _db.Activities.FirstOrDefault(a => a.ActivityId == id);
+            return View(thisActivity);
         }
 
         public IActionResult Create(int id)
@@ -45,6 +47,38 @@ namespace TripPlanet.Controllers
             _db.Activities.Add(activity);
             _db.SaveChanges();
             return RedirectToAction("Details", "Cities", new { id = id }); ;
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var thisActivity = _db.Activities.FirstOrDefault(a => a.ActivityId == id);
+            return View(thisActivity);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Activity activity, int id)
+        {
+
+            _db.Entry(activity).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Details", "Activities", new { id = id });
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var thisActivity = _db.Activities.FirstOrDefault(a => a.ActivityId == id);
+            return View(thisActivity);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var thisActivity = _db.Activities
+                .FirstOrDefault(a => a.ActivityId == id);
+
+            _db.Activities.Remove(thisActivity);
+            _db.SaveChanges();
+            return RedirectToAction("Details", "Cities", new { id = thisActivity.CityId });
         }
     }
 }

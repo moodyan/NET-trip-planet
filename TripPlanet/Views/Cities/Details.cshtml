@@ -14,7 +14,7 @@
 {
     @foreach (var activity in ViewBag.Activities)
     {
-        <p>@activity.Name</p>
+        <a href="/Activities/Details/@activity.ActivityId">@activity.Name</a><br />
 
     }
 }
