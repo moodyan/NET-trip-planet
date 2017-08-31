@@ -20,9 +20,9 @@ body {
   background-color: white;
   color: black; }
 
-#map {
-  height: 400px;
-  width: 100%; }
+#map-container {
+  width: 100vw;
+  padding-left: 100px; }
 
 .navbar-default {
   background-color: white;

@@ -14,7 +14,7 @@ _A web application that allows users to manage their multi-city trips._
 | ------------- | ------------- | ------------- |
 | The program allows anyone to view a landing page.  | Home  | "Welcome"  |
 | The program allows anyone to create an account.  | New Account  | "Enter your information"  |
-| The program allows users to login to edit their account info.  | /Account/Edit  | Form for editing |
+| The program allows users to login to view their account info.  | /Account/Details  | Details for account |
 | The program allows users to create a new trip (multi-city).  | New trip  | Form for new trip  |
 | The program allows users to add more cities to their trip.  | Add city  | Form for date and city  |
 | The program allows users to delete cities from their trip.  | Delete city  | "Are you sure?"  |
@@ -31,7 +31,7 @@ _A web application that allows users to manage their multi-city trips._
 4. Admin features?
 5. Group Trip features (add friend’s email to trip) - this would also add to the budgeting feature to split costs.
 6. Upload documents and profile photo feature
-7. Allows users to delete their account.
+7. Allows users to edit/delete their account.
 8. Users can choose single-city trip planning
 
 **TODO:**
@@ -43,7 +43,6 @@ _A web application that allows users to manage their multi-city trips._
 6. Add starting city based on trip.startCity (add lat/long)
 7. Add seed data
 8. Add time for transportation
-
 
 ## Setup/Installation Requirements
 
