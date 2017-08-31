@@ -100,7 +100,13 @@ namespace TripPlanet.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
-            var thisTrip = _db.Trips.FirstOrDefault(trip => trip.TripId == id);
+            var thisTrip = _db.Trips
+                .FirstOrDefault(trip => trip.TripId == id);
+            
+            _db.Activities.RemoveRange(_db.Activities.Where(activity => activity.Cities.TripId == thisTrip.TripId));
+            _db.Lodgings.RemoveRange(_db.Lodgings.Where(lodging => lodging.Cities.TripId == thisTrip.TripId));
+            _db.Transportations.RemoveRange(_db.Transportations.Where(transportation => transportation.Cities.TripId == thisTrip.TripId));
+            _db.Cities.RemoveRange(_db.Cities.Where(city => city.TripId == thisTrip.TripId));
             _db.Trips.Remove(thisTrip);
             _db.SaveChanges();
             return RedirectToAction("Index");

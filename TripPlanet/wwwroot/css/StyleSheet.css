@@ -8,7 +8,8 @@
   box-sizing: inherit; }
 
 .render-body {
-  margin: 0 auto; }
+  margin: 0 auto;
+  height: 100vh; }
 
 body {
   position: relative;

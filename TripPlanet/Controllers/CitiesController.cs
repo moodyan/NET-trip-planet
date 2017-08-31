@@ -26,7 +26,7 @@ namespace TripPlanet.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         public async Task<IActionResult> Create(int id, City city)
         {
@@ -78,6 +78,36 @@ namespace TripPlanet.Controllers
             }
 
             return View(thisCity);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var thisCity = _db.Cities.FirstOrDefault(city => city.CityId == id);
+            return View(thisCity);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(City city)
+        {
+            _db.Entry(city).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        //Delete a City
+        public IActionResult Delete(int id)
+        {
+            var thisCity = _db.Cities.FirstOrDefault(city => city.CityId == id);
+            return View(thisCity);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            
+            var thisCity = _db.Cities.FirstOrDefault(city => city.CityId == id);
+            _db.Cities.Remove(thisCity);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
