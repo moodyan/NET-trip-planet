@@ -2,5 +2,9 @@
   {
     "outputFile": "wwwroot/css/StyleSheet.css",
     "inputFile": "wwwroot/css/StyleSheet.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/materialize.css",
+    "inputFile": "wwwroot/css/materialize.scss"
   }
 ]

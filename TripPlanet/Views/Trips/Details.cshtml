@@ -21,5 +21,8 @@
     <a href="/Cities/Details/@tripCity.CityId" id="@tripCity.CityId">@tripCity.City.Name</a><br />
     
 }
+<br /><br />
+<p>@Html.ActionLink("Edit", "Edit", new { id = Model.TripId })</p>
+<p>@Html.ActionLink("Delete", "Delete", new { id = Model.TripId })</p>
 <hr />
 <p>@Html.ActionLink("Back to Trips", "Index")</p>

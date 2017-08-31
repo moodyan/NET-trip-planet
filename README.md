@@ -43,6 +43,9 @@ _A web application that allows users to manage their multi-city trips._
 6. Add starting city based on trip.startCity (add lat/long)
 7. Add seed data
 8. Add time for transportation
+9. Have project actually use my many to many between trips and cities.
+10. DEPLOY
+11. STYLE
 
 ## Setup/Installation Requirements
 

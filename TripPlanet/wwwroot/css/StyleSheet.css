@@ -8,8 +8,7 @@
   box-sizing: inherit; }
 
 .render-body {
-  margin: 0 auto;
-  height: 100vh; }
+  margin: 0 auto; }
 
 body {
   position: relative;
@@ -104,28 +103,6 @@ body {
     justify-content: center;
     color: white; }
 
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch; }
-  .cards .card {
-    flex: 0 0 500px;
-    margin: 10px;
-    border: 1px solid #ccc;
-    box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
-    background-color: white; }
-    .cards .card img {
-      max-width: 100%; }
-    .cards .card .text {
-      padding: 0 20px 20px; }
-    .cards .card button {
-      background-color: tomato;
-      border: 0;
-      padding: 10px;
-      width: 100%; }
-      .cards .card button a {
-        color: white; }
-    .cards .card button:hover, .cards .card button:hover a {
-      background-color: #ffbf47;
-      color: white; }
+.trip-cards {
+  width: 80%; }
 

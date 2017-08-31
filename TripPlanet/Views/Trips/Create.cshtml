@@ -37,3 +37,15 @@
     <br />
     <p>@Html.ActionLink("Back to trips", "Index")</p>
 </div>
+
+<script type="text/javascript">
+
+    google.maps.event.addDomListener(window, 'load', function () {
+        var options = {
+            types: ['(cities)']
+        };
+
+        var input = document.getElementById('StartCity');
+        var places = new google.maps.places.Autocomplete(input, options);
+    });
+</script>

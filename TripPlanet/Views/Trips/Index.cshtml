@@ -8,26 +8,26 @@
 @if (User.Identity.IsAuthenticated)
 {
     <p>@Html.ActionLink("Create A New Trip", "Create")</p>
-        @if(ViewBag.UserTrips.Count != 0)
+        @if (ViewBag.UserTrips.Count != 0)
         {
-            @foreach (var trip in ViewBag.UserTrips)
-            {
-            <main class="cards">
-                <article class="card">
-                    @*<img src=@Html.DisplayFor(image => trip.Image) alt="Sample photo">*@
-                    <div class="text">
-                        <h3>@trip.Name</h3>
-                        <p>@trip.BeginDate.Date</p>
-                        <p>@trip.EndDate.Date</p>
-                        <br />
-                        <p>@Html.ActionLink("Delete", "Delete", new { id = trip.TripId })</p>
-                        <p>@Html.ActionLink("Edit", "Edit", new { id = trip.TripId })</p>
-                        <button>@Html.ActionLink("Trip Details", "Details", new { id = trip.TripId })</button>
-                    
+            <div class="uk-flex uk-flex-between trip-cards">
+                @foreach (var trip in ViewBag.UserTrips)
+                {
+                    <div class="uk-card uk-card-default uk-width-1-2@m ">
+                        <div class="uk-card-header">
+                            <div class="uk-grid-small uk-flex-middle" uk-grid>
+                                <div class="uk-width-expand">
+                                    <h3 class="uk-card-title uk-margin-remove-bottom">@trip.Name</h3>
+                                    <p class="uk-text-meta uk-margin-remove-top">@trip.BeginDate.Date to @trip.EndDate.Date</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-card-footer">
+                            <a href="/Trips/Details/@trip.TripId" class="uk-button uk-button-text">Trip Details</a>
+                        </div>
                     </div>
-                </article>
-            </main>
-            }
+                }
+            </div>
         } else
         {
             <p>You have not created any trips.</p>
