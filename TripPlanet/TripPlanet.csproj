@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Properties\PublishProfiles\TripPlanet20170830064811 - Web Deploy.pubxml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\css\StyleSheet.css" />
     <Content Include="wwwroot\css\StyleSheet.min.css" />
     <Content Include="wwwroot\css\StyleSheet.scss" />
@@ -35,6 +39,9 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 
 </Project>

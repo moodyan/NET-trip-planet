@@ -1,0 +1,9 @@
+C:\Users\alyssamoody\Desktop\TripPlanet\TripPlanet\bin\Release\netcoreapp1.1\TripPlanet.deps.json
+C:\Users\alyssamoody\Desktop\TripPlanet\TripPlanet\bin\Release\netcoreapp1.1\TripPlanet.runtimeconfig.json
+C:\Users\alyssamoody\Desktop\TripPlanet\TripPlanet\bin\Release\netcoreapp1.1\TripPlanet.runtimeconfig.dev.json
+C:\Users\alyssamoody\Desktop\TripPlanet\TripPlanet\bin\Release\netcoreapp1.1\TripPlanet.dll
+C:\Users\alyssamoody\Desktop\TripPlanet\TripPlanet\bin\Release\netcoreapp1.1\TripPlanet.pdb
+C:\Users\alyssamoody\Desktop\TripPlanet\TripPlanet\obj\Release\netcoreapp1.1\TripPlanet.csprojResolveAssemblyReference.cache
+C:\Users\alyssamoody\Desktop\TripPlanet\TripPlanet\obj\Release\netcoreapp1.1\TripPlanet.AssemblyInfo.cs
+C:\Users\alyssamoody\Desktop\TripPlanet\TripPlanet\obj\Release\netcoreapp1.1\TripPlanet.dll
+C:\Users\alyssamoody\Desktop\TripPlanet\TripPlanet\obj\Release\netcoreapp1.1\TripPlanet.pdb

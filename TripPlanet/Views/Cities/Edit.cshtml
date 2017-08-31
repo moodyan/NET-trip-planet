@@ -1,4 +1,29 @@
 ﻿@{
-    ViewData["Title"] = "Edit City";
+    ViewData["Title"] = "Edit City Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model TripPlanet.Models.City
+
+<h2>Edit dates for: @Html.DisplayFor(model => model.Name)</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.CityId)
+    @Html.HiddenFor(model => model.Name)
+    @Html.HiddenFor(model => model.Latitude)
+    @Html.HiddenFor(model => model.Longitude)
+    @Html.HiddenFor(model => model.TripId)
+    @Html.HiddenFor(model => model.TripCities)
+
+    
+    @Html.LabelFor(model => model.ArrivalDate)
+    @Html.EditorFor(model => model.ArrivalDate)
+    @Html.LabelFor(model => model.DepartureDate)
+    @Html.EditorFor(model => model.DepartureDate)
+   
+
+
+    <input type="submit" value="Save" />
+}
+<p>@Html.ActionLink("Back to list", "Index")</p>

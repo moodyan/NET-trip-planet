@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Account Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model TripPlanet.Models.Planner
+<h2>Account Details</h2>
+@Html.ActionLink("LOG OUT", "LogOff", "Account")
+
+@*@foreach (var planner in ViewBag.ThisPlanner)
+    {
+
+    }*@
+<p>Name: @Model.FirstName @Model.LastName</p>
+<p>Birthdate: @Model.Birthdate</p>
+<p>Hometown: @Model.Hometown</p>
+
+@Html.ActionLink("Edit Your Details", "Edit", "Account")
+
+@*@if (User.IsInRole("admin"))*@
+@if (ViewBag.Admin != null)
+{
+    <p>@Html.ActionLink("Manage User Roles", "ManageUserRoles", "Role")</p>
+}

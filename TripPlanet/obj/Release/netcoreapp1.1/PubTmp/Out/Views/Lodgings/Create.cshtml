@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Add Lodging";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model TripPlanet.Models.Lodging
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Name)
+    @Html.EditorFor(model => model.Name)
+
+    @Html.LabelFor(model => model.Address)
+    @Html.EditorFor(model => model.Address)
+    @Html.LabelFor(model => model.ArrivalDate)
+    @Html.EditorFor(model => model.ArrivalDate)
+    @Html.LabelFor(model => model.DepartureDate)
+    @Html.EditorFor(model => model.DepartureDate)
+    @Html.LabelFor(model => model.Cost)
+    @Html.EditorFor(model => model.Cost)
+    @Html.LabelFor(model => model.Booked)
+    @Html.EditorFor(model => model.Booked)
+    @Html.LabelFor(model => model.Confirmation)
+    @Html.EditorFor(model => model.Confirmation)
+    <input type="submit" value="Add Lodging" />
+}
+
+<script type="text/javascript">
+
+    google.maps.event.addDomListener(window, 'load', function () {
+        var cityLatitude = '@ViewBag.Latitude';
+        var cityLongitude = '@ViewBag.Longitude';
+        console.log(cityLatitude + cityLongitude);
+        var defaultBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(cityLatitude, cityLongitude));
+        var options = {
+            types: ['(lodging)'],
+            bounds: defaultBounds
+        };
+        var input = document.getElementById('Name');
+
+        var searchBox = new google.maps.places.SearchBox(input, options);
+        searchBox.addListener('places_changed', function () {
+            var places = searchBox.getPlaces();
+            document.getElementById('Address').value = places[0].formatted_address;
+            console.log(places);
+            if (places.length == 0) {
+                return;
+            }
+        });
+    });
+</script>

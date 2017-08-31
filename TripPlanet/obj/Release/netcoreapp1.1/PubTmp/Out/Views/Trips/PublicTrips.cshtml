@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Public Trips";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (ViewBag.PublicTrips.Count != 0)
+{
+    @foreach (var trip in ViewBag.PublicTrips)
+    {
+        <main class="cards">
+            <article class="card">
+                @*<img src=@Html.DisplayFor(image => trip.Image) alt="Sample photo">*@
+                <div class="text">
+                    <h3>@trip.Name</h3>
+                    <p>@trip.BeginDate.Date</p>
+                    <p>@trip.EndDate.Date</p>
+                    <br />
+                    <p>@Html.ActionLink("Delete", "Delete", new { id = trip.TripId })</p>
+                    <p>@Html.ActionLink("Edit", "Edit", new { id = trip.TripId })</p>
+                    <button>@Html.ActionLink("Trip Details", "Details", new { id = trip.TripId })</button>
+
+                </div>
+            </article>
+        </main>
+    }
+}
+else
+{
+    <p>There are currently no public trips.</p>
+}

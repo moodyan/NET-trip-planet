@@ -1,0 +1,65 @@
+﻿@model TripPlanet.Models.City
+@{
+    ViewData["Title"] = "City Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@Model.Name</h2>
+<p>Arrive: @Model.ArrivalDate</p>
+<p>Depart: @Model.DepartureDate</p>
+<hr />
+<h3>Activities:</h3>
+@if(ViewBag.Activities !=null)
+{
+    @foreach (var activity in ViewBag.Activities)
+    {
+        <p>@activity.Name</p>
+
+    }
+}
+@Html.ActionLink("Add An Activity", "Create", "Activities", new { id = Model.CityId })
+<br /><br />
+<h3>Lodging:</h3>
+@if (ViewBag.Lodging != null)
+{
+    @foreach (var lodging in ViewBag.Lodging)
+    {
+        <p>@lodging.Name</p>
+
+    }
+}
+@Html.ActionLink("Add Lodging", "Create", "Lodgings", new { id = Model.CityId })
+<br /><br />
+<h3>Arrival Transportation:</h3>
+@if (ViewBag.ArrivalTransport != null)
+{
+    @foreach (var transportation in ViewBag.ArrivalTransport)
+    {
+        <p>@transportation.Name to @Model.Name</p>
+
+    }
+}
+else
+{
+    <p>You have not entered any arrival information for this city.</p>
+
+}
+
+<br /><br />
+<h3>Departure Transportation:</h3>
+@if (ViewBag.DepartureTransport != null)
+{
+    @foreach (var transportation in ViewBag.DepartureTransport)
+    {
+        <p>@Model.Name to @transportation.Name</p>
+
+    }
+}
+else
+{
+    <p>You have not entered any departure information for this city.</p>
+    @Html.ActionLink("Add Transportation", "Create", "Transportations", new { id = Model.CityId })
+}
+<hr />
+@Html.ActionLink("Delete City From Trip", "Delete", "Cities", new { id = Model.CityId })
+<br />
+@Html.ActionLink("Back to Trip", "Details", "Trips", new { id = Model.TripId })

@@ -1,12 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Edit a Location";
+    ViewData["Title"] = "Edit Trip Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model TripPlanet.Models.Trip
 
-<h2>Edit</h2>
+<h2>Edit this trip: @Html.DisplayFor(model => model.Name)</h2>
 <hr />
-<h4>Edit this trip: @Html.DisplayFor(model => model.Name)</h4>
 
 @using (Html.BeginForm())
 {

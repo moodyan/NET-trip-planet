@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Trip Map";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="map_canvas" style="width: 500px; height: 500px">
+</div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        console.log('@ViewBag.Markers');
+        @*var markers = '@ViewBag.Markers';*@
+            var mapOptions = {
+                center: new google.maps.LatLng(50.0, -119.088889),
+                zoom: 5,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map_canvas"),
+                mapOptions);
+            @*var latlng = new google.maps.LatLng(parseFloat(@ViewBag.Markers.City.Latitude), parseFloat(@ViewBag.Markers.Longitude))*@
+            //var infoWindow = new google.maps.InfoWindow();
+            var array = '@Html.Raw(ViewBag.Markers)';
+            //for (var i = 0; i < array.length; i++) {
+
+            //}
+
+
+            //for (i = 0; i < markers.length; i++) {
+            //    var data = markers[i];
+            //    var myLatlng = new google.maps.LatLng(parseFloat(data.Latitude), parseFloat(data.Longitude));
+            //    var marker = new google.maps.Marker({
+            //        position: myLatlng,
+            //        map: map,
+            //        title: data.Name
+            //    });
+            //}
+
+        }
+</script>

@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#register-form').hide();
+        $('.register').click(function () {
+            $.ajax({
+                type: 'GET',
+                dataType: 'html',
+                url: '@Url.Action("RegisterLogin", "Account")',
+                success: function (result) {
+                    $('.login').show();
+                    $('#login-form').hide();
+                    $('#register-form').html(result).toggle();
+                    $('.register').hide();
+                }
+            });
+        });
+        $('#login-form').hide();
+        $('.login').click(function () {
+            $.ajax({
+                type: 'GET',
+                dataType: 'html',
+                url: '@Url.Action("Login", "Account")',
+                success: function (result) {
+                    $('.register').show();
+                    $('#register-form').hide();
+                    $('#login-form').html(result).toggle();
+                    $('.login').hide();
+                }
+            });
+        });
+    });
+</script>
+@using System.Security.Claims
+
+<h2>LOG IN OR REGISTER</h2>
+<hr />
+@if (User.Identity.IsAuthenticated)
+{
+    <p>Hello @User.Identity.Name!</p>
+    @Html.ActionLink("Account Details", "Details", "Account")
+    
+    @Html.ActionLink("Log Out", "LogOff", "Account")
+    }
+    else
+    {
+    <button class="register btn">REGISTER</button>
+    <button class="login btn">LOG IN</button>
+    <div id="register-form"></div>
+    
+    
+    <div id="login-form"></div>
+}

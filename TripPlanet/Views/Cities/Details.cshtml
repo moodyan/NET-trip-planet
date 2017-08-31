@@ -6,6 +6,8 @@
 <h2>@Model.Name</h2>
 <p>Arrive: @Model.ArrivalDate</p>
 <p>Depart: @Model.DepartureDate</p>
+@Html.ActionLink("Edit Dates", "Edit", "Cities", new { id = Model.CityId })
+
 <hr />
 <h3>Activities:</h3>
 @if(ViewBag.Activities !=null)
