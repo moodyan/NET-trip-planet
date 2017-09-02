@@ -1,99 +1,95 @@
-﻿@model TripPlanet.Models.City
+﻿
+
 @{
     ViewData["Title"] = "City Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@Model.Name</h2>
+@model TripPlanet.Models.City
+<h3>@Model.Name</h3>
 @Html.ActionLink("Edit Dates", "Edit", "Cities", new { id = Model.CityId })
 <p>Arrive: @Model.ArrivalDate</p>
 <p>Depart: @Model.DepartureDate</p>
 
-<div class="uk-flex uk-flex-center">
-    <div id="city-details">
-        <ul class="uk-subnav uk-subnav-pill" uk-switcher>
-            <li><a href="#">Activities</a></li>
-            <li><a href="#">Lodging</a></li>
-            <li><a href="#">Transportation</a></li>
-        </ul>
 
-        <ul class="uk-switcher uk-margin uk-flex uk-flex-center">
-            <li class="uk-flex uk-flex-center uk-flex-column switcher">
-                <div class="details uk-flex uk-flex-top">
-                    <div>
-                        <h3>Activities:</h3>
-                        @if (ViewBag.Activities != null)
-                        {
-                            @foreach (var activity in ViewBag.Activities)
-                            {
-                                <a href="/Activities/Details/@activity.ActivityId">@activity.Name</a><br />
-                            }
-                        }
-                    </div>
-                </div>
-                <div class="add-link uk-flex uk-flex-center uk-flex-bottom">
-                    <div>
-                        <button class="uk-button uk-button-default">@Html.ActionLink("Add An Activity", "Create", "Activities", new { id = Model.CityId })</button>
-                    </div>
-                </div>
-            </li>
-
-            <li class="uk-flex uk-flex-center uk-flex-column switcher">
-                <div class="details uk-flex uk-center uk-flex-top">
-                    <div>
-                        <h3>Lodging:</h3>
-                        @if (ViewBag.Lodging != null)
-                        {
-                            @foreach (var lodging in ViewBag.Lodging)
-                            {
-                                <a href="/Lodgings/Details/@lodging.LodgingId">@lodging.Name</a><br />
-                            }
-                        }
-                    </div>
-                </div>
-                <div class="add-link uk-flex uk-flex-center uk-flex-bottom">
-                    <button class="uk-button uk-button-default">@Html.ActionLink("Add Lodging", "Create", "Lodgings", new { id = Model.CityId })</button>
-                </div>
-            </li>
-
-            <li>
-                <h3>Arrival Transportation:</h3>
-                @if (ViewBag.ArrivalTransport != null)
+<ul class="collapsible popout city" data-collapsible="expandable">
+    <li>
+        <div class="collapsible-header"><i class="material-icons">stars</i>Activities</div>
+        <div class="collapsible-body">
+            <span>
+                <h4>Activities:</h4>
+                @if (ViewBag.Activities.Count != 0)
                 {
-                    @foreach (var transportation in ViewBag.ArrivalCity)
+                    @foreach (var activity in ViewBag.Activities)
                     {
-                        <a href="/Transportations/Details/@ViewBag.ArrivalTransport.TransportationId">@transportation.Name to @Model.Name</a><br />
+                        <a href="/Activities/Details/@activity.ActivityId">@activity.Name</a><br />
                     }
-                }
-                else
-                {
-                    <p>You have not entered any arrival information for this city.</p>
-                }
-
-                <br /><br />
-                <h3>Departure Transportation:</h3>
-                @if (ViewBag.DepartureTransport != null)
-                {
-                    @foreach (var transportation in ViewBag.DepartureCity)
-                    {
-                        <a href="/Transportations/Details/@ViewBag.DepartureTransport.TransportationId">
-                            @Model.Name to @transportation.Name
-                        </a>
-                    }
-                }
-                else
-                {
-                    <p>You have not entered any departure information for this city.</p>
-                    <button class="uk-button uk-button-default">
-                        @Html.ActionLink("Add Transportation", "Create", "Transportations", new { id = Model.CityId })
-                    </button>
-                }
-            </li>
-        </ul>
+                }<br />
+                <a class="btn-floating btn-large waves-effect waves-light red" href="/Activities/Create/@Model.CityId"><i class="material-icons">add</i></a>
+        </span>
     </div>
-</div>
+</li>
+<li>
+    <div class="collapsible-header"><i class="material-icons">hotel</i>Lodging</div>
+    <div class="collapsible-body">
+        <span><h4>Lodging:</h4>
+        @if (ViewBag.Lodging.Count != 0)
+        {
+            @foreach (var lodging in ViewBag.Lodging)
+            {
+                <a href="/Lodgings/Details/@lodging.LodgingId">@lodging.Name</a><br />
+            }
+        }
+        else
+        {
+            <p>You have not entered any lodging for this city.</p>
+        }<br />
+        <a class="btn-floating btn-large waves-effect waves-light red" href="/Lodgings/Create/@Model.CityId"><i class="material-icons">add</i></a>
+        </span>
+    </div>
+</li>
+<li>
+    <div class="collapsible-header"><i class="material-icons">local_airport</i>Transportation</div>
+    <div class="collapsible-body">
+        <span><h4>Arrival Transportation:</h4>
+            @if (ViewBag.ArrivalTransport != null)
+            {
+                @foreach (var transportation in ViewBag.ArrivalCity)
+                {
+                    <a href="/Transportations/Details/@ViewBag.ArrivalTransport.TransportationId">@transportation.Name to @Model.Name</a><br />
+                }
+            }
+            else
+            {
+                <p>You have not entered any arrival information for this city.</p>
+            }
+
+            <br /><br />
+            <h4>Departure Transportation:</h4>
+            @if (ViewBag.DepartureTransport != null)
+            {
+                @foreach (var transportation in ViewBag.DepartureCity)
+                {
+                    <a href="/Transportations/Details/@ViewBag.DepartureTransport.TransportationId">
+                        @Model.Name to @transportation.Name
+                    </a>
+                }
+            }
+            else
+            {
+                <p>You have not entered any departure information for this city.</p>
+                <a class="btn-floating btn-large waves-effect waves-light red" href="/Transportations/Create/@Model.CityId"><i class="material-icons">add</i></a>
+            }
+        </span>
+    </div>
+</li>
+</ul>
+
+            
 
 
-<button class="uk-button uk-button-danger">
-    @Html.ActionLink("Delete City From Trip", "Delete", "Cities", new { id = Model.CityId })</button>
+
+    @Html.ActionLink("Delete City From Trip", "Delete", "Cities", new { id = Model.CityId }, new { @class= "waves-effect waves-light btn red lighten-1" })
 <br />
 @Html.ActionLink("Back to Trip", "Details", "Trips", new { id = Model.TripId })
+
+
