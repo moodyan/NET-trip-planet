@@ -19,6 +19,7 @@ namespace TripPlanet.Controllers
             _userManager = userManager;
             _db = db;
         }
+
         public IActionResult Create(int Id)
         {
             var thisCity = _db.Cities.FirstOrDefault(city => city.CityId == Id);

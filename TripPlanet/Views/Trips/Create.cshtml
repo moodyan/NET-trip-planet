@@ -40,9 +40,10 @@
                 @Html.TextBoxFor(model => model.Members)
                 @Html.LabelFor(model => model.Members)
             </div>
+            @*DOESNT WORK*@
             <p class="col s4">
-                @Html.TextBoxFor(model => model.Public, new { type = "checkbox" })
-                @Html.LabelFor(model => model.Public)
+                <input type="checkbox" id="Public" />
+                <label for="Public">Public</label>
             </p>
         </div>
     <br />
@@ -65,7 +66,7 @@
             today: 'Today',
             clear: 'Clear',
             close: 'Ok',
-            closeOnSelect: false // Close upon selecting a date,
+            closeOnSelect: true // Close upon selecting a date,
         });
     });
 </script>

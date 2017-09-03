@@ -2,6 +2,23 @@
     ViewData["Title"] = "Account";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using System.Security.Claims
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>Hello @User.Identity.Name!</p>
+    @Html.ActionLink("Account Details", "Details", "Account")
+    
+    @Html.ActionLink("Log Out", "LogOff", "Account")
+    }
+    else
+    {
+    <br /><br /><br />
+    <button class="register waves-effect waves-light btn-large">REGISTER</button>
+    <button class="login waves-effect waves-light btn-large">LOGIN</button>
+    <div id="register-form"></div>
+    <div id="login-form"></div>
+}
 <script type="text/javascript">
     $(document).ready(function () {
         $('#register-form').hide();
@@ -34,23 +51,3 @@
         });
     });
 </script>
-@using System.Security.Claims
-
-<h2>LOG IN OR REGISTER</h2>
-<br />
-@if (User.Identity.IsAuthenticated)
-{
-    <p>Hello @User.Identity.Name!</p>
-    @Html.ActionLink("Account Details", "Details", "Account")
-    
-    @Html.ActionLink("Log Out", "LogOff", "Account")
-    }
-    else
-    {
-    <button class="register btn">REGISTER</button>
-    <button class="login btn">LOG IN</button>
-    <div id="register-form"></div>
-    
-    
-    <div id="login-form"></div>
-}

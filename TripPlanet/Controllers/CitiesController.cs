@@ -22,6 +22,8 @@ namespace TripPlanet.Controllers
             _userManager = userManager;
             _db = db;
         }
+        //public CitiesController() {}
+
         public IActionResult Create(int Id)
         {
             var thisTrip = _db.Trips.FirstOrDefault(t => t.TripId == Id);
@@ -59,6 +61,11 @@ namespace TripPlanet.Controllers
 
             var activities = _db.Activities.Where(activity => activity.CityId == Id).ToList();
             ViewBag.Activities = activities;
+            //foreach(var activity in ViewBag.Activities)
+            //{
+
+            //    ViewBag.ActivitiesCost = activities.Cost
+            //}
             var lodging = _db.Lodgings.Where(lodgings => lodgings.CityId == Id).ToList();
             ViewBag.Lodging = lodging;
             
@@ -80,6 +87,12 @@ namespace TripPlanet.Controllers
                     .Where(city => city.CityId == departureTransportation.ArrivalCityId).ToList();
                 ViewBag.DepartureCity = departCity;
             }
+
+            ViewBag.ActivityCost = GetActivityCost(Id);
+            ViewBag.LodgingCost = GetLodgingCost(Id);
+            ViewBag.TransportationCost = GetTransportationCost(Id);
+            
+            ViewBag.TotalCost = ViewBag.ActivityCost+ ViewBag.LodgingCost+ ViewBag.TransportationCost;
 
             return View(thisCity);
         }
@@ -120,6 +133,55 @@ namespace TripPlanet.Controllers
             _db.Cities.Remove(thisCity);
             _db.SaveChanges();
             return RedirectToAction("Details", "Trips", new { id = thisTrip.TripId });
+        }
+
+        public decimal GetActivityCost(int id)
+        {
+            decimal activityCost = 0;
+            
+            ViewBag.Activities = _db.Activities.Where(a => a.CityId == id).ToList();
+            if(ViewBag.Activities.Count != 0)
+            {
+                foreach(var activity in ViewBag.Activities)
+                {
+                    activityCost += activity.Cost;
+                }
+            }
+            
+            return activityCost;
+        }
+
+        public decimal GetLodgingCost(int id)
+        {
+            decimal lodgingCost = 0;
+            
+            ViewBag.Lodgings = _db.Lodgings.Where(a => a.CityId == id).ToList();
+            if (ViewBag.Lodgings.Count != 0)
+            {
+                foreach (var lodging in ViewBag.Lodgings)
+                {
+                    lodgingCost += lodging.Cost;
+                }
+            }
+            
+            return lodgingCost;
+        }
+
+        public decimal GetTransportationCost(int id)
+        {
+            decimal transportationCost = 0;
+            
+            ViewBag.Transportations = _db.Transportations.Where(a => a.CityId == id).ToList();
+            
+            if (ViewBag.Transportations.Count != 0)
+            {
+                foreach (var transportation in ViewBag.Transportations)
+                {
+                    transportationCost += transportation.Cost;
+                }
+            }
+            
+            return transportationCost;
         }
     }
 }

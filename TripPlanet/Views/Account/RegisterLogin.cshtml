@@ -2,32 +2,59 @@
 
 @model RegisterViewModel
 
-<div class="container">
-    <h2>Register</h2>
-    <hr />
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+<h2>Register</h2>
+<br /><br />
+<div class="row">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "col s12" }))
     {
-        @Html.LabelFor(m => m.Email)
-        @Html.TextBoxFor(m => m.Email)
-
-        @Html.LabelFor(m => m.Password)
-        @Html.PasswordFor(m => m.Password)
-
-        @Html.LabelFor(m => m.ConfirmPassword)
-        @Html.PasswordFor(m => m.ConfirmPassword)
-
-        <label for="firstName">First Name: </label>
-        <input type="text" name="firstName" required />
-
-        <label for="lastName">Last Name: </label>
-        <input type="text" name="lastName" required />
-
-        <label for="birthdate">Birthdate: </label>
-        <input type="date" name="birthdate" required />
-
-        <label for="hometown">Hometown: </label>
-        <input type="text" name="hometown" required />
-
-        <input type="submit" value="Register" />
+        <div class="row">
+            <div class="input-field col s4">
+                @Html.TextBoxFor(m => m.Email)
+                @Html.LabelFor(m => m.Email)
+            </div>
+            <div class="input-field col s4">
+                @Html.PasswordFor(m => m.Password)
+                @Html.LabelFor(m => m.Password)
+            </div>
+            <div class="input-field inline col s4">
+                @Html.PasswordFor(m => m.ConfirmPassword)
+                @Html.LabelFor(m => m.ConfirmPassword)
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field inline col s6">
+                <input type="text" name="firstName" required />
+                <label for="firstName">First Name: </label>
+            </div>
+            <div class="input-field col s6">
+                <input type="text" name="lastName" required />
+                <label for="lastName">Last Name: </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field inline col s4">
+                <input type="text" id="Birthdate" class="datepicker" required />
+                <label for="Birthdate">Birthdate: </label>
+            </div>
+            <div class="input-field col s6">
+                <input type="text" name="hometown" required />
+                <label for="hometown">Hometown: </label>
+            </div>
+        </div>
+        <br />
+        <button type="submit" value="Register" class="waves-effect waves-light btn">Register</button>
     }
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            today: 'Today',
+            clear: 'Clear',
+            close: 'Ok',
+            closeOnSelect: true // Close upon selecting a date,
+        });
+    });
+</script>

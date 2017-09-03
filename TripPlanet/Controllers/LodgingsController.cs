@@ -17,7 +17,7 @@ namespace TripPlanet.Controllers
             _userManager = userManager;
             _db = db;
         }
-        //Need to build out details view and route
+
         public IActionResult Details(int id)
         {
             var thisLodging = _db.Lodgings.FirstOrDefault(l => l.LodgingId == id);

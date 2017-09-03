@@ -43,5 +43,7 @@ namespace TripPlanet.Models
             return days;
         }
 
+        
+
     }
 }

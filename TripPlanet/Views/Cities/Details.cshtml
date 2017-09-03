@@ -23,6 +23,7 @@
                     {
                         <a href="/Activities/Details/@activity.ActivityId">@activity.Name</a><br />
                     }
+                    <p>Total Cost: $@ViewBag.ActivityCost</p><br />
                 }<br />
                 <a class="btn-floating btn-large waves-effect waves-light red" href="/Activities/Create/@Model.CityId"><i class="material-icons">add</i></a>
         </span>
@@ -38,6 +39,7 @@
             {
                 <a href="/Lodgings/Details/@lodging.LodgingId">@lodging.Name</a><br />
             }
+            <p>Total Cost: $@ViewBag.LodgingCost</p><br />
         }
         else
         {
@@ -72,6 +74,7 @@
                     <a href="/Transportations/Details/@ViewBag.DepartureTransport.TransportationId">
                         @Model.Name to @transportation.Name
                     </a>
+                    <p>Total Cost: $@ViewBag.TransportationCost</p><br />
                 }
             }
             else
@@ -84,6 +87,7 @@
 </li>
 </ul>
 
+<p>Budget Used: $@ViewBag.TotalCost</p>
             
 
 
