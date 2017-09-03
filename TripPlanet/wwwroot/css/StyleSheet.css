@@ -45,11 +45,8 @@ footer {
   width: 70vw;
   margin-left: 15vw; }
 
-button a {
-  color: black; }
-
-button a:hover {
-  color: #55B4B0; }
+#home-gif {
+  width: 50vw; }
 
 a {
   color: #55B4B0; }
