@@ -30,6 +30,6 @@
 
 <hr />
 
-@Html.ActionLink("Delete Transportation From City", "Delete", "Transportations", new { id = Model.TransportationId })
+@Html.ActionLink("Delete This Transportation From City", "Delete", "Transportations", new { id = Model.TransportationId }, new { @class = "waves-effect waves-light btn red lighten-1" })
 <br />
 @Html.ActionLink("Back to City", "Details", "Cities", new { id = Model.CityId })

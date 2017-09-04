@@ -22,7 +22,6 @@ namespace TripPlanet.Controllers
             _userManager = userManager;
             _db = db;
         }
-        //public CitiesController() {}
 
         public IActionResult Create(int Id)
         {
@@ -61,11 +60,6 @@ namespace TripPlanet.Controllers
 
             var activities = _db.Activities.Where(activity => activity.CityId == Id).ToList();
             ViewBag.Activities = activities;
-            //foreach(var activity in ViewBag.Activities)
-            //{
-
-            //    ViewBag.ActivitiesCost = activities.Cost
-            //}
             var lodging = _db.Lodgings.Where(lodgings => lodgings.CityId == Id).ToList();
             ViewBag.Lodging = lodging;
             

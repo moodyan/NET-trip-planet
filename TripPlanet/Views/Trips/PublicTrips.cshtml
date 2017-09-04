@@ -4,24 +4,25 @@
 }
 @if (ViewBag.PublicTrips.Count != 0)
 {
-        <div class="uk-flex uk-flex-wrap uk-flex-center">
-            @foreach (var trip in ViewBag.PublicTrips)
-            {
-                <div class="uk-card uk-card-default uk-width-1-2@m trip-cards">
-                    <div class="uk-card-header">
-                        <div class="uk-grid-small uk-flex-middle" uk-grid>
-                            <div class="uk-width-expand">
-                                <h3 class="uk-card-title uk-margin-remove-bottom">@trip.Name</h3>
-                                <p class="uk-text-meta uk-margin-remove-top">@trip.BeginDate.Date to @trip.EndDate.Date</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="uk-card-footer">
-                        <a href="/Trips/Details/@trip.TripId" class="uk-button uk-button-text">Trip Details</a>
-                    </div>
+    <div id="card-container">
+        @foreach (var trip in ViewBag.PublicTrips)
+        {
+            <div class="card sticky-action">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="~/img/london.jpg">
                 </div>
-            }
-        </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">@trip.Name<i class="material-icons right">more_vert</i></span>
+                    <p><a href="/Trips/Details/@trip.TripId">Trip Details</a></p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">@trip.Name<i class="material-icons right">close</i></span>
+                    <p>Dates: @trip.BeginDate.Date to @trip.EndDate.Date</p>
+                    <p>Budget: @trip.Budget</p>
+                </div>
+            </div>
+        }
+    </div>
 }
 else
 {

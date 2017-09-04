@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TripPlanet.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace TripPlanet.Controllers
 {
@@ -43,6 +44,37 @@ namespace TripPlanet.Controllers
             _db.Lodgings.Add(lodging);
             _db.SaveChanges();
             return RedirectToAction("Details", "Cities", new { id = id }); ;
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var thisLodging = _db.Lodgings.FirstOrDefault(l => l.LodgingId == id);
+            return View(thisLodging);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Lodging lodging, int id)
+        {
+            _db.Entry(lodging).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Details", "Lodgings", new { id = id });
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var thisLodging = _db.Lodgings.FirstOrDefault(l => l.LodgingId == id);
+            return View(thisLodging);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var thisLodging = _db.Lodgings
+                .FirstOrDefault(l => l.LodgingId == id);
+
+            _db.Lodgings.Remove(thisLodging);
+            _db.SaveChanges();
+            return RedirectToAction("Details", "Cities", new { id = thisLodging.CityId });
         }
     }
 }

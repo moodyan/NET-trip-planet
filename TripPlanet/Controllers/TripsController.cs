@@ -65,7 +65,7 @@ namespace TripPlanet.Controllers
         public IActionResult Details(int Id)
         {
             var thisTrip = _db.Trips.Include(trips => trips.TripCities).FirstOrDefault(trip => trip.TripId == Id);
-            var tripCities = _db.TripCities.Include(city => city.City).Where(tripcity => tripcity.TripId == Id).ToList();
+            var tripCities = _db.TripCities.Include(city => city.City).Where(tripcity => tripcity.TripId == Id).OrderBy(tc => tc.City.ArrivalDate).ToList();
             ViewBag.Cities = tripCities;
             ViewBag.BudgetUsed = Budget(Id);
             return View(thisTrip);
@@ -98,7 +98,7 @@ namespace TripPlanet.Controllers
             trip.Planner = _db.Planners.FirstOrDefault(planner => planner.UserName == User.Identity.Name);
             _db.Entry(trip).State = EntityState.Modified;
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Trips", new { id = trip.TripId});
         }
         //Delete a Trip
         public IActionResult Delete(int id)

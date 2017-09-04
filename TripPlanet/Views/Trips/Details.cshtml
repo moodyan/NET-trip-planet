@@ -5,29 +5,36 @@
 @model TripPlanet.Models.Trip
 
 <h2>Trip Details for @Model.Name</h2>
-<div class="tabs">
-    <div class="tabs__tab tabs__tab--home">
-        <div class="tabs__tab-inner">@Html.ActionLink("Trip Map", "MapView", new { id = @Model.TripId })</div>
-    </div>
-</div>
+
+@Html.ActionLink("Trip Map", "MapView", new { id = @Model.TripId })
     
-    <br /><br />
+<br /><br />
 
-    <p>@Html.DisplayNameFor(model => model.BeginDate) : @Html.DisplayFor(model => model.BeginDate)</p>
-    <p>@Html.DisplayNameFor(model => model.EndDate) : @Html.DisplayFor(model => model.EndDate)</p>
-    <p>@Html.DisplayNameFor(model => model.Budget) : @Html.DisplayFor(model => model.Budget)</p>
-    <p>@Html.DisplayNameFor(model => model.Members) : @Html.DisplayFor(model => model.Members)</p>
+<p>@Html.DisplayNameFor(model => model.BeginDate) : @Html.DisplayFor(model => model.BeginDate)</p>
+<p>@Html.DisplayNameFor(model => model.EndDate) : @Html.DisplayFor(model => model.EndDate)</p>
+<p>@Html.DisplayNameFor(model => model.Budget) : @Html.DisplayFor(model => model.Budget)</p>
+<p>@Html.DisplayNameFor(model => model.Members) : @Html.DisplayFor(model => model.Members)</p>
 
-    @Html.ActionLink("Add A City", "Create", "Cities", new { id = Model.TripId })
 
-    <h3>Trip Cities:</h3>
-    @foreach (var tripCity in ViewBag.Cities)
-    {
-        <a href="/Cities/Details/@tripCity.CityId" id="@tripCity.CityId">@tripCity.City.Name</a><br />
+<h3>Trip Cities:</h3>
 
-    }
-    <br /><br />
-    <p>@Html.ActionLink("Edit", "Edit", new { id = Model.TripId })</p>
-    <p>@Html.ActionLink("Delete", "Delete", new { id = Model.TripId })</p>
-    <hr />
-    <p>@Html.ActionLink("Back to Trips", "Index")</p>
+
+@Html.ActionLink("Add A City", "Create", "Cities", new { id = Model.TripId })
+<br /><br />
+@foreach (var tripCity in ViewBag.Cities)
+{
+    <a href="/Cities/Details/@tripCity.CityId" id="@tripCity.CityId">@tripCity.City.Name</a><br />
+
+}
+<br /><br />
+@Html.ActionLink("Edit Trip Details", "Edit", new { id = Model.TripId }, new { @class = "waves-effect waves-light btn" })
+@Html.ActionLink("Delete This Trip", "Delete", new { id = Model.TripId }, new { @class = "waves-effect waves-light btn red lighten-1" })
+<hr />
+<p>@Html.ActionLink("Back to Trips", "Index")</p>
+
+<script>
+    $(document).ready(function () {
+        $('.modal').modal();
+        
+    });
+</script>

@@ -4,11 +4,11 @@
 }
 
 @model TripPlanet.Models.Trip
-<h2>Are you sure you want to delete this trip: @Model.Name?</h2>
+<h3>Are you sure you want to delete this trip: @Model.Name?</h3>
 <p>This will delete all details for your trip and you cannot undo this action.</p>
-<hr />
+<br />
 @using (Html.BeginForm())
 {
-    <input type="submit" value="Delete" />
+    <input type="submit" value="Delete" class="waves-effect waves-light btn red lighten-1"/>
 }
-@Html.ActionLink("Back to All Trips", "Index")
+@Html.ActionLink("Back to Trip", "Index", new { id = Model.TripId})

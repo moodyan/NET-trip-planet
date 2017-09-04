@@ -3,29 +3,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model TripPlanet.Models.Activity
-
-@using (Html.BeginForm())
-{
-    @Html.LabelFor(model => model.Name)
-    @Html.EditorFor(model => model.Name)
-
-    @Html.LabelFor(model => model.Address)
-    @Html.EditorFor(model => model.Address)
-    @Html.LabelFor(model => model.Date)
-    @Html.EditorFor(model => model.Date)
-    @Html.LabelFor(model => model.Cost)
-    @Html.EditorFor(model => model.Cost)
-    @Html.LabelFor(model => model.Type)
-    @Html.EditorFor(model => model.Type)
-    @Html.LabelFor(model => model.TimeSpent)
-    @Html.EditorFor(model => model.TimeSpent)
-    <input type="submit" value="Add Activity" />
-}
+<div class="row">
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div class="input-field inline col s6">
+                @Html.TextBoxFor(model => model.Name, new { @required = "true", @placeholder = "Enter place or activity" })
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="input-field inline col s6">
+                @Html.TextBoxFor(model => model.Address, new { @placeholder = "" })
+                @Html.LabelFor(model => model.Address)
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field inline col s3">
+                @Html.TextBoxFor(model => model.Date, new { @required = "true", @class = "datepicker" })
+                @Html.LabelFor(model => model.Date)
+            </div>
+            <div class="input-field inline col s3">
+                @Html.TextBoxFor(model => model.Cost)
+                @Html.LabelFor(model => model.Cost)
+            </div>
+            <div class="input-field inline col s3">
+                @Html.TextBoxFor(model => model.Type)
+                @Html.LabelFor(model => model.Type)
+            </div>
+            <div class="input-field inline col s3">
+                @Html.TextBoxFor(model => model.TimeSpent)
+                @Html.LabelFor(model => model.TimeSpent)
+            </div>
+        </div>
+        <input type="submit" value="Add Activity" class="waves-effect waves-light btn" />
+    }
+</div>
 
 @Html.ActionLink("Back to city", "Details", "Cities", new { id = ViewBag.City.CityId })
 
 <script type="text/javascript">
-
     google.maps.event.addDomListener(window, 'load', function () {
         var cityLatitude = '@ViewBag.Latitude';
         var cityLongitude = '@ViewBag.Longitude';
@@ -44,6 +59,16 @@
             if (places.length == 0) {
                 return;
             }
+        });
+    });
+    $(document).ready(function () {
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            today: 'Today',
+            clear: 'Clear',
+            close: 'Ok',
+            closeOnSelect: true // Close upon selecting a date,
         });
     });
 </script>

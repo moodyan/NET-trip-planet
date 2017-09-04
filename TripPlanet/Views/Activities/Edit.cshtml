@@ -5,27 +5,38 @@
 @model TripPlanet.Models.Activity
 
 <h2>Edit details for: @Html.DisplayFor(model => model.Name)</h2>
-<hr />
+<br />
+<div class="row">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.ActivityId)
+        @Html.HiddenFor(model => model.Name)
+        @Html.HiddenFor(model => model.Latitude)
+        @Html.HiddenFor(model => model.Longitude)
+        @Html.HiddenFor(model => model.Address)
+        @Html.HiddenFor(model => model.CityId)
 
-@using (Html.BeginForm())
-{
-    @Html.HiddenFor(model => model.ActivityId)
-    @Html.HiddenFor(model => model.Name)
-    @Html.HiddenFor(model => model.Latitude)
-    @Html.HiddenFor(model => model.Longitude)
-    @Html.HiddenFor(model => model.Address)
-    @Html.HiddenFor(model => model.CityId)
-
-
-    @Html.LabelFor(model => model.Date)
-    @Html.TextBoxFor(model => model.Date)
-    @Html.LabelFor(model => model.Cost)
-    @Html.EditorFor(model => model.Cost)
-    @Html.LabelFor(model => model.Type)
-    @Html.EditorFor(model => model.Type)
-    @Html.LabelFor(model => model.TimeSpent)
-    @Html.EditorFor(model => model.TimeSpent)
-
-    <input type="submit" value="Save" />
-}
-<p>@Html.ActionLink("Back to activity", "Details", new { id = Model.ActivityId })</p>
+        <div class="row">
+            <div class="input-field inline col s6">
+                @Html.LabelFor(model => model.Date)
+                @Html.TextBoxFor(model => model.Date)
+            </div>
+            <div class="input-field inline col s6">
+                @Html.LabelFor(model => model.Cost)
+                @Html.EditorFor(model => model.Cost)
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field inline col s6">
+                @Html.LabelFor(model => model.Type)
+                @Html.EditorFor(model => model.Type)
+            </div>
+            <div class="input-field inline col s6">
+                @Html.LabelFor(model => model.TimeSpent)
+                @Html.EditorFor(model => model.TimeSpent)
+            </div>
+        </div>
+        <input type="submit" value="Save" class="waves-effect waves-light btn"/>
+    }
+</div>
+@Html.ActionLink("Back to activity", "Details", new { id = Model.ActivityId })

@@ -4,26 +4,29 @@
 }
 @model TripPlanet.Models.City
 
-<h2>Edit dates for: @Html.DisplayFor(model => model.Name)</h2>
-<hr />
+<h3>Edit dates for @Html.DisplayFor(model => model.Name)</h3>
+<br />
+<div class="row">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.CityId)
+        @Html.HiddenFor(model => model.Name)
+        @Html.HiddenFor(model => model.Latitude)
+        @Html.HiddenFor(model => model.Longitude)
+        @Html.HiddenFor(model => model.TripId)
+        @Html.HiddenFor(model => model.TripCities)
 
-@using (Html.BeginForm())
-{
-    @Html.HiddenFor(model => model.CityId)
-    @Html.HiddenFor(model => model.Name)
-    @Html.HiddenFor(model => model.Latitude)
-    @Html.HiddenFor(model => model.Longitude)
-    @Html.HiddenFor(model => model.TripId)
-    @Html.HiddenFor(model => model.TripCities)
-
-    
-    @Html.LabelFor(model => model.ArrivalDate)
-    @Html.EditorFor(model => model.ArrivalDate)
-    @Html.LabelFor(model => model.DepartureDate)
-    @Html.EditorFor(model => model.DepartureDate)
-   
-
-
-    <input type="submit" value="Save" />
-}
+        <div class="row">
+            <div class="input-field inline col s6">
+                @Html.LabelFor(model => model.ArrivalDate)
+                @Html.TextBoxFor(model => model.ArrivalDate, new { @required = "true", @class = "datepicker" })
+            </div>
+            <div class="input-field inline col s6">
+                @Html.LabelFor(model => model.DepartureDate)
+                @Html.TextBoxFor(model => model.DepartureDate, new { @required = "true", @class = "datepicker" })
+            </div>
+        </div>
+        <input type="submit" value="Save" class="waves-effect waves-light btn"/>
+    }
+</div>
 <p>@Html.ActionLink("Back to city", "Details", new { id = Model.CityId })</p>

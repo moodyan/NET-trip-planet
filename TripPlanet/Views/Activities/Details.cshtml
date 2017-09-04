@@ -15,6 +15,6 @@
 
 <hr />
 
-@Html.ActionLink("Delete Activity From City", "Delete", "Activities", new { id = Model.ActivityId })
+@Html.ActionLink("Delete This Activity", "Delete", "Activities", new { id = Model.ActivityId }, new { @class = "waves-effect waves-light btn red lighten-1" })
 <br />
 @Html.ActionLink("Back to City", "Details", "Cities", new { id = Model.CityId })

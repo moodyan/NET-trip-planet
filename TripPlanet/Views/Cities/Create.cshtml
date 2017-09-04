@@ -1,23 +1,31 @@
 ﻿@{
-    ViewData["Title"] = "Add A City";
+    ViewData["Title"] = "Delete City";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model TripPlanet.Models.City
-@using (Html.BeginForm())
-{
-    @Html.LabelFor(model => model.Name)
-    @Html.EditorFor(model => model.Name)
-    
-    @Html.LabelFor(model => model.ArrivalDate)
-    @Html.EditorFor(model => model.ArrivalDate)
-    @Html.LabelFor(model => model.DepartureDate)
-    @Html.EditorFor(model => model.DepartureDate)
-    <input type="submit" value="Add City" />
-}
+<div class="row">
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div class="input-field col s4">
+                @Html.TextBoxFor(model => model.Name, new { @placeholder = "Enter a location", @required = "true"})
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="input-field col s4">
+                @Html.TextBoxFor(model => model.ArrivalDate, new { @required = "true", @class = "datepicker" })
+                @Html.LabelFor(model => model.ArrivalDate)
+            </div>
+            <div class="input-field col s4">
+                @Html.TextBoxFor(model => model.DepartureDate, new { @required = "true", @class = "datepicker" })
+                @Html.LabelFor(model => model.DepartureDate)
+            </div>
+            <input type="submit" value="Add City" class="waves-effect waves-light btn"/>
+        </div>
+    }
+</div>
 @Html.ActionLink("Back to trip", "Details", "Trips", new { id = ViewBag.Trip.TripId })
 
 <script type="text/javascript">
-
     google.maps.event.addDomListener(window, 'load', function () {
         var options = {
             types: ['(cities)']
@@ -26,5 +34,16 @@
         var input = document.getElementById('Name');
         var places = new google.maps.places.Autocomplete(input, options);
     });
+    $(document).ready(function () {
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            today: 'Today',
+            clear: 'Clear',
+            close: 'Ok',
+            closeOnSelect: true // Close upon selecting a date,
+        });
+    });
+
 </script>
-  
+

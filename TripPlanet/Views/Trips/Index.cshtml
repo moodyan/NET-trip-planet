@@ -8,29 +8,31 @@
 @if (User.Identity.IsAuthenticated)
 {
     <p>@Html.ActionLink("Create A New Trip", "Create")</p>
-        @if (ViewBag.UserTrips.Count != 0)
-        {
-                @foreach (var trip in ViewBag.UserTrips)
-                {
-                    <div class="card sticky-action">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="~/img/london.jpg">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4">@trip.Name<i class="material-icons right">more_vert</i></span>
-                            <p><a href="/Trips/Details/@trip.TripId">Trip Details</a></p>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">@trip.Name<i class="material-icons right">close</i></span>
-                            <p>Dates: @trip.BeginDate.Date to @trip.EndDate.Date</p>
-                            <p>Budget: @trip.Budget</p>
-                        </div>
+    @if (ViewBag.UserTrips.Count != 0)
+    {
+        <div id="card-container">
+            @foreach (var trip in ViewBag.UserTrips)
+            {
+                <div class="card sticky-action">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="~/img/london.jpg">
                     </div>
-                }
-        } else
-        {
-            <p>You have not created any trips.</p>
-        }
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">@trip.Name<i class="material-icons right">more_vert</i></span>
+                        <p><a href="/Trips/Details/@trip.TripId">Trip Details</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">@trip.Name<i class="material-icons right">close</i></span>
+                        <p>Dates: @trip.BeginDate.Date to @trip.EndDate.Date</p>
+                        <p>Budget: @trip.Budget</p>
+                    </div>
+                </div>
+            }
+        </div>
+    } else
+    {
+        <p>You have not created any trips.</p>
+    }
 } else
 {
     <p>You must @Html.ActionLink("Register", "Index", "Account") before creating a trip.</p>

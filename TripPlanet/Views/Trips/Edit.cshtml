@@ -5,28 +5,51 @@
 @model TripPlanet.Models.Trip
 
 <h2>Edit this trip: @Html.DisplayFor(model => model.Name)</h2>
-<hr />
+<br />
+<div class="row">
 
-@using (Html.BeginForm())
-{
-    @Html.HiddenFor(model => model.TripId)
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.TripId)
 
-    @Html.LabelFor(model => model.Name)
-    @Html.EditorFor(model => model.Name)
-    @Html.LabelFor(model => model.StartCity)
-    @Html.EditorFor(model => model.StartCity)
-    @Html.LabelFor(model => model.BeginDate)
-    @Html.EditorFor(model => model.BeginDate)
-    @Html.LabelFor(model => model.EndDate)
-    @Html.EditorFor(model => model.EndDate)
-    @Html.LabelFor(model => model.Budget)
-    @Html.EditorFor(model => model.Budget)
-    @Html.LabelFor(model => model.Members)
-    @Html.EditorFor(model => model.Members)
-    @Html.LabelFor(model => model.Public)
-    @Html.EditorFor(model => model.Public)
+        <div class="row">
+            <div class="input-field col s6">
+                @Html.TextBoxFor(model => model.Name, new { @required = "true" })
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="input-field col s6">
+                @Html.TextBoxFor(model => model.StartCity, new { @placeholder = "Enter a location", @required = "true" })
+                @Html.LabelFor(model => model.StartCity)
+            </div>
+        </div>
+            <div class="row">
+                <div class="input-field inline col s6">
+                    @Html.LabelFor(model => model.BeginDate)
+                    @Html.TextBoxFor(model => model.BeginDate, new { @required = "true", @class = "datepicker" })
+                </div>
+                <div class="input-field inline col s6">
+                    @Html.LabelFor(model => model.EndDate)
+                    @Html.TextBoxFor(model => model.EndDate, new { @required = "true", @class = "datepicker" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s4">
+                    @Html.TextBoxFor(model => model.Budget)
+                    @Html.LabelFor(model => model.Budget)
+                </div>
+                <div class="input-field col s4">
+                    @Html.TextBoxFor(model => model.Members)
+                    @Html.LabelFor(model => model.Members)
+                </div>
+                @*DOESNT WORK*@
+                <p class="col s4">
+                    <input type="checkbox" id="Public" />
+                    <label for="Public">Public</label>
+                </p>
+            </div>
 
-
-    <input type="submit" value="Save" />
-}
+        <br /><br />
+        <input type="submit" value="Save" class="waves-effect waves-light btn" />
+    }
+</div>
 <p>@Html.ActionLink("Back to trips", "Index")</p>

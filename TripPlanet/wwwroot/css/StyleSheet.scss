@@ -12,6 +12,7 @@
 .render-body {
     margin: 0 auto;
     min-height: 60vh;
+    padding: 50px;
 }
 
 body {
@@ -24,9 +25,6 @@ body {
     color: black;
 }
 
-#map-container {
-    width: 100vw;
-}
 
 
 footer {
@@ -37,7 +35,14 @@ footer {
     left: 0;
 }
 
-
+#card-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: center;
+    height: 100%;
+    width: 100%;
+}
 
 .card {
     margin: 15px;
@@ -47,6 +52,7 @@ footer {
 .city {
     max-width: 70vw;
     width: 70vw;
+    margin-left: 12vw;
 }
 
 .register, .login {
@@ -54,10 +60,6 @@ footer {
     height: 300px;
     font-size: 40px;
     margin: 50px;
-}
-
-#home-gif {
-    width: 50vw;
 }
 
 a {
