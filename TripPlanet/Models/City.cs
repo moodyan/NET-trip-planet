@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
 namespace TripPlanet.Models
 {
@@ -30,9 +32,17 @@ namespace TripPlanet.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DepartureDate { get; set; }
         public int TripId { get; set; }
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<TripCity> TripCities { get; set; }
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<Lodging> Lodgings { get; set; }
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<Activity> Activities { get; set; }
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<Transportation> Transportations { get; set; }
 
         public int GetDuration()

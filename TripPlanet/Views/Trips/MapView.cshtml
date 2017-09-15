@@ -13,6 +13,9 @@
 
 <script type="text/javascript">
     window.onload = function () {
+        var jsonLocations = '@Html.Raw(ViewBag.LatLong)';
+        var locations = JSON.parse(jsonLocations);
+
         var mapOptions = {
             center: new google.maps.LatLng('@ViewBag.StartLatLong[0]', '@ViewBag.StartLatLong[1]'),
             zoom: 7,
@@ -20,5 +23,13 @@
         };
         var map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
+
+        for (i = 0; i < locations.length; i++) {
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i].Latitude, locations[i].Longitude),
+                map: map
+            });
+            //bounds.extend(marker.position);
+        }
     }
 </script>

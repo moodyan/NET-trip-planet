@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Geocoding;
 using Geocoding.Google;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace TripPlanet.Controllers
 {
@@ -50,15 +51,18 @@ namespace TripPlanet.Controllers
                 .Include(trips => trips.TripCities)
                 .FirstOrDefault(trip => trip.TripId == Id);
             var cities = _db.Cities.Where(c => c.TripId == Id).ToList();
+           
+            var jsonLatLong = JsonConvert.SerializeObject(cities);
             ViewBag.TripCities = cities;
+            ViewBag.LatLong = jsonLatLong;
 
             IGeocoder geocoder = new GoogleGeocoder() { ApiKey = EnvironmentVariables.GeocodingAPI };
             IEnumerable<Address> addresses = await geocoder.GeocodeAsync(thisTrip.StartCity);
             var lat = addresses.First().Coordinates.Latitude;
             var lng = addresses.First().Coordinates.Longitude;
             double[] startLatLong = new double[] { lat, lng};
-
             ViewBag.StartLatLong = startLatLong;
+
             return View(thisTrip);
         }
 
