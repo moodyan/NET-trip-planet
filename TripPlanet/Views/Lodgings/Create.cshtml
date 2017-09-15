@@ -32,21 +32,16 @@
                 @Html.LabelFor(model => model.Cost)
                 @Html.TextBoxFor(model => model.Cost)
             </div>
-            @*DOESNT WORK*@
-            <div class="input-field col s4">
-                <select id="Booked">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option id="Booked" value="true">Yes</option>
-                    <option id="Booked" value="false">No</option>
-                </select>
-                <label>Lodging Booked?</label>
+            <div class="input-field inline col s4">
+                @Html.LabelFor(model => model.Booked)
+                @Html.TextBoxFor(model => model.Booked, new { type="checkbox"})
             </div>
             <div class="input-field inline col s4">
                 @Html.LabelFor(model => model.Confirmation)
                 @Html.TextBoxFor(model => model.Confirmation)
             </div>
         </div>
-        <input type="submit" value="Add Lodging" class="waves-effect waves-light btn" />
+        <input type="submit" value="Add Lodging" />
     }
 </div>
 @Html.ActionLink("Back to City", "Details", "Cities", new { id = ViewBag.City.CityId })
@@ -74,16 +69,5 @@
                 return;
             }
         });
-    });
-    $(document).ready(function () {
-        $('.datepicker').pickadate({
-            selectMonths: true, // Creates a dropdown to control month
-            selectYears: 15, // Creates a dropdown of 15 years to control year,
-            today: 'Today',
-            clear: 'Clear',
-            close: 'Ok',
-            closeOnSelect: true // Close upon selecting a date,
-        });
-        $('select').material_select();
     });
 </script>

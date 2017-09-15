@@ -4,7 +4,7 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
+    <ActiveDebugProfile>TripPlanet</ActiveDebugProfile>
     <NameOfLastUsedPublishProfile>TripPlanet20170830064811 - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
