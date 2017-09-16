@@ -18,18 +18,44 @@
 
         var mapOptions = {
             center: new google.maps.LatLng('@ViewBag.StartLatLong[0]', '@ViewBag.StartLatLong[1]'),
-            zoom: 7,
+            zoom: 5,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
+
+        tripCoordinates = new Array();
+        var startLat = @ViewBag.StartLatLong[0];
+        var startLong = @ViewBag.StartLatLong[1];
+        tripCoordinates.push({ lat: startLat, lng: startLong });
+
+        var bounds = new google.maps.LatLngBounds();
+        var startMarker = new google.maps.Marker({
+            position: new google.maps.LatLng('@ViewBag.StartLatLong[0]', '@ViewBag.StartLatLong[1]'),
+            map: map
+        });
+        bounds.extend(startMarker.position);
+
 
         for (i = 0; i < locations.length; i++) {
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(locations[i].Latitude, locations[i].Longitude),
                 map: map
             });
-            //bounds.extend(marker.position);
+            tripCoordinates.push({ lat: locations[i].Latitude, lng: locations[i].Longitude });
+            bounds.extend(marker.position);
+
         }
+        var tripPath = new google.maps.Polyline({
+            path: tripCoordinates,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+
+        tripPath.setMap(map);
+
+        map.fitBounds(bounds);
     }
 </script>
