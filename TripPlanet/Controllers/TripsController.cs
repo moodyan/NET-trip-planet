@@ -50,7 +50,10 @@ namespace TripPlanet.Controllers
             var thisTrip = _db.Trips
                 .Include(trips => trips.TripCities)
                 .FirstOrDefault(trip => trip.TripId == Id);
-            var cities = _db.Cities.Where(c => c.TripId == Id).ToList();
+            var cities = _db.Cities
+                .Where(c => c.TripId == Id)
+                .OrderBy(tc => tc.ArrivalDate)
+                .ToList();
            
             var jsonLatLong = JsonConvert.SerializeObject(cities);
             ViewBag.TripCities = cities;

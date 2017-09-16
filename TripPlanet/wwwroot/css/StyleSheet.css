@@ -248,3 +248,9 @@ a {
     .tabs__tab--contact {
       color: rebeccapurple; }
 
+.mapIconLabel {
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFFFFF;
+  font-family: 'DINNextRoundedLTProMediumRegular'; }
+
