@@ -129,30 +129,24 @@ nav {
   top: -40px; }
 
 .home-button {
-  /*transform: translateX(-50%) rotate(10deg);*/
   display: block;
-  /*float: left;*/
-  left: 25vw;
+  padding-left: 43vw;
   padding-top: 52vh;
-  /*position: relative;*/
-  font-size: 75px; }
+  font-size: 75px;
+  max-width: 200px; }
   .home-button a {
-    color: #f1c83c; }
+    color: #f1c83c;
+    max-width: 300px; }
   .home-button span {
-    /*transform: skew(10deg);*/
     display: block;
-    /*float: left;*/
-    text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px, #533d4a 4px 4px, #533d4a 5px 5px, #533d4a 6px 6px;
-    min-width: 10px;
-    min-height: 10px;
-    /*position: relative;*/ }
-
-.home-button a:hover {
-  font-size: 80px; }
-  .home-button a:hover a {
-    cursor: pointer; }
-  .home-button a:hover span {
-    text-shadow: #533d4a 3px 3px, #533d4a 4px 4px, #533d4a 5px 5px, #533d4a 6px 6px, #533d4a 7px 7px, #533d4a 8px 8px; }
+    text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px, #533d4a 4px 4px, #533d4a 5px 5px, #533d4a 6px 6px; }
+  .home-button .title-line {
+    max-width: 300px; }
+  .home-button a:hover {
+    font-size: 80px; }
+    .home-button a:hover span {
+      cursor: pointer;
+      text-shadow: #533d4a 3px 3px, #533d4a 4px 4px, #533d4a 5px 5px, #533d4a 6px 6px, #533d4a 7px 7px, #533d4a 8px 8px; }
 
 .title {
   transform: translateX(-50%) rotate(-10deg);

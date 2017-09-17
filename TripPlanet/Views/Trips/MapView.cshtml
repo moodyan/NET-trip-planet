@@ -5,11 +5,7 @@
 @model TripPlanet.Models.Trip
 
 <h2>Your Trip Map</h2>
-@foreach(var marker in ViewBag.TripCities)
-{
-    <p>@marker.Name</p>
-}
-<div id="map_canvas" style="width: 100%; height: 80vh"></div>
+<div id="map_canvas" style="width: 80vw; height: 60vh;"></div>
 
 <script type="text/javascript">
     window.onload = function () {
@@ -38,16 +34,44 @@
         });
         bounds.extend(startMarker.position);
 
+        var infowindow;
 
         for (i = 0; i < locations.length; i++) {
+            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            var ad = new Date((locations[i].ArrivalDate));
+            var arrivalDate = ad.toLocaleDateString("en-US", options);
+            var dd = new Date((locations[i].DepartureDate));
+            var departureDate = dd.toLocaleDateString("en-US", options);
+
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(locations[i].Latitude, locations[i].Longitude),
                 label: labels[labelIndex++ % labels.length],
-                map: map
+                map: map,
+                title: '<h5>' + locations[i].Name + '</h5>' + '<p><b>Dates</b>: ' + arrivalDate + ' - ' + departureDate + '</p>'
             });
+            infowindow = new google.maps.InfoWindow({
+                maxWidth: 200
+            });
+            
             tripCoordinates.push({ lat: locations[i].Latitude, lng: locations[i].Longitude });
             bounds.extend(marker.position);
 
+            google.maps.event.addListener(marker, 'click', function () {
+                infowindow.setContent(this.title);
+                infowindow.open(map, this);
+            });
+
+            google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
+                return function () {
+                    infowindow.setContent(String(locations[i].Name));
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+
+            google.maps.event.addListener(marker, 'mouseout', function () {
+                infowindow.close();
+            });
+            
         }
         var tripPath = new google.maps.Polyline({
             path: tripCoordinates,
@@ -56,9 +80,17 @@
             strokeOpacity: 1.0,
             strokeWeight: 2
         });
-
         tripPath.setMap(map);
-
         map.fitBounds(bounds);
+
+        var lastValidCenter = map.getCenter();
+
+        google.maps.event.addListener(map, 'center_changed', function () {
+            if (bounds.contains(map.getCenter())) {
+                lastValidCenter = map.getCenter();
+                return;
+            }
+            map.panTo(lastValidCenter);
+        });
     }
 </script>
