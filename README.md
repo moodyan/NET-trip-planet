@@ -21,12 +21,12 @@ _A web application that allows users to manage their multi-city trips._
 | The program allows users to add details to each city.  | Add details  | Transportation, Lodging, Activities  |
 | The program allows users to edit/delete details from each city .  | Edit  | Form for editing  |
 | The program allows admins to add roles to users.  | --  | Admin Portal  |
-| STRETCH: The program allows users to view a map view of their trip.  | Map Overview  | Map Overview  |
+| The program allows users to view a map view of their trip.  | Map Overview  | Map Overview  |
 
 
 **STRETCH GOALS**
 1. Budgeting feature where users can keep track of their total budget and how much they plan to spend on transportation, food/drink, and activities. This feature would also take the information from user inputted flights and activities and be shown here as part of their budget.
-2. Map view (Google maps API) of their trip (overview AND each city) with markers for where they plan to go.
+2. Map view (Google maps API) for each city with markers for activities/lodging.
 3. Flight selector that inputs flight info to their trip (Flight API)
 4. Admin features?
 5. Group Trip features (add friend’s email to trip) - this would also add to the budgeting feature to split costs.
@@ -35,12 +35,10 @@ _A web application that allows users to manage their multi-city trips._
 8. Users can choose single-city trip planning
 
 **TODO:**
-1. Add markers to map based on trip cities database data.
 2. Fix activity/lodging dates to dropdown list dates in city
 3. For activity, create dropdown list for types
 4. For transportation, different forms based on mode.
 5. Shorten names of activities/lodging etc
-6. Add starting city based on trip.startCity (add lat/long)
 7. Add seed data
 8. Add time for transportation
 9. Have project actually use my many to many between trips and cities.

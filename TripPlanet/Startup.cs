@@ -57,7 +57,7 @@ namespace TripPlanet
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Trips}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
 
             app.Run(async (context) =>

@@ -23,7 +23,7 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <ul id="dropdown1" class="dropdown-content">
+    @*<ul id="dropdown1" class="dropdown-content">
         @if (User.Identity.IsAuthenticated)
         {
             <li>@Html.ActionLink("YOUR TRIPS", "Index", "Trips")</li>
@@ -53,13 +53,44 @@
                 <li>@Html.ActionLink("PUBLIC TRIPS", "PublicTrips", "Trips")</li>
                 <!-- Dropdown Trigger -->
                 @*<li><a class="dropdown-button" href="#!" data-activates="dropdown1">ACCOUNT<i class="material-icons right">arrow_drop_down</i></a></li>*@
-            </ul>
+            @*</ul>
         </div>
-    </nav>
+    </nav>*@
+    <div id="body">
+        <div id="container">
+            <div id="button" class="shadow">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div id="nav">
+                <ul class="left">
+                    <li></li>
+                </ul>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div id="nav-item-container">
+                        <a href="/Home"><div class="nav-item left">Trip Planet</div></a>
+                        <a href="/Account/LogOff"><div class="nav-item">log out</div></a>
+                        <a href="/Home/About"><div class="nav-item">about</div></a>
+                        <a href="/Account"><div class="nav-item">account</div></a>
+                        <a href="/Trips"><div class="nav-item">trips</div></a>
+                    </div>
+                } else
+                {
+                    <div id="nav-item-container">
+                        <a href="/Home"><div class="nav-item left">Trip Planet</div></a>
+                        <a href="/Home/About"><div class="nav-item">about</div></a>
+                        <a href="/Account"><div class="nav-item">login</div></a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
     <div class="render-body">
         @RenderBody()
     </div>
-    <footer class="page-footer">
+    @*<footer class="page-footer">
         <div class="container">
             <div class="container">
                 <div class="row">
@@ -68,9 +99,36 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer>*@
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="~/js/materialize.js"></script>
 </body>
 </html>
+<script>
+    $(document).ready(function() {
+  var active = false;
+
+  function toggleNav() {
+    if (active) {
+      $('#nav').animate({"width":"0%"}, 300)
+      setTimeout(function() {
+        $('.nav-item').hide();
+        $('#nav').removeClass('shadow');
+      }, 250);
+    } else {
+      $('#nav').addClass('shadow').animate({"width":"94vw"}, 300);
+      $('.nav-item').show();
+    }
+  };
+
+  $('#button').on('click', function() {
+
+    toggleNav();
+    active = !active;
+  });
+
+
+});
+
+</script>
