@@ -4,37 +4,104 @@
 }
 @model TripPlanet.Models.Trip
 
-<h2>Trip Details for @Model.Name</h2>
+<div class="thisbackground">
+    <div class="section1">
+        <div class="trip-title">
+            <h1><span>Trip Details for @Model.Name</span></h1>
+        </div>
+    </div>
+    <br /><br />
+    @Html.ActionLink("Trip Map", "MapView", new { id = @Model.TripId })
 
-@Html.ActionLink("Trip Map", "MapView", new { id = @Model.TripId })
-    
-<br /><br />
+    <br /><br />
 
-<p>@Html.DisplayNameFor(model => model.BeginDate) : @Html.DisplayFor(model => model.BeginDate)</p>
-<p>@Html.DisplayNameFor(model => model.EndDate) : @Html.DisplayFor(model => model.EndDate)</p>
-<p>@Html.DisplayNameFor(model => model.Budget) : @Html.DisplayFor(model => model.Budget)</p>
-<p>@Html.DisplayNameFor(model => model.Members) : @Html.DisplayFor(model => model.Members)</p>
+    <p>@Html.DisplayNameFor(model => model.BeginDate) : @Html.DisplayFor(model => model.BeginDate)</p>
+    <p>@Html.DisplayNameFor(model => model.EndDate) : @Html.DisplayFor(model => model.EndDate)</p>
+    <p>@Html.DisplayNameFor(model => model.Budget) : @Html.DisplayFor(model => model.Budget)</p>
+    <p>@Html.DisplayNameFor(model => model.Members) : @Html.DisplayFor(model => model.Members)</p>
+
+    <div class="twothirds vertical-tabs">
+        <div class="checklist-wrap">
+            <div class="row">
+                <div class="col s3">
+                    <h3>CITIES</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="contextNav onethird col s3">
+                <ul class="checklist-select" role="tablist">
+                    @foreach (var tripCity in ViewBag.Cities)
+                    {
+                        <li id="tab-@tripCity.CityId" role="tab" aria-controls="panel-@tripCity.CityId" aria-selected="false">@tripCity.City.Name</li>
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                var cityId = @tripCity.CityId;
+                                $('#tab-@tripCity.CityId').click(function () {
+                                    $.ajax({
+                                        type: 'GET',
+                                        dataType: 'html',
+                                        data: { id: $(this).data('id') },
+                                        url: "/Cities/Details/"+@tripCity.CityId,
+                                        success: function (result) {
+                                            $('.@tripCity.CityId').html(result);
+                                        }
+                                    });
+
+                                });
+                            });
+                        </script>
+                    }
+                </ul>
+            </div> <!-- end contextNav -->
+            <!-------- First Panel --------->
+            @foreach (var tripCity in ViewBag.Cities)
+            {
+            <div class="twothirds last box tab-@tripCity.CityId-box col s9" id="panel-@tripCity.CityId" role="tabpanel" aria-labelledby="tab-@tripCity.CityId">
+                <article class="deptBox @tripCity.CityId">
+                    @*<h3><a href="/Cities/Details/@tripCity.CityId" id="@tripCity.CityId">@tripCity.City.Name</a></h3>
+                    <div>
+                        <br>
+
+                        <p>@tripCity.City.Name</p>
+
+                    </div>*@
+                </article>
+            </div> <!-- end tab1 Box  -->
+            }
+        </div>  <!-- end checklist-wrap -->
+    </div>
 
 
-<h3>Trip Cities:</h3>
-
-
-@Html.ActionLink("Add A City", "Create", "Cities", new { id = Model.TripId })
-<br /><br />
-@foreach (var tripCity in ViewBag.Cities)
-{
-    <a href="/Cities/Details/@tripCity.CityId" id="@tripCity.CityId">@tripCity.City.Name</a><br />
-
-}
-<br /><br />
-@Html.ActionLink("Edit Trip Details", "Edit", new { id = Model.TripId }, new { @class = "waves-effect waves-light btn" })
-@Html.ActionLink("Delete This Trip", "Delete", new { id = Model.TripId }, new { @class = "waves-effect waves-light btn red lighten-1" })
-<hr />
-<p>@Html.ActionLink("Back to Trips", "Index")</p>
-
+    @Html.ActionLink("Add A City", "Create", "Cities", new { id = Model.TripId })
+    <br /><br />
+   
+    <br /><br />
+    @Html.ActionLink("Edit Trip Details", "Edit", new { id = Model.TripId }, new { @class = "waves-effect waves-light btn" })
+    @Html.ActionLink("Delete This Trip", "Delete", new { id = Model.TripId }, new { @class = "waves-effect waves-light btn red lighten-1" })
+    <br />
+    <p>@Html.ActionLink("Back to Trips", "Index")</p>
+</div>
 <script>
     $(document).ready(function () {
-        $('.modal').modal();
-        
+        vert_tabs();
     });
+
+    $(window).resize(function () {
+        if ($('.vertical-tabs').innerWidth() > 608) {
+            if ($('div.selected').length) {
+            } else {
+                $('div.box:first').addClass('selected');
+            }
+        }
+    });
+
+    function vert_tabs() {
+        $('ul.checklist-select li').click(function () {
+            var selectID = $(this).attr('id');
+            $('ul.checklist-select li').removeClass('active');
+            $(this).addClass('active');
+            $('div.box').removeClass('selected');
+            $('.' + selectID + '-box').addClass('selected');
+        });
+    }
 </script>
