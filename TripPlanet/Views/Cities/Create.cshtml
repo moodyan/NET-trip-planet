@@ -3,28 +3,29 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model TripPlanet.Models.City
-<div class="row">
-    @using (Html.BeginForm())
-    {
-        <div class="row">
-            <div class="input-field col s4">
-                @Html.TextBoxFor(model => model.Name, new { @placeholder = "Enter a location", @required = "true"})
-                @Html.LabelFor(model => model.Name)
+<div class="thisbackground">
+    <div class="row">
+        @using (Html.BeginForm())
+        {
+            <div class="row">
+                <div class="input-field col s4">
+                    @Html.TextBoxFor(model => model.Name, new { @placeholder = "Enter a location", @required = "true" })
+                    @Html.LabelFor(model => model.Name)
+                </div>
+                <div class="input-field col s4">
+                    @Html.TextBoxFor(model => model.ArrivalDate, new { @required = "true", @class = "datepicker" })
+                    @Html.LabelFor(model => model.ArrivalDate)
+                </div>
+                <div class="input-field col s4">
+                    @Html.TextBoxFor(model => model.DepartureDate, new { @required = "true", @class = "datepicker" })
+                    @Html.LabelFor(model => model.DepartureDate)
+                </div>
+                <input type="submit" value="Add City" class="waves-effect waves-light btn" />
             </div>
-            <div class="input-field col s4">
-                @Html.TextBoxFor(model => model.ArrivalDate, new { @required = "true", @class = "datepicker" })
-                @Html.LabelFor(model => model.ArrivalDate)
-            </div>
-            <div class="input-field col s4">
-                @Html.TextBoxFor(model => model.DepartureDate, new { @required = "true", @class = "datepicker" })
-                @Html.LabelFor(model => model.DepartureDate)
-            </div>
-            <input type="submit" value="Add City" class="waves-effect waves-light btn"/>
-        </div>
-    }
+        }
+    </div>
+    @Html.ActionLink("Back to trip", "Details", "Trips", new { id = ViewBag.Trip.TripId })
 </div>
-@Html.ActionLink("Back to trip", "Details", "Trips", new { id = ViewBag.Trip.TripId })
-
 <script type="text/javascript">
     google.maps.event.addDomListener(window, 'load', function () {
         var options = {

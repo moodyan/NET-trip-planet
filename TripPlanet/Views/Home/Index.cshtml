@@ -21,9 +21,18 @@
         <span class="title-line" id="small">A Trip Planner</span>
     </h1>
     <br />
-    <h1 class="home-button">
-        <a href="/Account"><span class="title-line">ENTER</span></a>
-    </h1>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h1 class="home-button">
+            <a href="/Trips"><span class="title-line">ENTER</span></a>
+        </h1>
+    }
+    else
+    {
+        <h1 class="home-button">
+            <a href="/Account"><span class="title-line">ENTER</span></a>
+        </h1>
+    }
 </div>
 
 

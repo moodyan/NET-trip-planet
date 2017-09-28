@@ -3,40 +3,41 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model TripPlanet.Models.Activity
+<div class="thisbackground">
+    <h2>Edit details for: @Html.DisplayFor(model => model.Name)</h2>
+    <br />
+    <div class="row">
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(model => model.ActivityId)
+            @Html.HiddenFor(model => model.Name)
+            @Html.HiddenFor(model => model.Latitude)
+            @Html.HiddenFor(model => model.Longitude)
+            @Html.HiddenFor(model => model.Address)
+            @Html.HiddenFor(model => model.CityId)
 
-<h2>Edit details for: @Html.DisplayFor(model => model.Name)</h2>
-<br />
-<div class="row">
-    @using (Html.BeginForm())
-    {
-        @Html.HiddenFor(model => model.ActivityId)
-        @Html.HiddenFor(model => model.Name)
-        @Html.HiddenFor(model => model.Latitude)
-        @Html.HiddenFor(model => model.Longitude)
-        @Html.HiddenFor(model => model.Address)
-        @Html.HiddenFor(model => model.CityId)
-
-        <div class="row">
-            <div class="input-field inline col s6">
-                @Html.LabelFor(model => model.Date)
-                @Html.TextBoxFor(model => model.Date)
+            <div class="row">
+                <div class="input-field inline col s6">
+                    @Html.LabelFor(model => model.Date)
+                    @Html.TextBoxFor(model => model.Date)
+                </div>
+                <div class="input-field inline col s6">
+                    @Html.LabelFor(model => model.Cost)
+                    @Html.EditorFor(model => model.Cost)
+                </div>
             </div>
-            <div class="input-field inline col s6">
-                @Html.LabelFor(model => model.Cost)
-                @Html.EditorFor(model => model.Cost)
+            <div class="row">
+                <div class="input-field inline col s6">
+                    @Html.LabelFor(model => model.Type)
+                    @Html.EditorFor(model => model.Type)
+                </div>
+                <div class="input-field inline col s6">
+                    @Html.LabelFor(model => model.TimeSpent)
+                    @Html.EditorFor(model => model.TimeSpent)
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field inline col s6">
-                @Html.LabelFor(model => model.Type)
-                @Html.EditorFor(model => model.Type)
-            </div>
-            <div class="input-field inline col s6">
-                @Html.LabelFor(model => model.TimeSpent)
-                @Html.EditorFor(model => model.TimeSpent)
-            </div>
-        </div>
-        <input type="submit" value="Save" class="waves-effect waves-light btn"/>
-    }
+            <input type="submit" value="Save" class="waves-effect waves-light btn" />
+        }
+    </div>
+    @Html.ActionLink("Back to activity", "Details", new { id = Model.ActivityId })
 </div>
-@Html.ActionLink("Back to activity", "Details", new { id = Model.ActivityId })

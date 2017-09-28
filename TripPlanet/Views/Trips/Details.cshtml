@@ -5,15 +5,13 @@
 @model TripPlanet.Models.Trip
 
 <div class="thisbackground">
-    <div class="section1">
-        <div class="trip-title">
-            <h1><span>@Model.Name</span></h1>
-        </div>
+    <div class="trip-title">
+        <h1><span>@Model.Name</span></h1>
     </div>
     <br />
     <p>@Html.DisplayFor(model => model.BeginDate) - @Html.DisplayFor(model => model.EndDate)</p>
     <p>Estimated Budget: @Html.DisplayFor(model => model.Budget)</p>
-    <p>Budget Used: @Html.DisplayFor(model => model.Budget)</p>
+    <p>Budget Used: @ViewBag.BudgetUsed</p>
     @*<p>@Html.DisplayNameFor(model => model.Members) : @Html.DisplayFor(model => model.Members)</p>*@
     <br />
     @Html.ActionLink("Trip Map", "MapView", new { id = @Model.TripId })
@@ -68,6 +66,7 @@
             }
         </div>  <!-- end checklist-wrap -->
     </div>
+</div>
 
     <br /><br />
     @Html.ActionLink("Edit Trip Details", "Edit", new { id = Model.TripId }, new { @class = "waves-effect waves-light btn" })
@@ -75,6 +74,7 @@
     <br />
     <p>@Html.ActionLink("Back to Trips", "Index")</p>
 </div>
+
 <script>
     $(document).ready(function () {
         vert_tabs();

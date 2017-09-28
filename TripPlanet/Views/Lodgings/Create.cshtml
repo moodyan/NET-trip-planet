@@ -3,50 +3,51 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model TripPlanet.Models.Lodging
-<div class="row">
+<div class="thisbackground">
+    <div class="row">
 
-    @using (Html.BeginForm())
-    {
-        <div class="row">
-            <div class="input-field inline col s6">
-                @Html.LabelFor(model => model.Name)
-                @Html.TextBoxFor(model => model.Name, new { @placeholder = "Name of lodging", @required = "true" })
+        @using (Html.BeginForm())
+        {
+            <div class="row">
+                <div class="input-field inline col s6">
+                    @Html.LabelFor(model => model.Name)
+                    @Html.TextBoxFor(model => model.Name, new { @placeholder = "Name of lodging", @required = "true" })
+                </div>
+                <div class="input-field inline col s6">
+                    @Html.LabelFor(model => model.Address)
+                    @Html.TextBoxFor(model => model.Address, new { @placeholder = "" })
+                </div>
             </div>
-            <div class="input-field inline col s6">
-                @Html.LabelFor(model => model.Address)
-                @Html.TextBoxFor(model => model.Address, new { @placeholder = "" })
+            <div class="row">
+                <div class="input-field inline col s6">
+                    @Html.LabelFor(model => model.ArrivalDate)
+                    @Html.TextBoxFor(model => model.ArrivalDate, new { @required = "true", @class = "datepicker" })
+                </div>
+                <div class="input-field inline col s6">
+                    @Html.LabelFor(model => model.DepartureDate)
+                    @Html.TextBoxFor(model => model.DepartureDate, new { @required = "true", @class = "datepicker" })
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field inline col s6">
-                @Html.LabelFor(model => model.ArrivalDate)
-                @Html.TextBoxFor(model => model.ArrivalDate, new { @required = "true", @class = "datepicker" })
+            <div class="row">
+                <div class="input-field inline col s4">
+                    @Html.LabelFor(model => model.Cost)
+                    @Html.TextBoxFor(model => model.Cost)
+                </div>
+                @*<div class="input-field inline col s4">
+                        @Html.LabelFor(model => model.Booked)
+                        @Html.TextBoxFor(model => model.Booked, new { type="checkbox"})
+                    </div>*@
+                <div class="input-field inline col s4">
+                    @Html.LabelFor(model => model.Confirmation)
+                    @Html.TextBoxFor(model => model.Confirmation)
+                </div>
             </div>
-            <div class="input-field inline col s6">
-                @Html.LabelFor(model => model.DepartureDate)
-                @Html.TextBoxFor(model => model.DepartureDate, new { @required = "true", @class = "datepicker" })
-            </div>
-            </div>
-        <div class="row">
-            <div class="input-field inline col s4">
-                @Html.LabelFor(model => model.Cost)
-                @Html.TextBoxFor(model => model.Cost)
-            </div>
-            <div class="input-field inline col s4">
-                @Html.LabelFor(model => model.Booked)
-                @Html.TextBoxFor(model => model.Booked, new { type="checkbox"})
-            </div>
-            <div class="input-field inline col s4">
-                @Html.LabelFor(model => model.Confirmation)
-                @Html.TextBoxFor(model => model.Confirmation)
-            </div>
-        </div>
-        <input type="submit" value="Add Lodging" />
-    }
+            <input type="submit" value="Add Lodging" />
+        }
+    </div>
+    @Html.ActionLink("Back to City", "Details", "Cities", new { id = ViewBag.City.CityId })
 </div>
-@Html.ActionLink("Back to City", "Details", "Cities", new { id = ViewBag.City.CityId })
-
-<script type="text/javascript">
+    <script type="text/javascript">
 
     google.maps.event.addDomListener(window, 'load', function () {
         var cityLatitude = '@ViewBag.Latitude';
@@ -70,4 +71,4 @@
             }
         });
     });
-</script>
+    </script>

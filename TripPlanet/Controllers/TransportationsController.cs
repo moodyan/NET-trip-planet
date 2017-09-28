@@ -26,7 +26,8 @@ namespace TripPlanet.Controllers
             ViewBag.DepartureCity = thisCity.Name;
             ViewBag.City = thisCity;
             var thisTrip = _db.Trips.Where(trip => trip.TripId == thisCity.TripId);
-            var tripCities = _db.Cities.Where(cities => cities.TripId == thisCity.TripId).Where(city => city.CityId != Id).ToList();
+            var tripCities = _db.Cities.Where(cities => cities.TripId == thisCity.TripId).Where(city => city.CityId != Id);
+            ViewBag.Citiess = tripCities;
             ViewBag.Cities = new SelectList(tripCities, "CityId", "Name");
             return View();
         }

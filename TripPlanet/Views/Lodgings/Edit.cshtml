@@ -3,52 +3,52 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model TripPlanet.Models.Lodging
+<div class="thisbackground">
+    <h3>Edit lodging for: @Html.DisplayFor(model => model.Name)</h3>
+    <br />
+    <div class="row">
 
-<h3>Edit lodging for: @Html.DisplayFor(model => model.Name)</h3>
-<br />
-<div class="row">
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(model => model.LodgingId)
+            @Html.HiddenFor(model => model.Name)
+            @*@Html.HiddenFor(model => model.Latitude)
+                @Html.HiddenFor(model => model.Longitude)*@
+            @Html.HiddenFor(model => model.Address)
+            @Html.HiddenFor(model => model.CityId)
 
-    @using (Html.BeginForm())
-    {
-        @Html.HiddenFor(model => model.LodgingId)
-        @Html.HiddenFor(model => model.Name)
-        @*@Html.HiddenFor(model => model.Latitude)
-            @Html.HiddenFor(model => model.Longitude)*@
-        @Html.HiddenFor(model => model.Address)
-        @Html.HiddenFor(model => model.CityId)
-
-        <div class="row">
-            <div class="input-field inline col s6">
-                @Html.LabelFor(model => model.ArrivalDate)
-                @Html.TextBoxFor(model => model.ArrivalDate, new { @class = "datepicker" })
+            <div class="row">
+                <div class="input-field inline col s6">
+                    @Html.LabelFor(model => model.ArrivalDate)
+                    @Html.TextBoxFor(model => model.ArrivalDate, new { @class = "datepicker" })
+                </div>
+                <div class="input-field inline col s6">
+                    @Html.LabelFor(model => model.DepartureDate)
+                    @Html.TextBoxFor(model => model.DepartureDate, new { @class = "datepicker" })
+                </div>
             </div>
-            <div class="input-field inline col s6">
-                @Html.LabelFor(model => model.DepartureDate)
-                @Html.TextBoxFor(model => model.DepartureDate, new { @class = "datepicker" })
+            <div class="row">
+                <div class="input-field inline col s4">
+                    @Html.LabelFor(model => model.Cost)
+                    @Html.TextBoxFor(model => model.Cost)
+                </div>
+                @*<div class="input-field inline col s4">
+                        <input id="Booked"
+                               name="Booked"
+                               type="checkbox"
+                               value="false" />
+                        @Html.LabelFor(model => model.Booked)
+                    </div>*@
+                <div class="input-field inline col s4">
+                    @Html.LabelFor(model => model.Confirmation)
+                    @Html.TextBoxFor(model => model.Confirmation)
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field inline col s4">
-                @Html.LabelFor(model => model.Cost)
-                @Html.TextBoxFor(model => model.Cost)
-            </div>
-            <div class="input-field inline col s4">
-                <input id="Booked"
-                       name="Booked"
-                       type="checkbox"
-                       value="false" />
-                @Html.LabelFor(model => model.Booked)
-            </div>
-            <div class="input-field inline col s4">
-                @Html.LabelFor(model => model.Confirmation)
-                @Html.TextBoxFor(model => model.Confirmation)
-            </div>
-        </div>
-        <input type="submit" value="Save" class="waves-effect waves-light btn"/>
-    }
+            <input type="submit" value="Save" class="waves-effect waves-light btn" />
+        }
+    </div>
+    @Html.ActionLink("Back to lodging", "Details", new { id = Model.LodgingId })
 </div>
-@Html.ActionLink("Back to lodging", "Details", new { id = Model.LodgingId })
-
 <script>
     $(document).ready(function () {
         $('.datepicker').pickadate({

@@ -4,12 +4,16 @@
 }
 
 @model IEnumerable<TripPlanet.Models.Trip>
-<h2>Trips</h2>
+
+<div class="trip-title">
+    <h1><span>TRIPS</span></h1>
+</div>
 @if (User.Identity.IsAuthenticated)
 {
     <p>@Html.ActionLink("Create A New Trip", "Create")</p>
     @if (ViewBag.UserTrips.Count != 0)
     {
+
         <div id="card-container">
             @foreach (var trip in ViewBag.UserTrips)
             {
@@ -29,11 +33,13 @@
                 </div>
             }
         </div>
-    } else
+    }
+    else
     {
         <p>You have not created any trips.</p>
     }
-} else
+}
+else
 {
     <p>You must @Html.ActionLink("Register", "Index", "Account") before creating a trip.</p>
 }

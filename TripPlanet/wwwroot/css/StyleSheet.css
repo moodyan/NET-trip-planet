@@ -60,7 +60,8 @@ body {
   max-width: 200px; }
   .home-button a {
     color: #f1c83c;
-    max-width: 300px; }
+    max-width: 300px;
+    text-decoration: none; }
   .home-button span {
     display: block;
     text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px, #533d4a 4px 4px, #533d4a 5px 5px, #533d4a 6px 6px; }
@@ -111,15 +112,34 @@ footer {
   bottom: 0;
   left: 0; }
 
+.register, .login {
+  width: 300px;
+  height: 200px;
+  font-size: 40px;
+  margin: 50px; }
+
+.map-container {
+  display: flex;
+  justify-content: center; }
+  .map-container #map_canvas {
+    display: flex;
+    align-self: center; }
+
+a {
+  color: #55B4B0; }
+  a:hover {
+    text-decoration: underline; }
+
 #card-container {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  align-content: center;
+  justify-content: center;
   height: 100%;
   width: 100%; }
 
 .card {
+  align-self: center;
   margin: 15px;
   max-width: 450px; }
 
@@ -127,15 +147,6 @@ footer {
   max-width: 70vw;
   width: 70vw;
   margin-left: 12vw; }
-
-.register, .login {
-  width: 300px;
-  height: 300px;
-  font-size: 40px;
-  margin: 50px; }
-
-a {
-  color: #55B4B0; }
 
 .box {
   overflow: hidden; }

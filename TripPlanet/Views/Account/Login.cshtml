@@ -1,21 +1,22 @@
 ﻿@using TripPlanet.ViewModels
 
 @model LoginViewModel
-
-<h2>Login</h2>
-<br /><br />
-@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "col s12" }))
-{
-    <div class="row">
-        <div class="input-field col s6">
-            @Html.TextBoxFor(m => m.Email)
-            @Html.LabelFor(m => m.Email)
+<div class="thisbackground">
+    <h2>Login</h2>
+    <br /><br />
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "col s12" }))
+    {
+        <div class="row">
+            <div class="input-field col s6">
+                @Html.TextBoxFor(m => m.Email)
+                @Html.LabelFor(m => m.Email)
+            </div>
+            <div class="input-field col s6">
+                @Html.PasswordFor(m => m.Password)
+                @Html.LabelFor(m => m.Password)
+            </div>
         </div>
-        <div class="input-field col s6">
-            @Html.PasswordFor(m => m.Password)
-            @Html.LabelFor(m => m.Password)
-        </div>
-    </div>
 
-    <input type="submit" value="Log in" class="waves-effect waves-light btn" />
-}
+        <input type="submit" value="Log in" class="waves-effect waves-light btn" />
+    }
+</div>

@@ -81,7 +81,7 @@ namespace TripPlanet.Controllers
             Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(user.Email, password, isPersistent: true, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                return RedirectToAction("Details", "Account");
+                return RedirectToAction("Index", "Trips");
             }
             else
             {
@@ -100,7 +100,7 @@ namespace TripPlanet.Controllers
             Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                return RedirectToAction("Details", "Account");
+                return RedirectToAction("Index", "Trips");
             }
             else
             {

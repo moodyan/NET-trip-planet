@@ -4,8 +4,13 @@
 }
 @model TripPlanet.Models.Trip
 
-<h2>Your Trip Map</h2>
-<div id="map_canvas" style="width: 80vw; height: 60vh;"></div>
+<div class="trip-title">
+    <h1><span>@Model.Name Map</span></h1>
+</div>
+<div class="map-container">
+
+    <div id="map_canvas" style="width: 80vw; height: 60vh;"></div>
+</div>
 
 <script type="text/javascript">
     window.onload = function () {

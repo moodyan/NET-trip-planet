@@ -3,20 +3,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model TripPlanet.Models.Lodging
+<div class="thisbackground">
+    <h2>@Model.Name</h2>
+    @Html.ActionLink("Edit Lodging", "Edit", "Lodgings", new { id = Model.LodgingId })
+    <p>Address: @Model.Address</p>
+    <p>Arrival Date: @Model.ArrivalDate</p>
+    <p>Departure Date: @Model.DepartureDate</p>
+    <p>Cost: @Model.Cost</p>
+    <p>
+        Booked?
+        @if (@Model.Booked)
+        {
+<p>Yes</p><p>Confirmation: @Model.Confirmation</p>}
+        else
+        { <p>No</p>}</p>
 
-<h2>@Model.Name</h2>
-@Html.ActionLink("Edit Lodging", "Edit", "Lodgings", new { id = Model.LodgingId })
-<p>Address: @Model.Address</p>
-<p>Arrival Date: @Model.ArrivalDate</p>
-<p>Departure Date: @Model.DepartureDate</p>
-<p>Cost: @Model.Cost</p>
-<p>Booked? 
-    @if (@Model.Booked)
-    { <p>Yes</p><p>Confirmation: @Model.Confirmation</p>}
-    else { <p>No</p>}</p>
+        <hr />
 
-<hr />
-
-@Html.ActionLink("Delete This Lodging", "Delete", "Lodgings", new { id = Model.LodgingId }, new { @class="waves-effect waves-light btn red lighten-1" })
-<br />
-@Html.ActionLink("Back to City", "Details", "Cities", new { id = Model.CityId })
+        @Html.ActionLink("Delete This Lodging", "Delete", "Lodgings", new { id = Model.LodgingId }, new { @class = "waves-effect waves-light btn red lighten-1" })
+        <br />
+        @Html.ActionLink("Back to City", "Details", "Cities", new { id = Model.CityId })
+</div>

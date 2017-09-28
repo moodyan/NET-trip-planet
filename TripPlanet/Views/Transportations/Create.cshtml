@@ -4,26 +4,64 @@
     SelectList list = ViewBag.Cities;
 }
 @model TripPlanet.Models.Transportation
-<p>Departing City: @ViewBag.DepartureCity</p>
+<div class="thisbackground">
+    <h4>Departing City: @ViewBag.DepartureCity</h4>
+    <div class="row">
+        @using (Html.BeginForm())
+        {
+            <div class="row">
+                <div class="input-field col s4">
+                    <select>
+                        <option value="" disabled selected>Choose your option</option>
+                        @foreach (var tripCity in ViewBag.Citiess)
+                        {
+                            <option value="@tripCity.CityId">@tripCity.Name</option>
 
-@using (Html.BeginForm())
-{
-    
-    @Html.DropDownList("ArrivalCityId", list, "All")
+                        }
+                    </select>
+                    <label>Arrival City</label>
+                    @*@Html.DropDownList("ArrivalCityId", list, "All")*@
+                </div>
+                <div class="input-field col s4">
+                    @Html.LabelFor(model => model.Mode)
+                    @Html.EditorFor(model => model.Mode)
+                </div>
+                <div class="input-field col s4">
+                    @Html.TextBoxFor(model => model.DepartureDate, new { @required = "true", @class = "datepicker" })
+                    @Html.LabelFor(model => model.DepartureDate)
+                </div>
+                <div class="input-field col s4">
+                    @Html.LabelFor(model => model.Cost)
+                    @Html.EditorFor(model => model.Cost)
+                </div>
+                @*<div class="input-field col s4">
+                        @Html.LabelFor(model => model.Booked)
+                        @Html.EditorFor(model => model.Booked)
+                    </div>*@
+                <div class="input-field col s4">
+                    @Html.LabelFor(model => model.Confirmation)
+                    @Html.EditorFor(model => model.Confirmation)
+                </div>
+            </div>
+            <input type="submit" value="Add Transportation" class="waves-effect waves-light btn" />
+        }
+    </div>
 
-    @Html.LabelFor(model => model.Mode)
-    @Html.EditorFor(model => model.Mode)
+    @Html.ActionLink("Back to city", "Details", "Cities", new { id = ViewBag.City.CityId })
+</div>
 
-    @Html.LabelFor(model => model.DepartureDate)
-    @Html.EditorFor(model => model.DepartureDate)
-    @Html.LabelFor(model => model.Cost)
-    @Html.EditorFor(model => model.Cost)
-    @Html.LabelFor(model => model.Booked)
-    @Html.EditorFor(model => model.Booked)
-    @Html.LabelFor(model => model.Confirmation)
-    @Html.EditorFor(model => model.Confirmation)
-    <input type="submit" value="Add City" />
-}
-@Html.ActionLink("Back to city", "Details", "Cities", new { id = ViewBag.City.CityId })
-
-
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            today: 'Today',
+            clear: 'Clear',
+            close: 'Ok',
+            closeOnSelect: true // Close upon selecting a date,
+        });
+            
+        $('select').material_select();
+            
+    });
+</script>

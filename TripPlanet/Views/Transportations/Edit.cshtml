@@ -3,39 +3,68 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model TripPlanet.Models.Transportation
+<div class="thisbackground">
+    <h2>Edit details for this transportation:</h2>
+    @foreach (var depart in ViewBag.DepartureCity)
+    {
+        <h4>@depart.Name</h4>
+    }
+    <h4>to</h4>
+    @foreach (var arrival in ViewBag.ArrivalCity)
+    {
+        <h4>@arrival.Name</h4>
+    }
+    </br><br />
+    <div class="row">
+        
+        @using (Html.BeginForm())
+        {
 
-<h2>Edit details for this transportation:</h2>
-@foreach (var depart in ViewBag.DepartureCity)
-{
-    <h2>@depart.Name</h2>
-}
-<h2>to</h2>
-@foreach (var arrival in ViewBag.ArrivalCity)
-{
-    <h2>@arrival.Name</h2>
-}
+            @Html.HiddenFor(model => model.TransportationId)
+            @Html.HiddenFor(model => model.ArrivalCityId)
+            @Html.HiddenFor(model => model.CityId)
+            @Html.HiddenFor(model => model.TripId)
 
-<hr />
+            <div class="row">
+                <div class="input-field col s4">
+                    @Html.LabelFor(model => model.Mode)
+                    @Html.TextBoxFor(model => model.Mode)
+                </div>
+                <div class="input-field col s4">
+                    @Html.LabelFor(model => model.Cost)
+                    @Html.EditorFor(model => model.Cost)
+                </div>
+                <div class="input-field col s4">
+                    @Html.TextBoxFor(model => model.DepartureDate, new { @required = "true", @class = "datepicker" })
+                    @Html.LabelFor(model => model.DepartureDate)
+                </div>
+                @*<div class="input-field col s4">
+                    @Html.LabelFor(model => model.Booked)
+                    @Html.EditorFor(model => model.Booked)
+                </div>*@
+                <div class="input-field col s4">
+                    @Html.LabelFor(model => model.Confirmation)
+                    @Html.EditorFor(model => model.Confirmation)
+                </div>
+            </div>
+            <input type="submit" value="Save" class="waves-effect waves-light btn"/>
+         }
+    </div>
+    <p>@Html.ActionLink("Back to transportation", "Details", new { id = Model.TransportationId })</p>
+</div>
 
-@using (Html.BeginForm())
-{
-    @Html.HiddenFor(model => model.TransportationId)
-    @Html.HiddenFor(model => model.ArrivalCityId)
-    @Html.HiddenFor(model => model.CityId)
-    @Html.HiddenFor(model => model.TripId)
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            today: 'Today',
+            clear: 'Clear',
+            close: 'Ok',
+            closeOnSelect: true // Close upon selecting a date,
+        });
 
+        $('select').material_select();
 
-    @Html.LabelFor(model => model.Mode)
-    @Html.TextBoxFor(model => model.Mode)
-    @Html.LabelFor(model => model.Cost)
-    @Html.EditorFor(model => model.Cost)
-    @Html.LabelFor(model => model.DepartureDate)
-    @Html.EditorFor(model => model.DepartureDate)
-    @Html.LabelFor(model => model.Booked)
-    @Html.EditorFor(model => model.Booked)
-    @Html.LabelFor(model => model.Confirmation)
-    @Html.EditorFor(model => model.Confirmation)
-
-    <input type="submit" value="Save" />
-}
-<p>@Html.ActionLink("Back to transportation", "Details", new { id = Model.TransportationId })</p>
+    });
+</script>
