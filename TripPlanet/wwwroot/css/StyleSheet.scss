@@ -36,7 +36,7 @@ body {
 
 .thisbackground {
     background-color: white;
-    border-radius: 15px;
+    border-radius: 5px;
     min-height: 100vh;
     padding-top: 25px;
     padding-bottom: 25px;
@@ -50,6 +50,18 @@ body {
     margin-left: 60%;
     display: block;
     top: -40px;
+}
+
+.collapsible-header {
+    background-color: $yellow;
+}
+
+.collapsible, .collapsible-header, .collapsible-body {
+    width: 500px;
+
+    li {
+        width: 500px;
+    }
 }
 
 .home-button {
@@ -85,14 +97,14 @@ body {
 }
 
 .trip-title {
-    transform: translateX(0%) rotate(-5deg);
+    /*transform: translateX(0%) rotate(-5deg);*/
     /*display: block;*/
     /*position: relative;*/
-    color: $red;
+    color: $yellow;
     font-size: 100px;
 
     span {
-        transform: skew(-5deg);
+        /*transform: skew(-5deg);*/
         /*display: block;*/
         text-shadow: $shadow 1px 1px, $shadow 2px 2px, $shadow 3px 3px, $shadow 4px 4px, $shadow 5px 5px, $shadow 6px 6px;
         min-width: 10px;
@@ -120,11 +132,6 @@ body {
         min-height: 10px;
         position: relative;
     }
-}
-
-.section1 {
-    background-color: $green;
-    width: 100%;
 }
 
 footer {
@@ -226,8 +233,8 @@ a {
         
         display: none;
         opacity: 0;
-        /*transition: opacity 1s linear;
-    -webkit-transition: opacity 1s linear;*/
+        transition: opacity 1s linear;
+    -webkit-transition: opacity 1s linear;
     }
 
     .checklist-wrap .selected {
@@ -359,7 +366,7 @@ a {
 
 //NAVBAR
 #container {
-    width: 92vw;
+    width: 97vw;
     position: fixed;
     top: 1vh;
     align-items: center;

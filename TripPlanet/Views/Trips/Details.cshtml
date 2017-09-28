@@ -7,24 +7,22 @@
 <div class="thisbackground">
     <div class="section1">
         <div class="trip-title">
-            <h1><span>Trip Details for @Model.Name</span></h1>
+            <h1><span>@Model.Name</span></h1>
         </div>
     </div>
-    <br /><br />
+    <br />
+    <p>@Html.DisplayFor(model => model.BeginDate) - @Html.DisplayFor(model => model.EndDate)</p>
+    <p>Estimated Budget: @Html.DisplayFor(model => model.Budget)</p>
+    <p>Budget Used: @Html.DisplayFor(model => model.Budget)</p>
+    @*<p>@Html.DisplayNameFor(model => model.Members) : @Html.DisplayFor(model => model.Members)</p>*@
+    <br />
     @Html.ActionLink("Trip Map", "MapView", new { id = @Model.TripId })
-
-    <br /><br />
-
-    <p>@Html.DisplayNameFor(model => model.BeginDate) : @Html.DisplayFor(model => model.BeginDate)</p>
-    <p>@Html.DisplayNameFor(model => model.EndDate) : @Html.DisplayFor(model => model.EndDate)</p>
-    <p>@Html.DisplayNameFor(model => model.Budget) : @Html.DisplayFor(model => model.Budget)</p>
-    <p>@Html.DisplayNameFor(model => model.Members) : @Html.DisplayFor(model => model.Members)</p>
 
     <div class="twothirds vertical-tabs">
         <div class="checklist-wrap">
             <div class="row">
                 <div class="col s3">
-                    <h3>CITIES</h3>
+                    <h3>@Html.ActionLink("Add A City", "Create", "Cities", new { id = Model.TripId })</h3>
                 </div>
             </div>
             <div class="row">
@@ -71,10 +69,6 @@
         </div>  <!-- end checklist-wrap -->
     </div>
 
-
-    @Html.ActionLink("Add A City", "Create", "Cities", new { id = Model.TripId })
-    <br /><br />
-   
     <br /><br />
     @Html.ActionLink("Edit Trip Details", "Edit", new { id = Model.TripId }, new { @class = "waves-effect waves-light btn" })
     @Html.ActionLink("Delete This Trip", "Delete", new { id = Model.TripId }, new { @class = "waves-effect waves-light btn red lighten-1" })

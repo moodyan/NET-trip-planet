@@ -29,7 +29,7 @@ body {
 
 .thisbackground {
   background-color: white;
-  border-radius: 15px;
+  border-radius: 5px;
   min-height: 100vh;
   padding-top: 25px;
   padding-bottom: 25px;
@@ -42,6 +42,14 @@ body {
   margin-left: 60%;
   display: block;
   top: -40px; }
+
+.collapsible-header {
+  background-color: #f1c83c; }
+
+.collapsible, .collapsible-header, .collapsible-body {
+  width: 500px; }
+  .collapsible li, .collapsible-header li, .collapsible-body li {
+    width: 500px; }
 
 .home-button {
   display: block;
@@ -65,13 +73,13 @@ body {
       text-shadow: #533d4a 3px 3px, #533d4a 4px 4px, #533d4a 5px 5px, #533d4a 6px 6px, #533d4a 7px 7px, #533d4a 8px 8px; }
 
 .trip-title {
-  transform: translateX(0%) rotate(-5deg);
+  /*transform: translateX(0%) rotate(-5deg);*/
   /*display: block;*/
   /*position: relative;*/
-  color: #e55643;
+  color: #f1c83c;
   font-size: 100px; }
   .trip-title span {
-    transform: skew(-5deg);
+    /*transform: skew(-5deg);*/
     /*display: block;*/
     text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px, #533d4a 4px 4px, #533d4a 5px 5px, #533d4a 6px 6px;
     min-width: 10px;
@@ -95,10 +103,6 @@ body {
     min-width: 10px;
     min-height: 10px;
     position: relative; }
-
-.section1 {
-  background-color: #2b9f5e;
-  width: 100%; }
 
 footer {
   display: flex;
@@ -178,8 +182,8 @@ a {
   .checklist-wrap .box {
     display: none;
     opacity: 0;
-    /*transition: opacity 1s linear;
-    -webkit-transition: opacity 1s linear;*/ }
+    transition: opacity 1s linear;
+    -webkit-transition: opacity 1s linear; }
   .checklist-wrap .selected {
     display: block;
     opacity: 1;
@@ -282,7 +286,7 @@ a {
     transform: rotate(360deg); } }
 
 #container {
-  width: 92vw;
+  width: 97vw;
   position: fixed;
   top: 1vh;
   align-items: center;
