@@ -141,7 +141,8 @@ a {
 .card {
   align-self: center;
   margin: 15px;
-  max-width: 450px; }
+  max-width: 450px;
+  box-shadow: 10px 10px 5px black; }
 
 .city {
   max-width: 70vw;
