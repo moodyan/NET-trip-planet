@@ -12,7 +12,7 @@ _A web application that allows users to manage their multi-city trips._
 ![alt text](https://user-images.githubusercontent.com/9857432/31292583-df9ec2e8-aa88-11e7-9c3b-d08adcfc420f.png)
 ![alt text](https://user-images.githubusercontent.com/9857432/31292607-00a5f59c-aa89-11e7-80e8-c6da18e4b4ec.png)
 ![alt text](https://user-images.githubusercontent.com/9857432/31292630-0feaa57a-aa89-11e7-97fb-688180129707.png)
-![alt text](https://user-images.githubusercontent.com/9857432/31292643-1c8dbb64-aa89-11e7-87b6-d2c6420cbb18.png =250x)
+![alt text](https://user-images.githubusercontent.com/9857432/31292643-1c8dbb64-aa89-11e7-87b6-d2c6420cbb18.png)
 
 ## MVP Program Specifications
 
