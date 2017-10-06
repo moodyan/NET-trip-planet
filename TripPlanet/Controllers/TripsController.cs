@@ -45,36 +45,55 @@ namespace TripPlanet.Controllers
             return View(allPublicTrips);
         }
 
-        public async Task<IActionResult> MapView(int Id)
+        //public async Task<IActionResult> MapView(int Id)
+        //{
+        //    var thisTrip = _db.Trips
+        //        .Include(trips => trips.TripCities)
+        //        .FirstOrDefault(trip => trip.TripId == Id);
+            
+           
+        //    var jsonLatLong = JsonConvert.SerializeObject(cities);
+        //    ViewBag.TripCities = cities;
+        //    ViewBag.LatLong = jsonLatLong;
+
+        //    IGeocoder geocoder = new GoogleGeocoder() { ApiKey = EnvironmentVariables.GeocodingAPI };
+        //    IEnumerable<Address> addresses = await geocoder.GeocodeAsync(thisTrip.StartCity);
+        //    var lat = addresses.First().Coordinates.Latitude;
+        //    var lng = addresses.First().Coordinates.Longitude;
+        //    double[] startLatLong = new double[] { lat, lng};
+        //    ViewBag.StartLatLong = startLatLong;
+
+        //    return View(thisTrip);
+        //}
+
+        public async Task<IActionResult> Details(int Id)
         {
             var thisTrip = _db.Trips
                 .Include(trips => trips.TripCities)
                 .FirstOrDefault(trip => trip.TripId == Id);
+            var tripCities = _db.TripCities
+                .Include(city => city.City)
+                .Where(tripcity => tripcity.TripId == Id)
+                .OrderBy(tc => tc.City.ArrivalDate)
+                .ToList();
             var cities = _db.Cities
                 .Where(c => c.TripId == Id)
                 .OrderBy(tc => tc.ArrivalDate)
                 .ToList();
-           
+
             var jsonLatLong = JsonConvert.SerializeObject(cities);
             ViewBag.TripCities = cities;
             ViewBag.LatLong = jsonLatLong;
+            ViewBag.Cities = tripCities;
+            ViewBag.BudgetUsed = Budget(Id);
 
             IGeocoder geocoder = new GoogleGeocoder() { ApiKey = EnvironmentVariables.GeocodingAPI };
             IEnumerable<Address> addresses = await geocoder.GeocodeAsync(thisTrip.StartCity);
             var lat = addresses.First().Coordinates.Latitude;
             var lng = addresses.First().Coordinates.Longitude;
-            double[] startLatLong = new double[] { lat, lng};
+            double[] startLatLong = new double[] { lat, lng };
             ViewBag.StartLatLong = startLatLong;
 
-            return View(thisTrip);
-        }
-
-        public IActionResult Details(int Id)
-        {
-            var thisTrip = _db.Trips.Include(trips => trips.TripCities).FirstOrDefault(trip => trip.TripId == Id);
-            var tripCities = _db.TripCities.Include(city => city.City).Where(tripcity => tripcity.TripId == Id).OrderBy(tc => tc.City.ArrivalDate).ToList();
-            ViewBag.Cities = tripCities;
-            ViewBag.BudgetUsed = Budget(Id);
             return View(thisTrip);
         }
         
@@ -87,10 +106,10 @@ namespace TripPlanet.Controllers
         public IActionResult Create(Trip trip)
         {
             trip.Planner = _db.Planners.FirstOrDefault(planner => planner.UserName == User.Identity.Name);
-            
+            trip.TripLength = trip.GetDuration();
             _db.Trips.Add(trip);
             _db.SaveChanges();
-            return RedirectToAction("Index"); ;
+            return RedirectToAction("Details", "Trips", new { id = trip.TripId }); ;
         }
 
         public IActionResult Edit(int id)
@@ -103,6 +122,7 @@ namespace TripPlanet.Controllers
         public IActionResult Edit(Trip trip)
         {
             trip.Planner = _db.Planners.FirstOrDefault(planner => planner.UserName == User.Identity.Name);
+            trip.TripLength = trip.GetDuration();
             _db.Entry(trip).State = EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Details", "Trips", new { id = trip.TripId});

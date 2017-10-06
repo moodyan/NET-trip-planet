@@ -23,6 +23,27 @@ namespace TripPlanet.Controllers
             _db = db;
         }
 
+        public IActionResult Index(int Id)
+        {
+            var thisTrip = _db.Trips.FirstOrDefault(t => t.TripId == Id);
+            ViewBag.Trip = thisTrip;
+
+            var cities = _db.Cities
+                .Where(c => c.TripId == Id)
+                .OrderBy(tc => tc.ArrivalDate)
+                .ToList();
+
+            ViewBag.Cities = cities;
+
+            var tripCities = _db.TripCities
+                .Include(city => city.City)
+                .Where(tripcity => tripcity.TripId == Id)
+                .OrderBy(tc => tc.City.ArrivalDate)
+                .ToList();
+
+            return View(cities);
+        }
+
         public IActionResult Create(int Id)
         {
             var thisTrip = _db.Trips.FirstOrDefault(t => t.TripId == Id);
@@ -102,6 +123,7 @@ namespace TripPlanet.Controllers
         {
             
             _db.Entry(city).State = EntityState.Modified;
+            city.Duration = city.GetDuration();
             _db.SaveChanges();
             return RedirectToAction("Details", "Cities", new { id = id });
         }

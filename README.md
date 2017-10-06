@@ -1,12 +1,18 @@
 # TripPlanet
 
-#### _App created for Epicodus Capstone using C# and ASP.NET. August 31st, 2017_
+#### _App created for Epicodus Capstone using C# and ASP.NET. October 6th, 2017_
 
 #### By **Alyssa Moody**
 
 ## Description
 
 _A web application that allows users to manage their multi-city trips._
+
+## Screenshots
+![alt text](https://user-images.githubusercontent.com/9857432/31292583-df9ec2e8-aa88-11e7-9c3b-d08adcfc420f.png)
+![alt text](https://user-images.githubusercontent.com/9857432/31292607-00a5f59c-aa89-11e7-80e8-c6da18e4b4ec.png)
+![alt text](https://user-images.githubusercontent.com/9857432/31292630-0feaa57a-aa89-11e7-97fb-688180129707.png)
+![alt text](https://user-images.githubusercontent.com/9857432/31292643-1c8dbb64-aa89-11e7-87b6-d2c6420cbb18.png)
 
 ## MVP Program Specifications
 
@@ -28,22 +34,20 @@ _A web application that allows users to manage their multi-city trips._
 1. Budgeting feature where users can keep track of their total budget and how much they plan to spend on transportation, food/drink, and activities. This feature would also take the information from user inputted flights and activities and be shown here as part of their budget.
 2. Map view (Google maps API) for each city with markers for activities/lodging.
 3. Flight selector that inputs flight info to their trip (Flight API)
-4. Admin features?
+4. Admin features
 5. Group Trip features (add friend’s email to trip) - this would also add to the budgeting feature to split costs.
 6. Upload documents and profile photo feature
 7. Allows users to edit/delete their account.
 8. Users can choose single-city trip planning
 
 **TODO:**
-2. Fix activity/lodging dates to dropdown list dates in city
-3. For activity, create dropdown list for types
-4. For transportation, different forms based on mode.
-5. Shorten names of activities/lodging etc
-7. Add seed data
-8. Add time for transportation
-9. Have project actually use my many to many between trips and cities.
-10. DEPLOY
-11. STYLE
+1. Fix activity/lodging dates to dropdown list dates in city
+2. For activity, create dropdown list for types
+3. For transportation, different forms based on mode.
+4. Add seed data
+5. Add time for transportation and activity
+6. Break each city up into days, assign activities and lodging to each day.
+7. DEPLOY
 
 ## Setup/Installation Requirements
 

@@ -27,8 +27,11 @@
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">@trip.Name<i class="material-icons right">close</i></span>
-                        <p>Dates: @trip.BeginDate.Date to @trip.EndDate.Date</p>
+                        <p>Dates: @trip.BeginDate to @trip.EndDate</p>
                         <p>Budget: @trip.Budget</p>
+                        <br />
+                        @Html.ActionLink("Edit Trip Details", "Edit", new { id = trip.TripId }, new { @class = "waves-effect waves-light btn" })
+                        @Html.ActionLink("Delete This Trip", "Delete", new { id = trip.TripId }, new { @class = "waves-effect waves-light btn red lighten-1" })
                     </div>
                 </div>
             }
@@ -36,7 +39,7 @@
     }
     else
     {
-        <p>You have not created any trips.</p>
+        <p>You have not planned any trips.</p>
     }
 }
 else

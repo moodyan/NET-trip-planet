@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "Trip Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<TripPlanet.Models.City>
+
+
+<div class="thisbackground">
+    <div class="trip-title">
+        <h1><span>@ViewBag.Trip.Name</span></h1>
+    </div>
+    <p>@Html.ActionLink("Back to Trip Overview", "Details", "Trips", new { id = ViewBag.Trip.TripId })</p>
+
+    <div class="twothirds vertical-tabs">
+        <div class="checklist-wrap">
+            <div class="row">
+                <div class="contextNav onethird col s3">
+                    <h3>@Html.ActionLink("Add A City", "Create", "Cities", new { id = ViewBag.Trip.TripId })</h3>
+                    <br />
+                    <ul class="checklist-select" role="tablist">
+                        @foreach (var tripCity in ViewBag.Cities)
+                        {
+                            <li id="tab-@tripCity.CityId" role="tab" aria-controls="panel-@tripCity.CityId" aria-selected="false">@tripCity.Name</li>
+                            <script type="text/javascript">
+                            $(document).ready(function () {
+                                var cityId = @tripCity.CityId;
+                                $('#tab-@tripCity.CityId').click(function () {
+                                    $.ajax({
+                                        type: 'GET',
+                                        dataType: 'html',
+                                        data: { id: $(this).data('id') },
+                                        url: "/Cities/Details/"+@tripCity.CityId,
+                                        success: function (result) {
+                                            $('.@tripCity.CityId').html(result);
+                                        }
+                                    });
+
+                                });
+                            });
+                            </script>
+                        }
+                    </ul>
+                </div> <!-- end contextNav -->
+                <!-------- First Panel --------->
+                @foreach (var tripCity in ViewBag.Cities)
+            {
+                    <div class="twothirds last box tab-@tripCity.CityId-box col s9" id="panel-@tripCity.CityId" role="tabpanel" aria-labelledby="tab-@tripCity.CityId">
+                        <article class="deptBox @tripCity.CityId">
+                            @*<h3><a href="/Cities/Details/@tripCity.CityId" id="@tripCity.CityId">@tripCity.Name</a></h3>
+                                <div>
+                                    <br>
+
+                                    <p>@tripCity.Name</p>
+
+                                </div>*@
+                        </article>
+                    </div> <!-- end tab1 Box  -->
+                }
+            </div>  <!-- end checklist-wrap -->
+        </div>
+    </div>
+    
+</div>
+<script>
+    $(document).ready(function () {
+        vert_tabs();
+    });
+
+    $(window).resize(function () {
+        if ($('.vertical-tabs').innerWidth() > 608) {
+            if ($('div.selected').length) {
+            } else {
+                $('div.box:first').addClass('selected');
+            }
+        }
+    });
+
+    function vert_tabs() {
+        $('ul.checklist-select li').click(function () {
+            var selectID = $(this).attr('id');
+            $('ul.checklist-select li').removeClass('active');
+            $(this).addClass('active');
+            $('div.box').removeClass('selected');
+            $('.' + selectID + '-box').addClass('selected');
+        });
+    }
+</script>

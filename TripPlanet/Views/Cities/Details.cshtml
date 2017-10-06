@@ -3,91 +3,91 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model TripPlanet.Models.City
-<div class="thisbackground">
+<div class="citybackground">
     <h3>@Model.Name</h3>
     @Html.ActionLink("Edit Dates", "Edit", "Cities", new { id = Model.CityId })
-    <p>Arrive: @Model.ArrivalDate</p>
-    <p>Depart: @Model.DepartureDate</p>
+    <p>Arrive: @Html.DisplayFor(model => model.ArrivalDate)</p>
+    <p>Depart: @Html.DisplayFor(model => model.DepartureDate)</p>
 
-
-    <ul class="collapsible popout city" data-collapsible="expandable">
-        <li>
-            <div class="collapsible-header"><i class="material-icons">stars</i>Activities</div>
-            <div class="collapsible-body">
-                <span>
-                    <h4>Activities:</h4>
-                    @if (ViewBag.Activities.Count != 0)
-                    {
-                        @foreach (var activity in ViewBag.Activities)
+    <div class="city-container">
+        <ul class="collapsible popout city" data-collapsible="expandable">
+            <li>
+                <div class="collapsible-header activities"><i class="material-icons">stars</i>Activities</div>
+                <div class="collapsible-body">
+                    <span>
+                        <h4>Activities:</h4>
+                        @if (ViewBag.Activities.Count != 0)
                         {
-                            <a href="/Activities/Details/@activity.ActivityId">@activity.Name</a><br />
-                        }
-                        <p>Total Cost: $@ViewBag.ActivityCost</p><br />
-                    }<br />
-                    <a class="btn-floating btn-large waves-effect waves-light red" href="/Activities/Create/@Model.CityId"><i class="material-icons">add</i></a>
-                </span>
-            </div>
-        </li>
-        <li>
-            <div class="collapsible-header"><i class="material-icons">hotel</i>Lodging</div>
-            <div class="collapsible-body">
-                <span>
-                    <h4>Lodging:</h4>
-                    @if (ViewBag.Lodging.Count != 0)
-                    {
-                        @foreach (var lodging in ViewBag.Lodging)
+                            @foreach (var activity in ViewBag.Activities)
+                            {
+                                <a href="/Activities/Details/@activity.ActivityId">@activity.Name</a><br />
+                            }
+                            <p>Total Cost: $@ViewBag.ActivityCost</p><br />
+                        }<br />
+                        <a class="btn-floating btn-large waves-effect waves-light red" href="/Activities/Create/@Model.CityId"><i class="material-icons">add</i></a>
+                    </span>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header lodging"><i class="material-icons">hotel</i>Lodging</div>
+                <div class="collapsible-body">
+                    <span>
+                        <h4>Lodging:</h4>
+                        @if (ViewBag.Lodging.Count != 0)
                         {
-                            <a href="/Lodgings/Details/@lodging.LodgingId">@lodging.Name</a><br />
+                            @foreach (var lodging in ViewBag.Lodging)
+                            {
+                                <a href="/Lodgings/Details/@lodging.LodgingId">@lodging.Name</a><br />
+                            }
+                            <p>Total Cost: $@ViewBag.LodgingCost</p><br />
                         }
-                        <p>Total Cost: $@ViewBag.LodgingCost</p><br />
-                    }
-                    else
-                    {
-                        <p>You have not entered any lodging for this city.</p>
-                    }<br />
-                    <a class="btn-floating btn-large waves-effect waves-light red" href="/Lodgings/Create/@Model.CityId"><i class="material-icons">add</i></a>
-                </span>
-            </div>
-        </li>
-        <li>
-            <div class="collapsible-header"><i class="material-icons">local_airport</i>Transportation</div>
-            <div class="collapsible-body">
-                <span>
-                    <h4>Arrival Transportation:</h4>
-                    @if (ViewBag.ArrivalTransport != null)
-            {
-                        @foreach (var transportation in ViewBag.ArrivalCity)
+                        else
+                        {
+                            <p>You have not entered any lodging for this city.</p>
+                        }<br />
+                        <a class="btn-floating btn-large waves-effect waves-light red" href="/Lodgings/Create/@Model.CityId"><i class="material-icons">add</i></a>
+                    </span>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header transportation"><i class="material-icons">local_airport</i>Transportation</div>
+                <div class="collapsible-body">
+                    <span>
+                        <h4>Arrival Transportation:</h4>
+                        @if (ViewBag.ArrivalTransport != null)
                 {
-                            <a href="/Transportations/Details/@ViewBag.ArrivalTransport.TransportationId">@transportation.Name to @Model.Name</a><br />
-                        }
-                    }
-                    else
+                            @foreach (var transportation in ViewBag.ArrivalCity)
                     {
-                        <p>You have not entered any arrival information for this city.</p>
-                    }
+                                <a href="/Transportations/Details/@ViewBag.ArrivalTransport.TransportationId">@transportation.Name to @Model.Name</a><br />
+                            }
+                        }
+                        else
+                        {
+                            <p>You have not entered any arrival information for this city.</p>
+                        }
 
-                    <br /><br />
-                    <h4>Departure Transportation:</h4>
-                    @if (ViewBag.DepartureTransport != null)
-            {
-                        @foreach (var transportation in ViewBag.DepartureCity)
+                        <br /><br />
+                        <h4>Departure Transportation:</h4>
+                        @if (ViewBag.DepartureTransport != null)
                 {
-                            <a href="/Transportations/Details/@ViewBag.DepartureTransport.TransportationId">
-                                @Model.Name to @transportation.Name
-                            </a>
-                            <p>Total Cost: $@ViewBag.TransportationCost</p><br />
-                        }
-                    }
-                    else
+                            @foreach (var transportation in ViewBag.DepartureCity)
                     {
-                        <p>You have not entered any departure information for this city.</p>
-                        <a class="btn-floating btn-large waves-effect waves-light red" href="/Transportations/Create/@Model.CityId"><i class="material-icons">add</i></a>
-                    }
-                </span>
-            </div>
-        </li>
-    </ul>
-
+                                <a href="/Transportations/Details/@ViewBag.DepartureTransport.TransportationId">
+                                    @Model.Name to @transportation.Name
+                                </a>
+                                <p>Total Cost: $@ViewBag.TransportationCost</p><br />
+                            }
+                        }
+                        else
+                        {
+                            <p>You have not entered any departure information for this city.</p>
+                            <a class="btn-floating btn-large waves-effect waves-light red" href="/Transportations/Create/@Model.CityId"><i class="material-icons">add</i></a>
+                        }
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
     <p>Budget Used: $@ViewBag.TotalCost</p>
     <br /><br />
 

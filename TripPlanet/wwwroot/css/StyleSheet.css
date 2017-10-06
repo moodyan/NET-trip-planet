@@ -28,7 +28,7 @@ body {
   font-family: 'Fjalla One', sans-serif; }
 
 .thisbackground {
-  background-color: white;
+  background-color: #ecf2f9;
   border-radius: 5px;
   min-height: 100vh;
   padding-top: 25px;
@@ -37,14 +37,29 @@ body {
   margin-left: 4vw;
   margin-top: 10px; }
 
+.citybackground {
+  background-color: #ecf2f9;
+  min-height: 100vh;
+  padding-top: 30px;
+  padding-bottom: 25px; }
+
 #small {
   font-size: 24px;
   margin-left: 60%;
   display: block;
   top: -40px; }
 
-.collapsible-header {
-  background-color: #f1c83c; }
+.activities {
+  background-color: #2b9f5e; }
+
+.lodging {
+  background-color: #e55643; }
+
+.transportation {
+  background-color: #55B4B0; }
+
+.collapsible-body {
+  background-color: white; }
 
 .collapsible, .collapsible-header, .collapsible-body {
   width: 500px; }
@@ -112,12 +127,6 @@ footer {
   bottom: 0;
   left: 0; }
 
-.register, .login {
-  width: 300px;
-  height: 200px;
-  font-size: 40px;
-  margin: 50px; }
-
 .map-container {
   display: flex;
   justify-content: center; }
@@ -144,10 +153,16 @@ a {
   max-width: 450px;
   box-shadow: 10px 10px 5px black; }
 
+.city-container {
+  width: 100%;
+  display: flex;
+  justify-content: center; }
+
 .city {
   max-width: 70vw;
   width: 70vw;
-  margin-left: 12vw; }
+  align-self: center;
+  margin-left: 25%; }
 
 .box {
   overflow: hidden; }
@@ -356,4 +371,26 @@ a {
   -moz-box-shadow: 0px 1px 2px 1px #533d4a;
   -webkit-box-shadow: 0px 1px 2px 1px #533d4a;
   box-shadow: 0px 1px 2px 1px #533d4a; }
+
+.enter-container {
+  display: flex;
+  justify-content: center;
+  width: 100vw; }
+
+.login-container {
+  min-width: 70vw;
+  width: 70vw;
+  height: 600px;
+  background-color: white; }
+
+#register, #login {
+  padding: 20px; }
+
+.tabs .indicator {
+  background-color: #e0f2f1;
+  height: 60px;
+  opacity: 0.3; }
+
+.confirmation-tabs-btn {
+  position: absolute; }
 

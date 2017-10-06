@@ -25,11 +25,11 @@ namespace TripPlanet.Models
         public int Duration { get; set; }
         [DisplayName("Arrival Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MMM dd, yyyy}")]
         public DateTime ArrivalDate { get; set; }
         [DisplayName("Departure Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MMM dd, yyyy}")]
         public DateTime DepartureDate { get; set; }
         public int TripId { get; set; }
         [JsonIgnore]
